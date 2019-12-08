@@ -1,0 +1,117 @@
+webpackJsonp([0],{
+
+/***/ 314:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModelPageModule", function() { return ModelPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(316);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ModelPageModule = /** @class */ (function () {
+    function ModelPageModule() {
+    }
+    ModelPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__model__["a" /* ModelPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__model__["a" /* ModelPage */]),
+            ],
+        })
+    ], ModelPageModule);
+    return ModelPageModule;
+}());
+
+//# sourceMappingURL=model.module.js.map
+
+/***/ }),
+
+/***/ 316:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModelPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_http_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api_config__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__tabs_tabs__ = __webpack_require__(57);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the ModelPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ModelPage = /** @class */ (function () {
+    function ModelPage(app, httpService, navCtrl, navParams) {
+        var _this = this;
+        this.app = app;
+        this.httpService = httpService;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.doLogin = function () {
+            // console.log(this.navParams);
+            // console.log(this.navParams.data.newPassword);
+            // console.log(this.navParams.data.userName);
+            var postData = {
+                userName: _this.navParams.data.phone,
+                Password: _this.navParams.data.newPassword
+            };
+            // this.httpService.httpPost(ApiConfig.mobileUrl + 'login', postData, this.loginComplete);
+        };
+        this.loginComplete = function (data) {
+            if (data.error == __WEBPACK_IMPORTED_MODULE_3__app_app_api_config__["a" /* ApiConfig */].successCode) {
+                localStorage.setItem("userInfo", JSON.stringify(data.data));
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__tabs_tabs__["a" /* TabsPage */], null, null, function () {
+                    _this.app.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_4__tabs_tabs__["a" /* TabsPage */]);
+                });
+            }
+        };
+    }
+    ModelPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ModelPage');
+    };
+    ModelPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-model',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\login\model\model.html"*/'<!--\n  Generated template for the ModelPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n\n\n<ion-content>\n  <div class="login-page-model register-page">\n  <div id="registersuccess"></div>\n  <p class="model-p">恭喜您!注册成功</p>\n  <input type="button" class="btn" value="立即登录" (click)="doLogin()">\n</div>\n</ion-content>'/*ion-inline-end:"E:\cordova\arcapps\src\pages\login\model\model.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_http_service__["a" /* HttpService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
+    ], ModelPage);
+    return ModelPage;
+}());
+
+//# sourceMappingURL=model.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=0.js.map

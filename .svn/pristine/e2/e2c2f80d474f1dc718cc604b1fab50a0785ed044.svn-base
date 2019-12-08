@@ -1,0 +1,51 @@
+{
+  "_from": "angular2-baidu-map@^4.5.0",
+  "_id": "angular2-baidu-map@4.5.0",
+  "_inBundle": false,
+  "_integrity": "sha512-ox3dJVNSq8J/5APxhNZnpe/JKOjMtMySS7i5ZZ1rM5vw35VgC8+pIkiE31+IzFpV6hl74A3eATYSUMRV2BAdsA==",
+  "_location": "/angular2-baidu-map",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "angular2-baidu-map@^4.5.0",
+    "name": "angular2-baidu-map",
+    "escapedName": "angular2-baidu-map",
+    "rawSpec": "^4.5.0",
+    "saveSpec": null,
+    "fetchSpec": "^4.5.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular2-baidu-map/-/angular2-baidu-map-4.5.0.tgz",
+  "_shasum": "fe77849b43923e72f17e9a66e9bdcea79f36580e",
+  "_spec": "angular2-baidu-map@^4.5.0",
+  "_where": "E:\\cordova\\arcapp",
+  "author": {
+    "name": "Howard.Zuo"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "tslib": "^1.7.1"
+  },
+  "deprecated": false,
+  "description": "Angular2 component for Baidu map",
+  "es2015": "fesm2015/angular2-baidu-map.js",
+  "esm2015": "esm2015/angular2-baidu-map.js",
+  "esm5": "esm5/angular2-baidu-map.js",
+  "fesm2015": "fesm2015/angular2-baidu-map.js",
+  "fesm5": "fesm5/angular2-baidu-map.js",
+  "license": "GPL-3.0",
+  "main": "bundles/angular2-baidu-map.umd.js",
+  "metadata": "angular2-baidu-map.metadata.json",
+  "module": "fesm5/angular2-baidu-map.js",
+  "name": "angular2-baidu-map",
+  "peerDependencies": {
+    "@angular/core": "^5.2.11"
+  },
+  "sideEffects": false,
+  "typings": "angular2-baidu-map.d.ts",
+  "version": "4.5.0"
+}

@@ -1,0 +1,2653 @@
+webpackJsonp([13],{
+
+/***/ 110:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlarmPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alarmDetail_alarmDetail__ = __webpack_require__(111);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AlarmPage = /** @class */ (function () {
+    function AlarmPage(navCtrl, pagesToggleService, alertMsgService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.pagesToggleService = pagesToggleService;
+        this.alertMsgService = alertMsgService;
+        this.title = "报警列表";
+        this.alarmList = [];
+        this.pageParam = {
+            page: 1,
+            isPull: false,
+            page_size: 6
+        };
+        this.doInfinite = function (e) {
+            setTimeout(function () {
+                _this.alarmList.push({
+                    device_id: 'AFDD-13',
+                    alarm_time: '2018-10-10 18:30',
+                    alarm_type: '故障报警',
+                    alarm_position: '丰泽区南北大道'
+                }, {
+                    device_id: 'AFDD-14',
+                    alarm_time: '2018-10-11 4:30',
+                    alarm_type: '故障报警',
+                    alarm_position: '丰泽区南北大道'
+                }, {
+                    device_id: 'AFDD-15',
+                    alarm_time: '2018-10-12 11:30',
+                    alarm_type: '故障报警',
+                    alarm_position: '丰泽区南北大道'
+                });
+            }, 1000);
+            setTimeout(function () {
+                e.complete();
+            }, 2000);
+        };
+    }
+    AlarmPage.prototype.ngOnInit = function () {
+        this.alarmList = [
+            {
+                device_id: 'AFDD-1',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-2',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-3',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-4',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-5',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-6',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+        ];
+    };
+    AlarmPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    AlarmPage.prototype.doRefresh = function (refresher) {
+        this.alarmList = [
+            {
+                device_id: 'AFDD-7',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-8',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-9',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-10',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-11',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-12',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+        ];
+        setTimeout(function () {
+            refresher.complete();
+        }, 1000);
+        // refresher.complete();
+    };
+    AlarmPage.prototype.clearAlarm = function () {
+        this.alertMsgService.showMsg("消音发送成功");
+    };
+    AlarmPage.prototype.alarmDetail = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__alarmDetail_alarmDetail__["a" /* AlarmDetailPage */], null);
+        //this.pagesToggleService.goToPage("AlarmDetailPage", null, "LeftAndRight");
+    };
+    AlarmPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-alarm',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\alarm\alarm.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()"></ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content style="background-color: #fff;">\n  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="下拉刷新"\n      refreshingSpinner="circles"\n      refreshingText="">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div *ngFor="let item of alarmList;let i = index">\n    <ion-card (click)="alarmDetail()" style="border-radius: 10px;margin: 20px;width: calc(100% - 40px)">\n      <ion-card-header style="color:red;background-color: #eee">设备号：{{item.device_id}}</ion-card-header>\n      <ion-card-content style="padding-top: 16px;padding-bottom: 5px;">\n        <p>{{item.alarm_time}}</p>\n        <p style="margin-top: 8px;"><span style="margin-right: 6rem">{{item.alarm_type}}</span></p>\n        <p style="margin-top: 8px;">{{item.alarm_position}}</p>\n        <ion-row>\n          <ion-col></ion-col>\n          <ion-col style="text-align: right">\n            <button ion-button icon-start small class="clear_btn" (click)="$event.stopPropagation();clearAlarm()">\n              <span style="font-size:14px;">消音</span>\n            </button>\n          </ion-col>\n        </ion-row>\n      </ion-card-content>\n    </ion-card>\n  </div>\n  <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="加载更多数据...">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n  <div *ngIf="isMore" class="text-align no-more">-No more-</div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\alarm\alarm.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__["a" /* PagesToggleService */],
+            __WEBPACK_IMPORTED_MODULE_3__app_service_alert_msg_service__["a" /* AlertMsgService */]])
+    ], AlarmPage);
+    return AlarmPage;
+}());
+
+//# sourceMappingURL=alarm.js.map
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlarmDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AlarmDetailPage = /** @class */ (function () {
+    function AlarmDetailPage(navCtrl, alertMsgService) {
+        this.navCtrl = navCtrl;
+        this.alertMsgService = alertMsgService;
+        this.userInput = {
+            handle: "",
+            note: ""
+        };
+        this.title = '报警详情';
+    }
+    AlarmDetailPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    AlarmDetailPage.prototype.save = function () {
+        if (this.userInput.handle == "") {
+            this.alertMsgService.showMsg("请输入处理情况!");
+        }
+        if ((this.userInput.handle != "") && (this.userInput.note != "")) {
+            this.goBack();
+        }
+    };
+    AlarmDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-alarmDetail',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\alarmDetail\alarmDetail.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()"></ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding style="background-color: #F5F5F5;">\n  <ion-card style="border-radius: 10px;padding-bottom: 40px;">\n    <ion-card-content>\n      <ion-item-group class="table_detail">\n        <ion-item>设备号：AFDD-1</ion-item>\n        <ion-item>报警原因：火灾报警</ion-item>\n        <ion-item>时间：2018-10-10 15:30</ion-item>\n        <ion-item>位置：泉州丰泽区</ion-item>\n        <ion-item>\n          <ion-label>处理情况：</ion-label>\n          <ion-input type="text" value="" placeholder="请输入" [(ngModel)]="userInput.handle" ></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-label>备注：</ion-label>\n          <ion-input type="text" value="" placeholder="请输入" [(ngModel)]="userInput.note" ></ion-input>\n        </ion-item>\n      </ion-item-group>\n      <button ion-button class="arc_btn" style="padding: 0;width: 90%;margin-top: 3rem;position: relative;left: 4.5%" (click)="save()" >保存</button>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\alarmDetail\alarmDetail.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__["a" /* AlertMsgService */]])
+    ], AlarmDetailPage);
+    return AlarmDetailPage;
+}());
+
+//# sourceMappingURL=alarmDetail.js.map
+
+/***/ }),
+
+/***/ 112:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrokenPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__brokenDetail_brokenDetail__ = __webpack_require__(113);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var BrokenPage = /** @class */ (function () {
+    function BrokenPage(navCtrl, pagesToggleService, alertMsgService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.pagesToggleService = pagesToggleService;
+        this.alertMsgService = alertMsgService;
+        this.title = "故障列表";
+        this.alarmList = [];
+        this.pageParam = {
+            page: 1,
+            isPull: false,
+            page_size: 6
+        };
+        this.doInfinite = function (e) {
+            setTimeout(function () {
+                _this.alarmList.push({
+                    device_id: 'AFDD-1',
+                    alarm_time: '2018-10-10 18:30',
+                    alarm_type: '故障报警',
+                    alarm_position: '丰泽区南北大道'
+                }, {
+                    device_id: 'AFDD-2',
+                    alarm_time: '2018-10-11 4:30',
+                    alarm_type: '故障报警',
+                    alarm_position: '丰泽区南北大道'
+                }, {
+                    device_id: 'AFDD-3',
+                    alarm_time: '2018-10-12 11:30',
+                    alarm_type: '故障报警',
+                    alarm_position: '丰泽区南北大道'
+                });
+            }, 1000);
+            setTimeout(function () {
+                e.complete();
+            }, 2000);
+        };
+    }
+    BrokenPage.prototype.ngOnInit = function () {
+        this.alarmList = [
+            {
+                device_id: 'AFDD-1',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-2',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-3',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-4',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-5',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-6',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+        ];
+    };
+    BrokenPage.prototype.clearAlarm = function () {
+        this.alertMsgService.showMsg("消音发送成功");
+    };
+    BrokenPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    BrokenPage.prototype.doRefresh = function (refresher) {
+        this.alarmList = [
+            {
+                device_id: 'AFDD-6',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-7',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-8',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-9',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-10',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+            {
+                device_id: 'AFDD-11',
+                alarm_time: '2018-10-10 14:30',
+                alarm_type: '故障报警',
+                alarm_position: '丰泽区南北大道'
+            },
+        ];
+        setTimeout(function () {
+            refresher.complete();
+        }, 1000);
+        // refresher.complete();
+    };
+    BrokenPage.prototype.brokenDetail = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__brokenDetail_brokenDetail__["a" /* BrokenDetailPage */], null);
+        //this.pagesToggleService.goToPage("BrokenDetailPage", null, "LeftAndRight");
+    };
+    BrokenPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-broken',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\broken\broken.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()"></ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content style="background-color: #fff;">\n  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="下拉刷新"\n      refreshingSpinner="circles"\n      refreshingText="">\n    </ion-refresher-content>\n  </ion-refresher>\n  <div *ngFor="let item of alarmList;let i = index">\n    <ion-card (click)="brokenDetail()" style="border-radius: 10px;margin: 20px;width: calc(100% - 40px)">\n      <ion-card-header style="border-bottom: 1px solid #eee;background-color:#eee;color:red;">设备号：{{item.device_id}}</ion-card-header>\n      <ion-card-content style="padding-top: 16px;padding-bottom: 10px">\n        <p>{{item.alarm_time}}</p>\n        <p style="margin-top: 8px">{{item.alarm_type}}</p>\n        <p style="margin-top: 8px">{{item.alarm_position}}</p>\n\n        <ion-row>\n          <ion-col></ion-col>\n          <ion-col style="text-align: right">\n            <button ion-button icon-start small class="clear_btn" (click)="$event.stopPropagation();clearAlarm()">\n              <span style="font-size:14px;">消音</span>\n            </button>\n          </ion-col>\n        </ion-row>\n\n      </ion-card-content>\n    </ion-card>\n  </div>\n  <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="加载更多数据...">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n  <div *ngIf="isMore" class="text-align no-more">-No more-</div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\broken\broken.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__["a" /* PagesToggleService */],
+            __WEBPACK_IMPORTED_MODULE_3__app_service_alert_msg_service__["a" /* AlertMsgService */]])
+    ], BrokenPage);
+    return BrokenPage;
+}());
+
+//# sourceMappingURL=broken.js.map
+
+/***/ }),
+
+/***/ 113:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrokenDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BrokenDetailPage = /** @class */ (function () {
+    function BrokenDetailPage(navCtrl, alertMsgService) {
+        this.navCtrl = navCtrl;
+        this.alertMsgService = alertMsgService;
+        this.userInput = {
+            handle: "",
+            note: ""
+        };
+        this.title = '故障详情';
+    }
+    BrokenDetailPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    BrokenDetailPage.prototype.save = function () {
+        if (this.userInput.handle == "") {
+            this.alertMsgService.showMsg("请输入处理情况!");
+        }
+        if ((this.userInput.handle != "") && (this.userInput.note != "")) {
+            this.goBack();
+        }
+    };
+    BrokenDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-brokenDetail',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\brokenDetail\brokenDetail.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()"></ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding style="background-color: #F5F5F5;">\n  <ion-card style="border-radius: 10px;padding-bottom: 40px;">\n    <ion-card-content>\n      <ion-item-group class="table_detail">\n        <ion-item>设备号：AFDD-1</ion-item>\n        <ion-item>故障类型：低电量故障</ion-item>\n        <ion-item>时间：2018-11-11 00:10</ion-item>\n        <ion-item>位置：丰泽区南北大道</ion-item>\n        <ion-item>\n          <ion-label>处理情况：</ion-label>\n          <ion-input type="text" value="" placeholder="请输入"  [(ngModel)]="userInput.handle" ></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-label>备注：</ion-label>\n          <ion-input type="text" value="" placeholder="请输入"  [(ngModel)]="userInput.note" ></ion-input>\n        </ion-item>\n      </ion-item-group>\n      <button ion-button class="arc_btn" style="padding: 0;width: 90%;margin-top: 3rem;position: relative;left: 4.5%" (click)="save()" >保存</button>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\brokenDetail\brokenDetail.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__["a" /* AlertMsgService */]])
+    ], BrokenDetailPage);
+    return BrokenDetailPage;
+}());
+
+//# sourceMappingURL=brokenDetail.js.map
+
+/***/ }),
+
+/***/ 114:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangepasswordPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login__ = __webpack_require__(52);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the ChangepasswordPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ChangepasswordPage = /** @class */ (function () {
+    function ChangepasswordPage(navCtrl, navParams, alertMsgService, app) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.alertMsgService = alertMsgService;
+        this.app = app;
+        this.title = "修改密码";
+        this.userInput = {
+            userName: "",
+            phone: "",
+            oldPassword: "",
+            newPassword: "",
+            confirmPassword: "",
+            sex: ""
+        };
+    }
+    ChangepasswordPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ChangepasswordPage');
+    };
+    ChangepasswordPage.prototype.changePwd = function () {
+        var _this = this;
+        if (this.userInput.newPassword != this.userInput.confirmPassword) {
+            this.alertMsgService.showMsg("两次输入密码不同");
+        }
+        else {
+            this.alertMsgService.showMsg("修改成功");
+            this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */], null, null, function () {
+                _this.app.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_3__login_login__["a" /* LoginPage */]);
+            });
+        }
+    };
+    ChangepasswordPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    ChangepasswordPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-changepassword',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\changepassword\changepassword.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()">-->\n    <!--</ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content no-bounce padding class="form_content">\n  <ion-item>\n    <ion-input type="password" placeholder="请输入旧密码" [(ngModel)]="userInput.oldPassword"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-input type="password" placeholder="请输入新密码" [(ngModel)]="userInput.newPassword"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-input type="password" placeholder="请确认新密码" [(ngModel)]="userInput.confirmPassword"></ion-input>\n  </ion-item>\n  <button ion-button style="border-radius:7px;background-color:#2982E6;width: 100%;margin-top: 2.5rem;padding: 0" (click)="changePwd()">确定</button>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\changepassword\changepassword.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__["a" /* AlertMsgService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */]])
+    ], ChangepasswordPage);
+    return ChangepasswordPage;
+}());
+
+//# sourceMappingURL=changepassword.js.map
+
+/***/ }),
+
+/***/ 115:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeviceDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var DeviceDetailPage = /** @class */ (function () {
+    function DeviceDetailPage(navCtrl) {
+        this.navCtrl = navCtrl;
+        this.title = "设备详情";
+        this.group = "";
+        this.deviceList = [];
+        this.pageParam = {
+            page: 1,
+            isPull: false,
+            page_size: 6
+        };
+    }
+    DeviceDetailPage.prototype.ngOnInit = function () {
+    };
+    DeviceDetailPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    DeviceDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-deviceDetail',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\deviceDetail\deviceDetail.html"*/'<ion-header no-border>\n    <ion-navbar color="arc">\n      <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n                <!--(click)="goBack()"></ion-icon>-->\n      <ion-title>{{title}}</ion-title>\n    </ion-navbar>\n</ion-header>\n<ion-content padding style="background-color: #F5F5F5;">\n  <ion-card style="border-radius: 10px;padding-bottom: 60px;">\n    <ion-card-content>\n      <ion-item-group class="table_detail">\n        <ion-item>项目：鑫晟钢化玻璃厂1层</ion-item>\n        <ion-item>设备类型：终端模块</ion-item>\n        <ion-item>设备编号：AFDD-1</ion-item>\n        <ion-item>状态：在线</ion-item>\n        <ion-item>位置：泉州市丰泽区</ion-item>\n        <ion-item>温度：25℃</ion-item>\n        <ion-item>电压：220V</ion-item>\n        <ion-item>电流：0.1A</ion-item>\n        <ion-item>备注：1层</ion-item>\n      </ion-item-group>\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\deviceDetail\deviceDetail.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
+    ], DeviceDetailPage);
+    return DeviceDetailPage;
+}());
+
+//# sourceMappingURL=deviceDetail.js.map
+
+/***/ }),
+
+/***/ 116:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__device_device__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__history_history__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__alarm_alarm__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__broken_broken__ = __webpack_require__(112);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var HomePage = /** @class */ (function () {
+    function HomePage(navCtrl, pagesToggleService) {
+        this.navCtrl = navCtrl;
+        this.pagesToggleService = pagesToggleService;
+        // public title = "报警列表";
+        this.alarmList = [];
+        this.pageParam = {
+            page: 1,
+            isPull: false,
+            page_size: 6
+        };
+    }
+    HomePage.prototype.ngOnInit = function () {
+    };
+    HomePage.prototype.showDevice = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__device_device__["a" /* DevicePage */], null);
+        //this.pagesToggleService.goToPage("DevicePage", null, "LeftAndRight");
+    };
+    HomePage.prototype.showHistory = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__history_history__["a" /* HistoryPage */], null);
+        //this.pagesToggleService.goToPage("HistoryPage", null, "LeftAndRight");
+    };
+    HomePage.prototype.showAlarm = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__alarm_alarm__["a" /* AlarmPage */], null);
+        //this.pagesToggleService.goToPage("AlarmPage", null, "LeftAndRight");
+    };
+    HomePage.prototype.showBroken = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__broken_broken__["a" /* BrokenPage */], null);
+        //this.pagesToggleService.goToPage("BrokenPage", null, "LeftAndRight");
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\home\home.html"*/'<ion-content no-bounce scroll="false" style="background-color: #fff">\n  <div class="home_box">\n    <div style="position: absolute;top: 5rem;width: 100%;height:8rem;">\n      <p style="text-align:center;font-size: 26px;font-weight:bold;color: #ffffff;">今日任务</p>\n      <br/>\n      <p style="text-align:center;font-size: 17px;color: #ffffff;">任务数：6</p>\n    </div>\n    <div style="position: absolute;top: 15rem;width: 100%;height:8rem;background-color: rgba(255,255,255,0.4)">\n      <div style="position: absolute;top: 2rem;width: 100%;height:5rem;">\n        <div class="home_box_part">\n          <img src="../../assets/imgs/found.png" style="position: absolute;left:20%;width:3rem;top: 0;">\n          <div style="position: absolute;left:45%;top: -0.3rem;">\n            <p style="font-size: 18px;color: #ffffff">已发现</p>\n            <p style="color: #ffffff;margin-top: 2px;">5台设备异常</p>\n          </div>\n        </div>\n        <div class="home_box_part"\n             style="border-left: 1px solid #82b9ef;">\n          <img src="../../assets/imgs/deal.png" style="position: absolute;left:16%;width:3rem;height:3.3rem;top: 0rem;">\n          <div style="position: absolute;right:19%;top: -0.3rem;">\n            <p style="font-size: 18px;color: #ffffff">已处理</p>\n            <p style="color: #ffffff;margin-top: 2px;">1台故障异常</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div style="width: 100%;height:calc(100% - 25rem);position:relative;">\n    <ion-card class="home_card" style="left:5%;top:3rem;border: 0" (click)="showDevice()">\n      <ion-card-content style="padding-bottom: 7px">\n        <img src="../../assets/imgs/device.png">\n        <p>设备</p>\n      </ion-card-content>\n    </ion-card>\n    <ion-card class="home_card" style="right: 5%;margin-top: 12px;top:3rem;border: 0" (click)="showHistory()">\n      <ion-card-content style="padding-bottom: 7px">\n        <img src="../../assets/imgs/history.png">\n        <p>历史</p>\n      </ion-card-content>\n    </ion-card>\n    <ion-card class="home_card" style="left:5%;top:19rem;border: 0" (click)="showAlarm()">\n      <ion-card-content style="padding-bottom: 7px">\n        <img src="../../assets/imgs/alarm.png">\n        <p>报警</p>\n      </ion-card-content>\n    </ion-card>\n    <ion-card class="home_card" style="right:5%;top:19rem;border: 0" (click)="showBroken()">\n      <ion-card-content style="padding-bottom: 7px">\n        <img src="../../assets/imgs/broken.png">\n        <p>故障</p>\n      </ion-card-content>\n    </ion-card>\n  </div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\home\home.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__["a" /* PagesToggleService */]])
+    ], HomePage);
+    return HomePage;
+}());
+
+//# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 117:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__historyDetail_historyDetail__ = __webpack_require__(118);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var HistoryPage = /** @class */ (function () {
+    function HistoryPage(navCtrl, pagesToggleService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.pagesToggleService = pagesToggleService;
+        this.title = "历史记录";
+        this.group = "";
+        this.deviceList = [];
+        this.pageParam = {
+            page: 1,
+            isPull: false,
+            page_size: 6
+        };
+        this.doInfinite = function (e) {
+            setTimeout(function () {
+                _this.deviceList.push({
+                    device_state: 'online',
+                    device_id: 'AFDD-1',
+                    device_type: 'arc'
+                }, {
+                    device_state: 'online',
+                    device_id: 'AFDD-1',
+                    device_type: 'arc'
+                }, {
+                    device_state: 'online',
+                    device_id: 'AFDD-1',
+                    device_type: 'arc'
+                });
+            }, 1000);
+            setTimeout(function () {
+                e.complete();
+            }, 2000);
+        };
+    }
+    HistoryPage.prototype.ngOnInit = function () {
+        this.group = 'group1';
+        this.deviceList = [
+            {
+                device_state: 'online',
+                device_id: 'AFDD-12',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-13',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-11',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-1',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-5',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-18',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-9',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-12',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-16',
+                device_type: 'arc'
+            },
+        ];
+    };
+    HistoryPage.prototype.doRefresh = function (refresher) {
+        this.deviceList = [
+            {
+                device_state: 'online',
+                device_id: 'AFDD-12',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-13',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-11',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-1',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-5',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-18',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-9',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-12',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-16',
+                device_type: 'arc'
+            },
+        ];
+        setTimeout(function () {
+            refresher.complete();
+        }, 1000);
+        // refresher.complete();
+    };
+    HistoryPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    HistoryPage.prototype.historyDetail = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__historyDetail_historyDetail__["a" /* HistoryDetailPage */], null);
+        //this.pagesToggleService.goToPage("HistoryDetailPage", null, "LeftAndRight");
+    };
+    HistoryPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-history',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\history\history.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n  <div class="list_box">\n    <div class="list_title">\n      <ion-row>\n        <ion-col></ion-col>\n        <ion-col>\n          <ion-select cancelText="取消" okText="确定" [(ngModel)]="group" style="margin: 0 auto;padding: 0;max-width: 100%">\n            <ion-option value="group1">鑫晟钢化玻璃厂1层</ion-option>\n            <ion-option value="group2">泉州博物馆1层</ion-option>\n          </ion-select>\n        </ion-col>\n        <ion-col></ion-col>\n      </ion-row>\n\n    </div>\n    <ion-row style="color:#fff;width: 100%;height:8rem; position: absolute;top: 8rem;">\n      <div style="position: absolute;top: 0;left:12%; width:40%;">\n        <ion-input id="date01" type="date" ng-model="date" value="2018-11-28" min="2015-12-12" max="2020-12-22" style="font-size:16px;" ></ion-input>\n      </div>\n      <div style="position: absolute;top: 1rem;left:47%">\n        <span style="font-size:16px;">至</span>\n      </div>\n      <div style="position: absolute;top: 0;left:60%; width:40%;">\n        <ion-input id="date02" type="date" ng-model="date" value="2018-11-28" min="2015-12-12" max="2020-12-22" style="font-size:16px;"></ion-input>\n      </div>\n    </ion-row>\n  </div>\n</ion-header>\n<ion-content style="position: relative;top: -2px;">\n  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="下拉刷新"\n      refreshingSpinner="circles"\n      refreshingText="">\n    </ion-refresher-content>\n  </ion-refresher>\n    <ion-item-group>\n      <div *ngFor="let item of deviceList;let i = index">\n        <ion-item style="color:#666;border-bottom: 1px solid #ececec;padding: 6px 10px 6px 20px;font-size: 19px;" (click)="historyDetail()">\n          <ion-row>\n            <ion-col>\n              <span>{{item.device_id}}</span>\n            </ion-col>\n            <ion-col>\n              <!--<span style="font-size: 15px;">火宅报警</span>-->\n            </ion-col>\n            <ion-col>\n              <ion-icon style="float: right;color:#ccc" name="ios-arrow-forward"></ion-icon>\n            </ion-col>\n          </ion-row>\n        </ion-item>\n      </div>\n    </ion-item-group>\n  <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="加载更多数据...">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n  <div *ngIf="isMore" class="text-align no-more">-No more-</div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\history\history.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__["a" /* PagesToggleService */]])
+    ], HistoryPage);
+    return HistoryPage;
+}());
+
+//# sourceMappingURL=history.js.map
+
+/***/ }),
+
+/***/ 118:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var HistoryDetailPage = /** @class */ (function () {
+    function HistoryDetailPage(navCtrl) {
+        this.navCtrl = navCtrl;
+        this.title = '记录详情';
+    }
+    HistoryDetailPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    HistoryDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-historyDetail',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\historyDetail\historyDetail.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()"></ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding style="background-color: #F5F5F5;">\n  <ion-card style="border-radius: 10px;padding-bottom: 40px;">\n    <ion-card-content>\n      <ion-item-group class="table_detail">\n        <ion-item>设备号：AFDD-1</ion-item>\n        <ion-item>报警原因：火灾报警</ion-item>\n        <ion-item>报警时间：2018-10-10 15:30</ion-item>\n        <ion-item>位置：丰泽区南北大道</ion-item>\n        <ion-item>\n          <ion-label>处理情况：已处理</ion-label>\n        </ion-item>\n        <ion-item>\n          <ion-label>处理时间：2018-10-12 11:12</ion-label>\n        </ion-item>\n        <ion-item>\n          <ion-label>备注：无</ion-label>\n          <!--<ion-input type="text" value="" placeholder="请输入"></ion-input>-->\n        </ion-item>\n      </ion-item-group>\n      <!--<button ion-button style="padding: 0;width: 90%;margin-top: 3rem;position: relative;left: 4.5%">保存</button>-->\n    </ion-card-content>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\historyDetail\historyDetail.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
+    ], HistoryDetailPage);
+    return HistoryDetailPage;
+}());
+
+//# sourceMappingURL=historyDetail.js.map
+
+/***/ }),
+
+/***/ 119:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api_config__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service_http_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service_pages_toggle_service__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the RegisterPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var RegisterPage = /** @class */ (function () {
+    function RegisterPage(alertMsgService, httpService, navCtrl, pagesToggleService) {
+        var _this = this;
+        this.alertMsgService = alertMsgService;
+        this.httpService = httpService;
+        this.navCtrl = navCtrl;
+        this.pagesToggleService = pagesToggleService;
+        this.title = '注册账号';
+        this.userInput = {
+            userName: "",
+            phone: "",
+            newPassword: "",
+            confirmPassword: "",
+            sex: ""
+        };
+        this.step = 1;
+        this.getCodeText = "获取验证码";
+        this.getValidateCode = function () {
+            var postData = {
+                phone: '',
+                type: 1
+            };
+            var r = /^\+?[1-9][0-9]*$/; //正整数
+            if (!r.test(_this.inputModel.phone) || _this.inputModel.phone.length != 11) {
+                _this.alertMsgService.basicAlert("提示", "请输入正确的手机格式");
+            }
+            else if (_this.inputModel.phone == "") {
+                _this.alertMsgService.basicAlert("提示", "请输入手机号");
+            }
+            else {
+                postData.phone = _this.inputModel.phone;
+                document.getElementById("getmailbtn").setAttribute("disabled", "disabled");
+                //this.httpService.httpPost(ApiConfig.mobileUrl + "sendSMS", postData, this.getValidateCodeSuccess)
+            }
+        };
+        this.getValidateCodeSuccess = function (res) {
+            console.log(res);
+            if (res.statusCode == __WEBPACK_IMPORTED_MODULE_3__app_app_api_config__["a" /* ApiConfig */].successCode) {
+                /*this.user.id = res.data.id;
+                this.user.user_login = res.data.user_login;
+                this.inputModel.phone = res.data.user_login;*/
+                var countdowntime_1 = 60;
+                _this.getCodeText = countdowntime_1 + "秒后可获取";
+                _this.time = setInterval(function () {
+                    _this.getCodeText = countdowntime_1 + "秒后可获取";
+                    console.log(_this.getCodeText);
+                    countdowntime_1--;
+                    if (countdowntime_1 < 0) {
+                        _this.getCodeText = "获取验证码";
+                        document.getElementById("getmailbtn").removeAttribute("disabled");
+                        clearInterval(_this.time);
+                    }
+                }, 1000);
+            }
+            else {
+                document.getElementById("getmailbtn").removeAttribute("disabled");
+                _this.alertMsgService.basicAlert("提示", res.msg);
+            }
+        };
+        this.validateEmailCode = function () {
+            if (_this.inputModel.phone == "") {
+                _this.alertMsgService.showMsg("请输入手机号", "bottom");
+            }
+            else if (_this.userInput.newPassword == "") {
+                _this.alertMsgService.showMsg("请输入密码", "bottom");
+            }
+            else if (_this.inputModel.code == "") {
+                _this.alertMsgService.showMsg("请输入验证码", "bottom");
+            }
+            else {
+                // this.httpService.httpPost(ApiConfig.mobileUrl + "validatePhoneCode", this.inputModel, (res) => {
+                //   console.log(res);
+                //   if (res.statusCode == ApiConfig.successCode) {
+                //     this.step = 2;
+                //     clearInterval(this.time);
+                //   }
+                //   else {
+                //     this.alertMsgService.basicAlert("提示", res.msg);
+                //   }
+                // })
+            }
+        };
+        this.registerComplete = function (res) {
+            //todo:注册完的登陆方法
+            if (res.error == 1 && res.data == "phone_exists") {
+                _this.alertMsgService.basicAlert("提示", "手机号已注册");
+            }
+            else if (res.error == 1) {
+                console.log(res.data);
+            }
+            else if (res.error == 0 && res.data == "success") {
+                _this.pagesToggleService.goToPage("ModelPage", _this.userInput, "LeftAndRight");
+            }
+        };
+        this.user_type = 1;
+    }
+    RegisterPage.prototype.ngOnInit = function () {
+        this.inputModel = {
+            phone: '',
+            code: ''
+        };
+        this.user = {
+            email: '',
+            id: '',
+            user_login: '',
+            pwd1: '',
+            pwd2: ''
+        };
+        //注册表单数据
+        this.registerInput = {
+            username: '',
+            adminAccount: '',
+            mobile: '',
+            code: '',
+        };
+    };
+    RegisterPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad RegisterPage');
+    };
+    RegisterPage.prototype.register = function () {
+        if (this.registerInput.username && this.registerInput.adminAccount && this.registerInput.mobile && this.registerInput.code) {
+            this.alertMsgService.showMsg("注册成功");
+            this.navCtrl.pop();
+        }
+        else {
+            this.alertMsgService.showMsg("请填写注册信息");
+        }
+    };
+    RegisterPage.prototype.goToLoginPage = function () {
+        this.navCtrl.pop();
+    };
+    RegisterPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    RegisterPage.prototype.ionViewWillLeave = function () {
+        clearInterval(this.time);
+    };
+    RegisterPage.prototype.getVerifyCode = function () {
+        console.log("aa");
+    };
+    RegisterPage.prototype.doRegister = function () {
+        if (this.userInput.userName == "") {
+            this.alertMsgService.showMsg("请输入正确的手机格式", "bottom");
+        } /*else if(!this.user_type){
+                this.alertMsgService.showMsg("请选择身份", "bottom");
+            }*/
+        else if (this.userInput.sex == "") {
+            this.alertMsgService.showMsg("请选择性别", "bottom");
+        }
+        else {
+            this.userInput.phone = this.inputModel.phone;
+            var postData = {
+                nickname: this.userInput.userName,
+                phone: this.inputModel.phone,
+                Password: this.userInput.newPassword,
+                user_type: this.user_type,
+                sex: this.userInput.sex
+            };
+            //this.httpService.httpPost(ApiConfig.mobileUrl + 'doRegister', postData, this.registerComplete);
+        }
+    };
+    RegisterPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\login\register\register.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()"></ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content no-bounce padding>\n  <ion-item>\n    <ion-input type="text" placeholder="用户名" [(ngModel)]="registerInput.username"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-input type="text" placeholder="管理员账户" [(ngModel)]="registerInput.adminAccount"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-input type="number" placeholder="手机号" [(ngModel)]="registerInput.mobile"></ion-input>\n  </ion-item>\n  <ion-item>\n    <ion-input type="number" placeholder="验证码" [(ngModel)]="registerInput.code"></ion-input>\n    <ion-icon item-end>\n      <span class="verify_btn" (click)="getVerifyCode()">{{getCodeText}}</span>\n    </ion-icon>\n  </ion-item>\n  <button ion-button class="arc_btn" style="width: 100%;margin-top: 2.5rem;padding: 0;background-color: #2982E5" (click)="register()">注册</button>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\login\register\register.html"*/,
+            providers: [__WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__["a" /* AlertMsgService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__app_service_alert_msg_service__["a" /* AlertMsgService */],
+            __WEBPACK_IMPORTED_MODULE_4__app_service_http_service__["a" /* HttpService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_5__app_service_pages_toggle_service__["a" /* PagesToggleService */]])
+    ], RegisterPage);
+    return RegisterPage;
+}());
+
+//# sourceMappingURL=register.js.map
+
+/***/ }),
+
+/***/ 120:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgetPasswordPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_http_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_api_config__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service_pages_toggle_service__ = __webpack_require__(17);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ForgetPasswordPage = /** @class */ (function () {
+    function ForgetPasswordPage(navCtrl, navParams, httpService, alertMsgService, pagesToggleService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.httpService = httpService;
+        this.alertMsgService = alertMsgService;
+        this.pagesToggleService = pagesToggleService;
+        this.step = 1;
+        this.getCodeText = "获取验证码";
+        this.title = "忘记密码";
+        this.getValidateCode = function () {
+            var postData = {
+                phone: '',
+                type: 2
+            };
+            // if (this.inputModel.phone == "") {
+            //     this.alertMsgService.basicAlert("提示", "请输入手机号");
+            //
+            // } else {
+            //     postData.phone = this.inputModel.phone;
+            //     document.getElementById("getmailbtn").setAttribute("disabled", "disabled");
+            //     this.httpService.httpPost(ApiConfig.mobileUrl + "sendSMS", postData, this.getValidateCodeSuccess)
+            // }
+        };
+        this.getValidateCodeSuccess = function (res) {
+            console.log(res);
+            //this.inputModel.phone = res.data.user_login;
+            if (res.statusCode == __WEBPACK_IMPORTED_MODULE_3__app_app_api_config__["a" /* ApiConfig */].successCode) {
+                _this.user.id = res.data.id;
+                _this.user.phone = res.data.user_login;
+                var countdowntime_1 = 60;
+                _this.getCodeText = countdowntime_1 + "秒后可获取";
+                _this.time = setInterval(function () {
+                    _this.getCodeText = countdowntime_1 + "秒后可获取";
+                    console.log(_this.getCodeText);
+                    countdowntime_1--;
+                    if (countdowntime_1 < 0) {
+                        _this.getCodeText = "重新获取验证码";
+                        document.getElementById("getmailbtn").removeAttribute("disabled");
+                        clearInterval(_this.time);
+                    }
+                }, 1000);
+            }
+            else {
+                document.getElementById("getmailbtn").removeAttribute("disabled");
+                _this.alertMsgService.basicAlert("提示", res.msg);
+            }
+        };
+        this.validateEmailCode = function () {
+            // this.httpService.httpPost(ApiConfig.mobileUrl + "validatePhoneCode", this.inputModel, (res) => {
+            //     console.log(res);
+            //     if (res.statusCode == ApiConfig.successCode) {
+            //         this.step = 2;
+            //         clearInterval(this.time);
+            //     }
+            //     else {
+            //         this.alertMsgService.basicAlert("提示", res.msg);
+            //     }
+            // })
+        };
+    }
+    ForgetPasswordPage.prototype.ngOnInit = function () {
+        this.forgetInput = {
+            phone: '',
+            code: '',
+            newPwd: ''
+        };
+        this.user = {
+            email: '',
+            id: '',
+            phone: '',
+            pwd1: '',
+            pwd2: ''
+        };
+    };
+    ForgetPasswordPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ForgetPasswordPage');
+    };
+    ForgetPasswordPage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    ForgetPasswordPage.prototype.ionViewWillLeave = function () {
+        clearInterval(this.time);
+    };
+    ForgetPasswordPage.prototype.sendVerify = function () {
+        if (this.forgetInput.phone && this.forgetInput.code) {
+            this.step = 2;
+        }
+        else {
+            this.alertMsgService.showMsg("请输入手机号");
+        }
+    };
+    ForgetPasswordPage.prototype.changePwd = function () {
+        if (this.forgetInput.newPwd) {
+            this.alertMsgService.showMsg("修改密码成功");
+            this.navCtrl.pop();
+        }
+        else {
+            this.alertMsgService.showMsg("请输入新密码");
+        }
+    };
+    ForgetPasswordPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\login\forget-password\forget-password.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <!--<ion-icon name="ios-arrow-back" class="font-bold float-left back_btn"-->\n              <!--(click)="goBack()">-->\n    <!--</ion-icon>-->\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content no-bounce padding>\n  <div *ngIf="step == 1">\n    <ion-item>\n      <ion-input type="number" placeholder="手机号" [(ngModel)]="forgetInput.phone"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-input type="number" placeholder="验证码" [(ngModel)]="forgetInput.code"></ion-input>\n      <ion-icon item-end>\n        <span class="verify_btn" (click)="getVerifyCode()">{{getCodeText}}</span>\n      </ion-icon>\n    </ion-item>\n    <button ion-button class="arc_btn" style="width: 100%;margin-top: 2.5rem;" (click)="sendVerify()">确定</button>\n  </div>\n  <div *ngIf="step == 2">\n    <ion-item>\n      <ion-input type="password" placeholder="请输入新密码" [(ngModel)]="forgetInput.newPwd"></ion-input>\n    </ion-item>\n    <button ion-button style="width: 100%;margin-top: 2.5rem;padding: 0;background-color: #2982E5" (click)="changePwd()">确定</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\login\forget-password\forget-password.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_http_service__["a" /* HttpService */],
+            __WEBPACK_IMPORTED_MODULE_4__app_service_alert_msg_service__["a" /* AlertMsgService */],
+            __WEBPACK_IMPORTED_MODULE_5__app_service_pages_toggle_service__["a" /* PagesToggleService */]])
+    ], ForgetPasswordPage);
+    return ForgetPasswordPage;
+}());
+
+//# sourceMappingURL=forget-password.js.map
+
+/***/ }),
+
+/***/ 13:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertMsgService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * 弹窗提示封装
+ *
+ * */
+
+
+var AlertMsgService = /** @class */ (function () {
+    function AlertMsgService(toastCtrl, alertCtrl, loadingCtrl) {
+        this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
+    }
+    AlertMsgService.prototype.showMsg = function (msg, position, time) {
+        if (position === void 0) { position = "bottom"; }
+        if (time === void 0) { time = 2000; }
+        var toast = this.toastCtrl.create({
+            message: msg,
+            position: position,
+            duration: time,
+            cssClass: 'toast'
+        });
+        toast.present();
+    };
+    AlertMsgService.prototype.basicAlert = function (title, msg, buttonsText) {
+        if (buttonsText === void 0) { buttonsText = "确认"; }
+        var alert = this.alertCtrl.create({
+            title: title,
+            subTitle: msg,
+            buttons: [buttonsText]
+        });
+        alert.present();
+    };
+    AlertMsgService.prototype.confirmAlert = function (title, msg, funLeft, funRight, buttonsLeft, buttonsRight) {
+        if (buttonsLeft === void 0) { buttonsLeft = "取消"; }
+        if (buttonsRight === void 0) { buttonsRight = "确认"; }
+        var alert = this.alertCtrl.create({
+            title: title,
+            message: msg,
+            buttons: [
+                {
+                    text: buttonsLeft,
+                    role: 'cancel',
+                    handler: funLeft
+                },
+                {
+                    text: buttonsRight,
+                    handler: funRight,
+                    cssClass: 'confirmYes'
+                }
+            ]
+        });
+        alert.present();
+    };
+    AlertMsgService.prototype.submitForm = function (title, subTitle, placeholder, funLeft, funRight, buttonsLeft, buttonsRight) {
+        if (buttonsLeft === void 0) { buttonsLeft = "取消"; }
+        if (buttonsRight === void 0) { buttonsRight = "确认"; }
+        var alert = this.alertCtrl.create({
+            title: title,
+            subTitle: subTitle,
+            inputs: [
+                {
+                    name: 'value',
+                    placeholder: placeholder
+                }
+            ],
+            buttons: [
+                {
+                    text: buttonsLeft,
+                    role: 'cancel',
+                    handler: funLeft
+                },
+                {
+                    text: buttonsRight,
+                    handler: funRight
+                }
+            ]
+        });
+        alert.present();
+    };
+    //显示加载效果
+    AlertMsgService.prototype.showLoading = function () {
+        this.loading = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: "<div class='loading'></div>",
+            dismissOnPageChange: true,
+            showBackdrop: true //是否显示遮罩层
+        });
+        this.loading.present();
+    };
+    //取消加载效果
+    AlertMsgService.prototype.closeLoading = function () {
+        this.loading.dismiss();
+    };
+    AlertMsgService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
+        // ToastService
+        ,
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* ToastController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */]])
+    ], AlertMsgService);
+    return AlertMsgService;
+}());
+
+//# sourceMappingURL=alert.msg.service.js.map
+
+/***/ }),
+
+/***/ 132:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 132;
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PagesToggleService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * 页面切换服务
+ *
+ * */
+
+
+var PagesToggleService = /** @class */ (function () {
+    function PagesToggleService(modalCtrl) {
+        this.modalCtrl = modalCtrl;
+    }
+    PagesToggleService.prototype.goToPage = function (pageName, data, options) {
+        if (data === void 0) { data = null; }
+        if (options === void 0) { options = null; }
+        var myModal;
+        if (options == "LeftAndRight") {
+            //左右滑动
+            options = {
+                enterAnimation: 'modal-left-animation',
+                leaveAnimation: 'modal-right-animation'
+            };
+            myModal = this.modalCtrl.create(pageName, data, options);
+        }
+        else {
+            //上下滑动
+            myModal = this.modalCtrl.create(pageName, data);
+        }
+        myModal.present();
+    };
+    PagesToggleService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]])
+    ], PagesToggleService);
+    return PagesToggleService;
+}());
+
+//# sourceMappingURL=pages.toggle.service.js.map
+
+/***/ }),
+
+/***/ 173:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/alarm/alarm.module": [
+		303,
+		11
+	],
+	"../pages/alarmDetail/alarmDetail.module": [
+		304,
+		12
+	],
+	"../pages/broken/broken.module": [
+		305,
+		9
+	],
+	"../pages/brokenDetail/brokenDetail.module": [
+		306,
+		10
+	],
+	"../pages/changepassword/changepassword.module": [
+		307,
+		8
+	],
+	"../pages/device/device.module": [
+		308,
+		6
+	],
+	"../pages/deviceDetail/deviceDetail.module": [
+		309,
+		7
+	],
+	"../pages/history/history.module": [
+		310,
+		4
+	],
+	"../pages/historyDetail/historyDetail.module": [
+		311,
+		5
+	],
+	"../pages/home/home.module": [
+		312,
+		3
+	],
+	"../pages/login/forget-password/forget-password.module": [
+		313,
+		2
+	],
+	"../pages/login/model/model.module": [
+		314,
+		0
+	],
+	"../pages/login/register/register.module": [
+		315,
+		1
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 173;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 174:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_baidu_map__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__device_device__ = __webpack_require__(58);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+//import { Component } from '@angular/core';
+//import { NavController } from 'ionic-angular';
+
+
+
+
+
+var MapPage = /** @class */ (function () {
+    function MapPage(navCtrl) {
+        this.navCtrl = navCtrl;
+        this.imgUrl = '/assets/imgs/marker-icon.png';
+        this.opts = {
+            centerAndZoom: {
+                lat: 24.920102,
+                lng: 118.601053,
+                zoom: 16
+            }
+        };
+        this.controlOpts = {
+            anchor: __WEBPACK_IMPORTED_MODULE_2_angular2_baidu_map__["c" /* ControlAnchor */].BMAP_ANCHOR_TOP_LEFT,
+            type: __WEBPACK_IMPORTED_MODULE_2_angular2_baidu_map__["d" /* NavigationControlType */].BMAP_NAVIGATION_CONTROL_LARGE
+        };
+        this.scaleOpts = {
+            anchor: __WEBPACK_IMPORTED_MODULE_2_angular2_baidu_map__["c" /* ControlAnchor */].BMAP_ANCHOR_BOTTOM_LEFT
+        };
+        this.markers = [
+            {
+                options: {
+                    icon: {
+                        imageUrl: this.imgUrl,
+                        size: {
+                            height: 35,
+                            width: 35
+                        },
+                        imageSize: {
+                            height: 35,
+                            width: 35
+                        }
+                    }
+                },
+                point: {
+                    lat: 24.920102,
+                    lng: 118.601053
+                }
+            },
+            {
+                options: {
+                    icon: {
+                        imageUrl: this.imgUrl,
+                        size: {
+                            height: 35,
+                            width: 35
+                        },
+                        imageSize: {
+                            height: 35,
+                            width: 35
+                        }
+                    }
+                },
+                point: {
+                    lat: 24.920593,
+                    lng: 118.603741
+                }
+            }
+        ];
+    }
+    MapPage.prototype.setAnimation = function (marker) {
+        marker.setAnimation(__WEBPACK_IMPORTED_MODULE_2_angular2_baidu_map__["a" /* Animation */].BMAP_ANIMATION_BOUNCE);
+    };
+    MapPage.prototype.showWindow = function (_a) {
+        var marker = _a.marker, map = _a.map;
+        var that = this;
+        //let cons = "<div id='wrapper'><img src='https://tse1.mm.bing.net/th?id=OIP._lzQacX0QHdsegCD0tQlgwHaED&pid=Api&w=2600&h=1422&rs=1&p=0' alt='smile' /></br><p style='font-size:14px;'>新上海国际大厦</br>地址：浦东南路360号</br> 电话：13850138138</br></p>"
+        //alert( marker.getName() );
+        var cons = "<div id='wrapper'><img src='./assets/imgs/01.jpg' alt='smile' /></br><p style='font-size:14px;'>鑫晟钢化玻璃厂</br>地址：南北大道东</br> 电话：13850138138</br></p>";
+        var opts = {
+            offset: new BMap.Size(0, -10),
+            title: '',
+            width: 220,
+            height: 220
+        };
+        var infoWindow = new BMap.InfoWindow(cons, opts);
+        map.openInfoWindow(infoWindow, marker.getPosition());
+        setTimeout(function () {
+            var projectDetail = document.getElementById('wrapper');
+            projectDetail.onclick = function () {
+                that.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__device_device__["a" /* DevicePage */], null);
+                //that.pagesToggleService.goToPage("DevicePage", null, "LeftAndRight");
+            };
+        }, 1000);
+    };
+    MapPage.prototype.controlLoaded = function (control) {
+        console.log('control loaded', control);
+    };
+    MapPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-map',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\map\map.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <ion-title>\n      地图\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <baidu-map [options]="opts" style="display: block; width: 100%; height: 100%;" >\n    <marker *ngFor="let marker of markers" [point]="marker.point" [options]="marker.options" (clicked)="showWindow($event)" (loaded)="setAnimation($event)" ></marker>\n    <control type="navigation" [options]="controlOpts" (loaded)="controlLoaded($event)"></control>\n    <control type="scale" [options]="scaleOpts"></control>\n  </baidu-map>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\map\map.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
+    ], MapPage);
+    return MapPage;
+}());
+
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+
+/***/ 175:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__changepassword_changepassword__ = __webpack_require__(114);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var ContactPage = /** @class */ (function () {
+    function ContactPage(navCtrl, app, pagesToggleService, alertMsgService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.app = app;
+        this.pagesToggleService = pagesToggleService;
+        this.alertMsgService = alertMsgService;
+        this.userInfo = {};
+        //注销
+        this.funok = function () {
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */], null, null, function () {
+                _this.app.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */]);
+            });
+        };
+    }
+    ContactPage.prototype.ngOnInit = function () {
+        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        console.log(this.userInfo);
+    };
+    ContactPage.prototype.login_out = function () {
+        this.alertMsgService.confirmAlert('', '确认退出账户吗', this.funcancle, this.funok);
+        // this.navCtrl.push(LoginPage, null, null, () => {
+        //   this.app.getRootNav().setRoot(LoginPage);
+        // })
+    };
+    //弹框取消
+    ContactPage.prototype.funcancle = function () {
+    };
+    ContactPage.prototype.changePwd = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__changepassword_changepassword__["a" /* ChangepasswordPage */], null);
+        //this.pagesToggleService.goToPage("ChangepasswordPage", null, "LeftAndRight");
+    };
+    ContactPage.prototype.checkVersion = function () {
+        this.alertMsgService.showMsg('已是最新版本');
+    };
+    ContactPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-contact',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\contact\contact.html"*/'<ion-content no-bounce scroll="false" style="background-color: #F5F5F5;">\n  <div class="me_background">\n    <div class="avatar"></div>\n    <p class="nickname">{{userInfo.username}}</p>\n  </div>\n  <ion-card style="border-radius: 10px;margin-top: 2rem;box-shadow: 0 0 0;border:1px solid #ececec;">\n    <ion-card-content style="padding-bottom: 30px;">\n      <ion-item-group>\n        <ion-item style="border-bottom: 1px solid #ececec;padding-left: 12px !important;"><span>所属管理员：</span><span style="float: right">admin</span></ion-item>\n        <ion-item style="border-bottom: 1px solid #ececec;padding-left: 12px !important;"><span>手机号：</span><span style="float: right">18300501130</span></ion-item>\n        <button ion-item style="border-bottom: 1px solid #ececec;text-indent: 1rem" (click)="changePwd()">修改密码</button>\n        <button ion-item style="border-bottom: 1px solid #ececec;text-indent: 1rem" (click)="checkVersion()">检查更新</button>\n      </ion-item-group>\n    </ion-card-content>\n  </ion-card>\n  <button ion-button class="login_out_btn" (click)="login_out()" outline>退出登录</button>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\contact\contact.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
+            __WEBPACK_IMPORTED_MODULE_3__app_service_pages_toggle_service__["a" /* PagesToggleService */],
+            __WEBPACK_IMPORTED_MODULE_4__app_service_alert_msg_service__["a" /* AlertMsgService */]])
+    ], ContactPage);
+    return ContactPage;
+}());
+
+//# sourceMappingURL=contact.js.map
+
+/***/ }),
+
+/***/ 176:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MessagePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MessagePage = /** @class */ (function () {
+    function MessagePage(navCtrl) {
+        this.navCtrl = navCtrl;
+        this.title = '消息';
+    }
+    MessagePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-message',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\message\message.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div style="margin-top: 2rem;font-size: 16px;text-align: center">暂无信息</div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\message\message.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
+    ], MessagePage);
+    return MessagePage;
+}());
+
+//# sourceMappingURL=message.js.map
+
+/***/ }),
+
+/***/ 220:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(241);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 241:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_eventBus_service__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map_map__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_message_message__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_home_home__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_device_device__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_broken_broken__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_history_history__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_alarm_alarm__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_login_login__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_login_register_register__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_forget_password_forget_password__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_changepassword_changepassword__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_alarmDetail_alarmDetail__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_deviceDetail_deviceDetail__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_brokenDetail_brokenDetail__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_historyDetail_historyDetail__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_status_bar__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_splash_screen__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__angular_common_http__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__service_http_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__animation_modal_left_animation__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__animation_modal_right_animation__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_angular2_baidu_map__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__service_backButton_service__ = __webpack_require__(86);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = /** @class */ (function () {
+    function AppModule(config) {
+        this.config = config;
+        this.setCustomTransitions();
+    }
+    AppModule.prototype.setCustomTransitions = function () {
+        this.config.setTransition('modal-left-animation', __WEBPACK_IMPORTED_MODULE_28__animation_modal_left_animation__["a" /* ModalLeftAnimation */]);
+        this.config.setTransition('modal-right-animation', __WEBPACK_IMPORTED_MODULE_29__animation_modal_right_animation__["a" /* ModalRightAnimation */]);
+    };
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], __WEBPACK_IMPORTED_MODULE_6__pages_map_map__["a" /* MapPage */], __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__["a" /* ContactPage */], __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */], __WEBPACK_IMPORTED_MODULE_8__pages_message_message__["a" /* MessagePage */], __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */], __WEBPACK_IMPORTED_MODULE_10__pages_device_device__["a" /* DevicePage */], __WEBPACK_IMPORTED_MODULE_11__pages_broken_broken__["a" /* BrokenPage */], __WEBPACK_IMPORTED_MODULE_12__pages_history_history__["a" /* HistoryPage */], __WEBPACK_IMPORTED_MODULE_13__pages_alarm_alarm__["a" /* AlarmPage */], __WEBPACK_IMPORTED_MODULE_16__pages_login_register_register__["a" /* RegisterPage */],
+                __WEBPACK_IMPORTED_MODULE_17__pages_login_forget_password_forget_password__["a" /* ForgetPasswordPage */], __WEBPACK_IMPORTED_MODULE_18__pages_changepassword_changepassword__["a" /* ChangepasswordPage */], __WEBPACK_IMPORTED_MODULE_19__pages_alarmDetail_alarmDetail__["a" /* AlarmDetailPage */], __WEBPACK_IMPORTED_MODULE_22__pages_historyDetail_historyDetail__["a" /* HistoryDetailPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_brokenDetail_brokenDetail__["a" /* BrokenDetailPage */], __WEBPACK_IMPORTED_MODULE_20__pages_deviceDetail_deviceDetail__["a" /* DeviceDetailPage */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {
+                    iconMode: 'ios',
+                    mode: 'ios',
+                    tabsHideOnSubPages: 'true',
+                    backButtonText: ""
+                }, {
+                    links: [
+                        { loadChildren: '../pages/alarm/alarm.module#AlarmPageModule', name: 'AlarmPage', segment: 'alarm', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/alarmDetail/alarmDetail.module#AlarmDetailPageModule', name: 'AlarmDetailPage', segment: 'alarmDetail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/broken/broken.module#BrokenPageModule', name: 'BrokenPage', segment: 'broken', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/brokenDetail/brokenDetail.module#BrokenDetailPageModule', name: 'BrokenDetailPage', segment: 'brokenDetail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/changepassword/changepassword.module#ChangepasswordPageModule', name: 'ChangepasswordPage', segment: 'changepassword', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/device/device.module#DevicePageModule', name: 'DevicePage', segment: 'device', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/deviceDetail/deviceDetail.module#DeviceDetailPageModule', name: 'DeviceDetailPage', segment: 'deviceDetail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/history/history.module#HistoryPageModule', name: 'HistoryPage', segment: 'history', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/historyDetail/historyDetail.module#HistoryDetailPageModule', name: 'HistoryDetailPage', segment: 'historyDetail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/forget-password/forget-password.module#ForgetPasswordPageModule', name: 'ForgetPasswordPage', segment: 'forget-password', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/model/model.module#ModelPageModule', name: 'ModelPage', segment: 'model', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] }
+                    ]
+                }),
+                __WEBPACK_IMPORTED_MODULE_30_angular2_baidu_map__["b" /* BaiduMapModule */].forRoot({ ak: 'A0cee24ac69c19c83ae7b452e7f04234' }),
+                __WEBPACK_IMPORTED_MODULE_25__angular_common_http__["b" /* HttpClientModule */]
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], __WEBPACK_IMPORTED_MODULE_6__pages_map_map__["a" /* MapPage */], __WEBPACK_IMPORTED_MODULE_7__pages_contact_contact__["a" /* ContactPage */], __WEBPACK_IMPORTED_MODULE_8__pages_message_message__["a" /* MessagePage */], __WEBPACK_IMPORTED_MODULE_9__pages_home_home__["a" /* HomePage */], __WEBPACK_IMPORTED_MODULE_14__pages_tabs_tabs__["a" /* TabsPage */],
+                __WEBPACK_IMPORTED_MODULE_15__pages_login_login__["a" /* LoginPage */], __WEBPACK_IMPORTED_MODULE_10__pages_device_device__["a" /* DevicePage */], __WEBPACK_IMPORTED_MODULE_11__pages_broken_broken__["a" /* BrokenPage */], __WEBPACK_IMPORTED_MODULE_12__pages_history_history__["a" /* HistoryPage */], __WEBPACK_IMPORTED_MODULE_13__pages_alarm_alarm__["a" /* AlarmPage */], __WEBPACK_IMPORTED_MODULE_16__pages_login_register_register__["a" /* RegisterPage */],
+                __WEBPACK_IMPORTED_MODULE_17__pages_login_forget_password_forget_password__["a" /* ForgetPasswordPage */], __WEBPACK_IMPORTED_MODULE_18__pages_changepassword_changepassword__["a" /* ChangepasswordPage */], __WEBPACK_IMPORTED_MODULE_19__pages_alarmDetail_alarmDetail__["a" /* AlarmDetailPage */], __WEBPACK_IMPORTED_MODULE_22__pages_historyDetail_historyDetail__["a" /* HistoryDetailPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_brokenDetail_brokenDetail__["a" /* BrokenDetailPage */], __WEBPACK_IMPORTED_MODULE_20__pages_deviceDetail_deviceDetail__["a" /* DeviceDetailPage */]
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_23__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_24__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_26__service_http_service__["a" /* HttpService */],
+                __WEBPACK_IMPORTED_MODULE_27__service_pages_toggle_service__["a" /* PagesToggleService */],
+                __WEBPACK_IMPORTED_MODULE_31__service_backButton_service__["a" /* BackButtonService */],
+                __WEBPACK_IMPORTED_MODULE_4__service_eventBus_service__["a" /* EventBus */],
+                __WEBPACK_IMPORTED_MODULE_5__service_alert_msg_service__["a" /* AlertMsgService */],
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] }
+            ]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* Config */]])
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 299:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(57);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var MyApp = /** @class */ (function () {
+    function MyApp(platform, statusBar, splashScreen) {
+        var _this = this;
+        platform.ready().then(function () {
+            if (sessionStorage.getItem("userInfo")) {
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__["a" /* TabsPage */];
+            }
+            else {
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_login_login__["a" /* LoginPage */];
+            }
+            statusBar.styleLightContent();
+            setTimeout(function () {
+                splashScreen.hide();
+            }, 2000);
+        });
+    }
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\cordova\arcapps\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"E:\cordova\arcapps\src\app\app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 300:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventBus; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var EventBus = /** @class */ (function () {
+    function EventBus() {
+        this.eventMap = new Map();
+    }
+    EventBus.prototype.emit = function (eventName, data) {
+        if (this.eventMap.has(eventName)) {
+            this.eventMap.get(eventName).source.next(data);
+            return true;
+        }
+        ;
+        return false;
+    };
+    EventBus.prototype.on = function (eventName, handler) {
+        var eventObservable;
+        var eventSource = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["Subject"]();
+        eventObservable = eventSource.asObservable();
+        this.eventMap.set(eventName, { source: eventSource, observable: eventObservable });
+        return eventObservable.subscribe(handler);
+    };
+    EventBus = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], EventBus);
+    return EventBus;
+}());
+
+//# sourceMappingURL=eventBus.service.js.map
+
+/***/ }),
+
+/***/ 301:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalLeftAnimation; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(6);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var ModalLeftAnimation = /** @class */ (function (_super) {
+    __extends(ModalLeftAnimation, _super);
+    function ModalLeftAnimation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ModalLeftAnimation.prototype.init = function () {
+        var ele = this.enteringView.pageRef().nativeElement;
+        var wrapper = new __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* Animation */](this.plt, ele.querySelector('.modal-wrapper'));
+        wrapper.beforeStyles({ 'transform': 'scale(0)', 'opacity': 1 });
+        //wrapper.fromTo('transform', 'scale(0)', 'scale(1.0)');
+        wrapper.fromTo('transform', 'translateX(100%)', 'translateX(0)');
+        wrapper.fromTo('opacity', 1, 1);
+        this.element(this.enteringView.pageRef())
+            .duration(500)
+            .easing('cubic-bezier(.25, .1, .25, 1)')
+            .add(wrapper);
+    };
+    return ModalLeftAnimation;
+}(__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["m" /* PageTransition */]));
+
+//# sourceMappingURL=modal.left.animation.js.map
+
+/***/ }),
+
+/***/ 302:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalRightAnimation; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(6);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+var ModalRightAnimation = /** @class */ (function (_super) {
+    __extends(ModalRightAnimation, _super);
+    function ModalRightAnimation() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ModalRightAnimation.prototype.init = function () {
+        var ele = this.leavingView.pageRef().nativeElement;
+        var wrapper = new __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* Animation */](this.plt, ele.querySelector('.modal-wrapper'));
+        var contentWrapper = new __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["b" /* Animation */](this.plt, ele.querySelector('.wrapper'));
+        wrapper.beforeStyles({ 'transform': 'scale(0)', 'opacity': 1 });
+        //wrapper.fromTo('transform', 'scale(1)', 'scale(5.0)');
+        wrapper.fromTo('transform', 'translateX(0)', 'translateX(100%)');
+        wrapper.fromTo('opacity', 1, 1);
+        contentWrapper.fromTo('opacity', 1, 1);
+        this.element(this.leavingView.pageRef())
+            .add(contentWrapper)
+            .add(wrapper)
+            .easing('cubic-bezier(.25, .1, .25, 1)')
+            .duration(230);
+    };
+    return ModalRightAnimation;
+}(__WEBPACK_IMPORTED_MODULE_0_ionic_angular__["m" /* PageTransition */]));
+
+//# sourceMappingURL=modal.right.animation.js.map
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiConfig; });
+var ApiConfig = /** @class */ (function () {
+    function ApiConfig() {
+    }
+    ApiConfig.successCode = 200;
+    // public static arcServerUrl = "http://127.0.0.1:8082";
+    ApiConfig.arcServerUrl = "http://116.62.189.63:8082";
+    return ApiConfig;
+}());
+
+//# sourceMappingURL=app.api.config.js.map
+
+/***/ }),
+
+/***/ 44:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HttpService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_api_config__ = __webpack_require__(43);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * http服务
+ *
+ * */
+
+
+
+
+
+
+var HttpService = /** @class */ (function () {
+    //构造方法
+    function HttpService(http, alertMsgService) {
+        var _this = this;
+        this.http = http;
+        this.alertMsgService = alertMsgService;
+        this.loginUrl = __WEBPACK_IMPORTED_MODULE_5__app_api_config__["a" /* ApiConfig */].arcServerUrl + "/getApp/token";
+        //http调用错误
+        this.errorFn = function (error) {
+            var toast = _this.alertMsgService.showMsg("数据请求超时");
+            return error;
+        };
+        //http调用结束
+        this.completeFn = function () {
+            //todo:写个加载转圈圈结束
+        };
+    }
+    /*
+     * postUrl 地址
+     * data 数据
+     * successFn 成功回调
+     * */
+    HttpService.prototype.httpPost = function (postUrl, data, successFn) {
+        if (data === void 0) { data = null; }
+        this.alertMsgService.showLoading();
+        var token = "";
+        //http请求头部
+        if (sessionStorage.getItem('token')) {
+            token = sessionStorage.getItem('token');
+        }
+        var headers = new __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8').set('Authorization', 'Bearer ' + token);
+        var options = { headers: headers };
+        // 发送http请求
+        return this.http.post(postUrl, this.getWwwFormData(data), options).subscribe(successFn, this.errorFn, this.completeFn);
+    };
+    HttpService.prototype.httpGet = function (getUrl, successFn) {
+        this.alertMsgService.showLoading();
+        var token = "";
+        //http请求头部
+        if (sessionStorage.getItem('token')) {
+            token = sessionStorage.getItem('token');
+        }
+        //http请求头部
+        var headers = new __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8').set('Authorization', 'Bearer ' + token);
+        var options = { headers: headers };
+        // 发送http请求
+        return this.http.get(getUrl, options).subscribe(successFn, this.errorFn, this.completeFn);
+    };
+    //获取x-www-form-urlencoded格式的数据
+    HttpService.prototype.getWwwFormData = function (data) {
+        if (data == null) {
+            return null;
+        }
+        var dataStr = "";
+        for (var key in data) {
+            dataStr += key + "=" + data[key] + "&";
+        }
+        dataStr = dataStr.substring(0, dataStr.length - 1);
+        return dataStr;
+    };
+    HttpService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_4__alert_msg_service__["a" /* AlertMsgService */]])
+    ], HttpService);
+    return HttpService;
+}());
+
+//# sourceMappingURL=http.service.js.map
+
+/***/ }),
+
+/***/ 52:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_service_backButton_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__register_register__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__forget_password_forget_password__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_service_http_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_app_api_config__ = __webpack_require__(43);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+var LoginPage = /** @class */ (function () {
+    function LoginPage(app, navCtrl, loadingCtrl, statusBar, pagesToggleService, alertMsgService, platform, backButtonService, httpService) {
+        var _this = this;
+        this.app = app;
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.statusBar = statusBar;
+        this.pagesToggleService = pagesToggleService;
+        this.alertMsgService = alertMsgService;
+        this.platform = platform;
+        this.backButtonService = backButtonService;
+        this.httpService = httpService;
+        this.userInput = {
+            userName: "",
+            userPwd: ""
+        };
+        this.initCard = {
+            position: 'absolute',
+            top: '28rem',
+            padding: '3rem 2rem 4rem 2rem',
+            'border-radius': '12px'
+        };
+        this.loginSuccess = function (response) {
+            _this.alertMsgService.closeLoading();
+            if (response.status == __WEBPACK_IMPORTED_MODULE_10__app_app_api_config__["a" /* ApiConfig */].successCode) {
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */], null, null, function () {
+                    sessionStorage.setItem("token", response.data.token);
+                    sessionStorage.setItem("userInfo", JSON.stringify(response.data.userinfo));
+                    _this.app.getRootNav().setRoot(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
+                });
+            }
+            else {
+                _this.alertMsgService.showMsg("用户名或密码错误");
+            }
+        };
+        this.statusBar.styleLightContent();
+        this.loading = this.loadingCtrl.create({
+            spinner: 'hide',
+            content: "<div class='loading'></div>",
+            dismissOnPageChange: true,
+            showBackdrop: true //是否显示遮罩层
+        });
+        this.platform.ready().then(function () {
+            _this.backButtonService.registerBackButtonAction(null);
+        });
+    }
+    LoginPage.prototype.ionViewDidLoad = function () {
+    };
+    LoginPage.prototype.ngOnInit = function () {
+        this.loginInput = {
+            account: '',
+            password: ''
+        };
+    };
+    LoginPage.prototype.register = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_7__register_register__["a" /* RegisterPage */], null);
+        //this.pagesToggleService.goToPage("RegisterPage");
+    };
+    LoginPage.prototype.resetPwd = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_8__forget_password_forget_password__["a" /* ForgetPasswordPage */], null);
+        //this.pagesToggleService.goToPage("ForgetPasswordPage");
+    };
+    LoginPage.prototype.doLogin = function () {
+        if (this.loginInput.account == '') {
+            this.alertMsgService.showMsg("用户名不能为空");
+            return;
+        }
+        if (this.loginInput.password == '') {
+            this.alertMsgService.showMsg("密码不能为空");
+            return;
+        }
+        var postData = {
+            account: this.loginInput.account,
+            password: this.loginInput.password
+        };
+        this.httpService.httpPost(this.httpService.loginUrl, postData, this.loginSuccess);
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\login\login.html"*/'<ion-content no-bounce scroll="false">\n  <div class="logo_box">\n    <div class="logo"></div>\n  </div>\n  <!--<div class="login_box"></div>-->\n  <ion-card [ngStyle]="initCard">\n    <ion-item class="login_input">\n      <ion-label><ion-icon name="person" style="color: #828385"></ion-icon></ion-label>\n      <ion-input [(ngModel)]="loginInput.account" type="text" placeholder="请输入用户名/手机号"></ion-input>\n    </ion-item>\n    <br />\n    <ion-item class="login_input">\n      <ion-label><ion-icon name="lock" style="color: #828385"></ion-icon></ion-label>\n      <ion-input [(ngModel)]="loginInput.password" type="password" placeholder="请输入密码"></ion-input>\n    </ion-item>\n    <div style="margin-top: 1.5rem;width: 100%;height:2rem;padding: 0 16px">\n      <span style="float:left;color:#999" (click)="register()">注册账号</span>\n      <span style="float:right;color:#999" (click)="resetPwd()">忘记密码</span>\n    </div>\n    <div style="margin-top: 4rem;width: 90%;margin-left:auto;margin-right:auto">\n      <button style="background-color: #2982E5" class="login_btn" ion-button round><span class="button-inner" (click)="doLogin()">登录</span></button>\n    </div>\n  </ion-card>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\login\login.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_4__app_service_pages_toggle_service__["a" /* PagesToggleService */],
+            __WEBPACK_IMPORTED_MODULE_5__app_service_alert_msg_service__["a" /* AlertMsgService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_6__app_service_backButton_service__["a" /* BackButtonService */],
+            __WEBPACK_IMPORTED_MODULE_9__app_service_http_service__["a" /* HttpService */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__map_map__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contact_contact__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__message_message__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_service_backButton_service__ = __webpack_require__(86);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var TabsPage = /** @class */ (function () {
+    function TabsPage(backButtonService, platform) {
+        var _this = this;
+        this.backButtonService = backButtonService;
+        this.platform = platform;
+        this.tab1Root = __WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */];
+        this.tab2Root = __WEBPACK_IMPORTED_MODULE_2__map_map__["a" /* MapPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_5__message_message__["a" /* MessagePage */];
+        this.tab4Root = __WEBPACK_IMPORTED_MODULE_3__contact_contact__["a" /* ContactPage */];
+        this.platform.ready().then(function () {
+            // this.backButtonService.registerBackButtonAction(this.tabRef);
+            _this.backButtonService.registerBackButtonAction(null);
+        });
+    }
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('myTabs'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Tabs */])
+    ], TabsPage.prototype, "tabRef", void 0);
+    TabsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\tabs\tabs.html"*/'<ion-tabs #myTabs>\n  <ion-tab [root]="tab1Root" tabTitle="主页" tabIcon="home"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="地图" tabIcon="map"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="消息" tabIcon="chatbubbles"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="我的" tabIcon="contact"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\tabs\tabs.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_6__app_service_backButton_service__["a" /* BackButtonService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]])
+    ], TabsPage);
+    return TabsPage;
+}());
+
+//# sourceMappingURL=tabs.js.map
+
+/***/ }),
+
+/***/ 58:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DevicePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_service_alert_msg_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__deviceDetail_deviceDetail__ = __webpack_require__(115);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DevicePage = /** @class */ (function () {
+    function DevicePage(navCtrl, pagesToggleService, alertMsgService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.pagesToggleService = pagesToggleService;
+        this.alertMsgService = alertMsgService;
+        this.title = "设备列表";
+        this.group = "";
+        this.deviceList = [];
+        this.date = '2018-11-28';
+        this.pageParam = {
+            page: 1,
+            isPull: false,
+            page_size: 6
+        };
+        this.doInfinite = function (e) {
+            setTimeout(function () {
+                _this.deviceList.push({
+                    device_state: 'online',
+                    device_id: 'AFDD-1',
+                    device_type: 'arc'
+                }, {
+                    device_state: 'online',
+                    device_id: 'AFDD-1',
+                    device_type: 'arc'
+                }, {
+                    device_state: 'online',
+                    device_id: 'AFDD-1',
+                    device_type: 'arc'
+                });
+            }, 1000);
+            setTimeout(function () {
+                e.complete();
+            }, 2000);
+        };
+    }
+    DevicePage.prototype.ngOnInit = function () {
+        this.group = 'group1';
+        this.deviceList = [
+            {
+                device_state: 'online',
+                device_id: 'AFDD-1',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-2',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-3',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-4',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-15',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-12',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-13',
+                device_type: 'arc'
+            },
+        ];
+    };
+    DevicePage.prototype.doRefresh = function (refresher) {
+        this.deviceList = [
+            {
+                device_state: 'online',
+                device_id: 'AFDD-1',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-2',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-3',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-4',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-15',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'outline',
+                device_id: 'AFDD-12',
+                device_type: 'arc'
+            },
+            {
+                device_state: 'online',
+                device_id: 'AFDD-13',
+                device_type: 'arc'
+            },
+        ];
+        setTimeout(function () {
+            refresher.complete();
+        }, 1000);
+        // refresher.complete();
+    };
+    DevicePage.prototype.goBack = function () {
+        this.navCtrl.pop();
+    };
+    //设备详情页
+    DevicePage.prototype.deviceDetail = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__deviceDetail_deviceDetail__["a" /* DeviceDetailPage */], null);
+        //this.pagesToggleService.goToPage("DeviceDetailPage", null, "LeftAndRight");
+    };
+    DevicePage.prototype.clearAlarm = function () {
+        this.alertMsgService.showMsg("消音发送成功");
+    };
+    DevicePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-device',template:/*ion-inline-start:"E:\cordova\arcapps\src\pages\device\device.html"*/'<ion-header no-border>\n  <ion-navbar color="arc">\n    <ion-title>{{title}}</ion-title>\n  </ion-navbar>\n  <div class="list_box">\n    <div class="list_title">\n      <ion-row>\n        <ion-col></ion-col>\n        <ion-col>\n          <ion-select cancelText="取消" okText="确定" [(ngModel)]="group" style="margin: 0 auto;padding: 0;max-width: 100%">\n            <ion-option value="group1">鑫晟钢化玻璃厂1层</ion-option>\n            <ion-option value="group2">泉州博物馆1层</ion-option>\n          </ion-select>\n        </ion-col>\n        <ion-col></ion-col>\n      </ion-row>\n\n    </div>\n    <div style="width: 100%;height:8rem; position: absolute;top: 8rem;">\n      <div class="device_box_part" style="left: 0;border-right: 1px solid #6FABEE">\n        <p style="margin-top: 3px;">位置</p>\n        <p style="margin-top: 6px;">丰泽区南北大道</p>\n      </div>\n      <div class="device_box_part" style="left: 50%;">\n        <p style="margin-top: 3px;">报警数</p>\n        <p style="margin-top: 6px;">2</p>\n      </div>\n    </div>\n  </div>\n</ion-header>\n<ion-content style="position: relative;top: -2px;">\n  <ion-refresher (ionRefresh)="doRefresh($event)" pullMax="600">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="下拉刷新"\n      refreshingSpinner="circles"\n      refreshingText="">\n    </ion-refresher-content>\n  </ion-refresher>\n    <ion-item-group>\n      <ion-item-divider color="light">终端模块</ion-item-divider>\n      <div *ngFor="let item of deviceList;let i = index">\n        <ion-item style="color:#666;border-bottom: 1px solid #ececec;padding: 6px 10px 6px 20px;font-size: 19px;" (click)="deviceDetail()">\n          <span *ngIf="item.device_state == \'online\'"><ion-icon style="color:limegreen" name="ios-checkmark-circle"></ion-icon></span>\n          <span *ngIf="item.device_state == \'outline\'"><ion-icon style="color:red" name="ios-close-circle"></ion-icon></span>\n          &nbsp;&nbsp;\n          <span>{{item.device_id}}</span>\n          <ion-icon style="float: right;color:#ccc" name="ios-arrow-forward"></ion-icon>\n        </ion-item>\n      </div>\n    </ion-item-group>\n  <ion-infinite-scroll *ngIf="!isMore" (ionInfinite)="doInfinite($event)">\n    <ion-infinite-scroll-content\n      loadingSpinner="bubbles"\n      loadingText="加载更多数据...">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n  <div *ngIf="isMore" class="text-align no-more">-No more-</div>\n</ion-content>\n'/*ion-inline-end:"E:\cordova\arcapps\src\pages\device\device.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2__app_service_pages_toggle_service__["a" /* PagesToggleService */],
+            __WEBPACK_IMPORTED_MODULE_3__app_service_alert_msg_service__["a" /* AlertMsgService */]])
+    ], DevicePage);
+    return DevicePage;
+}());
+
+//# sourceMappingURL=device.js.map
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BackButtonService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_toggle_service__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__alert_msg_service__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * 安卓手机返回按钮
+ *
+ * */
+
+
+
+
+var BackButtonService = /** @class */ (function () {
+    function BackButtonService(platform, app, pagesToggleService, alertMsgService) {
+        this.platform = platform;
+        this.app = app;
+        this.pagesToggleService = pagesToggleService;
+        this.alertMsgService = alertMsgService;
+        this.backButtonPressed = false;
+    }
+    //注册方法
+    BackButtonService.prototype.registerBackButtonAction = function (tabRef) {
+        var _this = this;
+        //registerBackButtonAction是系统自带的方法
+        this.platform.registerBackButtonAction(function () {
+            //获取NavController
+            var activeNav = _this.app.getActiveNavs()[0];
+            //如果可以返回上一页，则执行pop
+            if (activeNav.canGoBack()) {
+                activeNav.pop();
+            }
+            else {
+                if (tabRef == null || tabRef._selectHistory[tabRef._selectHistory.length - 1] === tabRef.getByIndex(0).id) {
+                    //执行退出
+                    _this.showExit();
+                }
+                else {
+                    //选择首页第一个的标签
+                    tabRef.select(0);
+                }
+            }
+        });
+    };
+    //退出应用方法
+    BackButtonService.prototype.showExit = function () {
+        var _this = this;
+        //如果为true，退出
+        if (this.backButtonPressed) {
+            this.platform.exitApp();
+        }
+        else {
+            //第一次按，弹出Toast
+            this.alertMsgService.showMsg("再按一次退出应用");
+            //标记为true
+            this.backButtonPressed = true;
+            //两秒后标记为false，如果退出的话，就不会执行了
+            setTimeout(function () { return _this.backButtonPressed = false; }, 2000);
+        }
+    };
+    BackButtonService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
+            __WEBPACK_IMPORTED_MODULE_2__pages_toggle_service__["a" /* PagesToggleService */],
+            __WEBPACK_IMPORTED_MODULE_3__alert_msg_service__["a" /* AlertMsgService */]])
+    ], BackButtonService);
+    return BackButtonService;
+}());
+
+//# sourceMappingURL=backButton.service.js.map
+
+/***/ })
+
+},[220]);
+//# sourceMappingURL=main.js.map

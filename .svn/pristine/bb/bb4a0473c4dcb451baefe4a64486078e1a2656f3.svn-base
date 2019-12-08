@@ -1,0 +1,33 @@
+##数据库配置
+
+#系统数据
+spring.datasource.admin.name     		  = hixent_user
+spring.datasource.admin.url      	      = jdbc:mysql://localhost:3306/hixent_user?useUnicode=true&characterEncoding=UTF-8
+spring.datasource.admin.username 	      = root
+spring.datasource.admin.password          = root
+#spring.datasource.admin.password          = hixentdata123
+#使用atomikos+jta实现分布式事务统一管理
+mysql.datasource.admin.minPoolSize=3 
+mysql.datasource.admin.maxPoolSize=25 
+mysql.datasource.admin.maxLifetime=20000 
+mysql.datasource.admin.borrowConnectionTimeout=30 
+mysql.datasource.admin.loginTimeout=30 
+mysql.datasource.admin.maintenanceInterval=60 
+mysql.datasource.admin.maxIdleTime=60
+mysql.datasource.admin.tQuery = SELECT 1
+
+#智能消防接口数据
+spring.datasource.fire.name               = hixent_arc_system
+spring.datasource.fire.url      		  = jdbc:mysql://localhost:3306/hixent_arc_system?useUnicode=true&characterEncoding=UTF-8
+spring.datasource.fire.username           = root
+spring.datasource.fire.password           = root
+#spring.datasource.fire.password           = hixentdata123
+#使用atomikos+jta实现分布式事务统一管理
+mysql.datasource.fire.minPoolSize=3 
+mysql.datasource.fire.maxPoolSize=25 
+mysql.datasource.fire.maxLifetime=20000 
+mysql.datasource.fire.borrowConnectionTimeout=30 
+mysql.datasource.fire.loginTimeout=30 
+mysql.datasource.fire.maintenanceInterval=60 
+mysql.datasource.fire.maxIdleTime=60
+mysql.datasource.fire.tQuery =SELECT 1

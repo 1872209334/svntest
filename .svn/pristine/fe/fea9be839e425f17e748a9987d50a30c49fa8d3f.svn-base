@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: QFMicroService
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: toy
+Implementation-Vendor-Id: com.hixent
+Build-Jdk: 1.8.0_112
+Implementation-URL: http://projects.spring.io/spring-boot/QFMicroServi
+ ce/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

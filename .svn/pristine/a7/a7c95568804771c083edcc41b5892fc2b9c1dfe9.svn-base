@@ -1,0 +1,28 @@
+cordova.define("com.qdc.plugins.baidu.location.baidu_location", function(require, exports, module) {
+var exec = require('cordova/exec');
+
+var baidu_location = {
+  getCurrentPosition: function(successFn, failureFn) {
+    exec(successFn, failureFn, 'BaiduLocation', 'getCurrentPosition', []);
+  },
+  
+	baiduad:function(address,city,zoom,successCallback, errorCallback) {
+		if (errorCallback == null) { errorCallback = function() {}}
+
+		if (typeof errorCallback != "function")  {
+			console.log("pgbaidumap.scan failure: failure parameter not a function");
+			return
+		}
+
+		if (typeof successCallback != "function") {
+			console.log("pgbaidumap.scan failure: success callback parameter must be a function");
+			return
+		}
+
+		exec(successCallback, errorCallback, 'BaiduMap', 'baiduad', [{"address":address, "city": city,"zoom": zoom}]);
+	}    
+};
+
+module.exports = baidu_location
+
+});

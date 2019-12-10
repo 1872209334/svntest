@@ -74,7 +74,7 @@ public class ExcelController {
 	* @throws Exception
      */
 	@RequestMapping(value = "/excelForOffLineLogByNewParam", method = RequestMethod.POST)
-	public ModelMap excelForOffLineLogByNewParam(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
+	public ModelMap excelForOffLineLogByNewParam(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
 
 		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
 		HttpServletResponse  response = servletRequestAttributes.getResponse();
@@ -132,7 +132,7 @@ public class ExcelController {
 		String[] siteCordArr = bid.split(",");
 
 		List<HixentArcZipperInfo> alarmLog = new ArrayList<HixentArcZipperInfo>();
-		JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.offLineLogExcel(siteId, deviceId, isAlarm, pageSize, currentPage);
+		JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.offLineLogExcel(projectId, deviceId, isAlarm, pageSize, currentPage);
 		alarmLog=(List<HixentArcZipperInfo>)alarmLogForEquipExcel.get("alarmLogForDevice");
 
 
@@ -177,7 +177,7 @@ public class ExcelController {
      * @throws Exception
      */
     @RequestMapping(value = "/excelForFaultLogByNewParam", method = RequestMethod.POST)
-    public ModelMap excelForFaultLogByNewParam(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
+    public ModelMap excelForFaultLogByNewParam(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
 
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletResponse  response = servletRequestAttributes.getResponse();
@@ -235,7 +235,7 @@ public class ExcelController {
         String[] siteCordArr = bid.split(",");
 
         List<HixentArcZipperInfo> alarmLog = new ArrayList<HixentArcZipperInfo>();
-        JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.faultLogExcel(siteId, deviceId, isAlarm, pageSize, currentPage);
+        JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.faultLogExcel(projectId, deviceId, isAlarm, pageSize, currentPage);
         alarmLog=(List<HixentArcZipperInfo>)alarmLogForEquipExcel.get("alarmLogForDevice");
 
 
@@ -288,7 +288,7 @@ public class ExcelController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/excelForWarnLogByNewParam", method = RequestMethod.POST)
-	public ModelMap excelForWarnLogByNewParam(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
+	public ModelMap excelForWarnLogByNewParam(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
 
 		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
 		HttpServletResponse  response = servletRequestAttributes.getResponse();
@@ -367,7 +367,7 @@ public class ExcelController {
 //			alarmLog=(List<HixentArcWarningList>)alarmLogForEquipExcel.get("alarmLogForDevice");
 //
 //		}
-		JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.alarmLogExcel(siteId, deviceId, isAlarm, pageSize, currentPage);
+		JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.alarmLogExcel(projectId, deviceId, isAlarm, pageSize, currentPage);
 		alarmLog=(List<HixentArcZipperInfo>)alarmLogForEquipExcel.get("alarmLogForDevice");
 
 		//获得处理结果和处理人信息和反馈

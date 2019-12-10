@@ -19,15 +19,15 @@
                 <div style="float: left; height:40px; width:135px;">
                     <div style="width:135px;">
                         <el-select v-model="projectSelectVal" placeholder="项目" @change="getCenterControl">
-                            <el-option
-                                label="不限"
-                                value="0">
-                            </el-option>
+                            <!--<el-option-->
+                                <!--label="不限"-->
+                                <!--value="0">-->
+                            <!--</el-option>-->
                             <el-option
                                 v-for="item in projectSelect"
-                                :key="item.siteId"
+                                :key="item.siteCord"
                                 :label="item.siteLabel"
-                                :value="item.siteId">
+                                :value="item.siteCord">
                             </el-option>
                         </el-select>
                     </div>
@@ -256,8 +256,8 @@
                     // deviceId: this.centerControlVal == null?0:this.centerControlVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
-                    projectId:'',
-                    deviceId:'',
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
                     isAlarm:this.common.isAlarm,
@@ -281,10 +281,13 @@
             getAlarmLog() {
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
                 let url = this.getAlarmLogUrl;
+                // alert(JSON.parse(sessionStorage.getItem("user_info")).bid)
                 let data = {
                     // isDevice: this.filters.deviceType,//1->终端,0->中控
-                    projectId: this.projectSelectVal == null?'':this.projectSelectVal,
-                    deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    // projectId: this.projectSelectVal == null?'':this.projectSelectVal,
+                    projectId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
+                    deviceId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     currentPage: this.common.page,
@@ -311,8 +314,10 @@
                 let url = this.getAlarmLogBySiteIdUrl;
                 let data = {
                     // isDevice: this.filters.deviceType,//1->终端,0->中控
-                    siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
-                    deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
+                    projectId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     currentPage: this.common.page,
@@ -387,8 +392,10 @@
                 // let url = this.excelForWarnLogUrl;
                 let url = this.excelForAlarmLogUrl;
                 let data = {
-                    siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
-                    deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
+                    projectId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     currentPage: this.common.page,

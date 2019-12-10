@@ -36,7 +36,100 @@ public class HixentArcZipperInfoServiceImpl implements HixentArcZipperInfoServic
     @Override
     public List<HixentArcZipperInfo> selectAlarmLog(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
         String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId,isAlarm,limits);
+        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId,isAlarm,limits);
+//        for(int i = 0;i <alarmList.size();i++){
+//            HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
+//            alarmList.get(i).setSiteName(siteName.getSiteName());
+//            alarmList.get(i).setSiteId(siteName.getSiteId());
+//        }
+        return alarmList;
+    }
+    @Override
+    public List<HixentArcZipperInfo> selectAlarmLogBySiteId( String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
+        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId,isAlarm,limits);
+//        HixentArcSite site =new HixentArcSite();
+////        if(siteId>0) {
+////            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
+//
+//            List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
+//            for (int i = 0; i < alarmList.size(); i++) {
+//                if (site.getSiteCode().equals(alarmList.get(i).getProjectId())) {
+//                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
+//                    alarmList.get(i).setSiteName(siteName.getSiteName());
+//                    alarmList.get(i).setSiteId(siteName.getSiteId());
+//                    resultAlarmList.add(alarmList.get(i));
+//                }
+//            }
+            return alarmList;
+//        }else{
+//            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId,isAlarm,limits);
+//            for(int i = 0;i <allAlarmList.size();i++){
+//                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
+//                allAlarmList.get(i).setSiteName(siteName.getSiteName());
+//                allAlarmList.get(i).setSiteId(siteName.getSiteId());
+//            }
+//            return allAlarmList;
+//        }
+
+    }
+
+    @Override
+    public List<HixentArcZipperInfo> selectFaultLogBySiteId(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
+        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectFaultLog1(projectId,deviceId,isAlarm,limits);
+//        HixentArcSite site =new HixentArcSite();
+//        if(siteId>0) {
+//            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
+//
+//            List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
+//            for (int i = 0; i < alarmList.size(); i++) {
+//                if (site.getSiteCode().equals(alarmList.get(i).getProjectId())) {
+//                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
+//                    alarmList.get(i).setSiteName(siteName.getSiteName());
+//                    alarmList.get(i).setSiteId(siteName.getSiteId());
+//                    resultAlarmList.add(alarmList.get(i));
+//                }
+//            }
+//            return resultAlarmList;
+//        }else{
+//            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId,isAlarm,limits);
+//            for(int i = 0;i <allAlarmList.size();i++){
+//                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
+//                allAlarmList.get(i).setSiteName(siteName.getSiteName());
+//                allAlarmList.get(i).setSiteId(siteName.getSiteId());
+//            }
+            return alarmList;
+//        }
+
+    }
+
+    @Override
+    public Integer countZipperAlarmLog(String projectId, String deviceId,String isAlarm) {
+        return hixentArcZipperInfoMapper.countZipperAlarmLog(projectId,deviceId,isAlarm);
+    }
+
+    @Override
+    public List<HixentArcZipperInfo> selectFaultLog(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
+        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectFaultLog1(projectId,deviceId,isAlarm,limits);
+//        for(int i = 0;i <alarmList.size();i++){
+//            HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
+//            alarmList.get(i).setSiteName(siteName.getSiteName());
+//            alarmList.get(i).setSiteId(siteName.getSiteId());
+//        }
+        return alarmList;
+    }
+
+    @Override
+    public Integer countZipperFaultLog(String projectId, String deviceId, String isAlarm) {
+        return hixentArcZipperInfoMapper.countZipperFaultLog(projectId,deviceId,isAlarm);
+    }
+
+    @Override
+    public List<HixentArcZipperInfo> selectOffLineLog(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
+        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectOffLineLog1(projectId,deviceId,isAlarm,limits);
         for(int i = 0;i <alarmList.size();i++){
             HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
             alarmList.get(i).setSiteName(siteName.getSiteName());
@@ -44,232 +137,143 @@ public class HixentArcZipperInfoServiceImpl implements HixentArcZipperInfoServic
         }
         return alarmList;
     }
+
     @Override
-    public List<HixentArcZipperInfo> selectAlarmLogBySiteId(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+    public List<HixentArcZipperInfo> selectOffLineLogBySiteId(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
         String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId,isAlarm,limits);
-        HixentArcSite site =new HixentArcSite();
-        if(siteId>0) {
-            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
-
-            List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
-            for (int i = 0; i < alarmList.size(); i++) {
-                if (site.getSiteCode().equals(alarmList.get(i).getProjectId())) {
-                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
-                    alarmList.get(i).setSiteName(siteName.getSiteName());
-                    alarmList.get(i).setSiteId(siteName.getSiteId());
-                    resultAlarmList.add(alarmList.get(i));
-                }
-            }
-            return resultAlarmList;
-        }else{
-            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId,isAlarm,limits);
-            for(int i = 0;i <allAlarmList.size();i++){
-                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
-                allAlarmList.get(i).setSiteName(siteName.getSiteName());
-                allAlarmList.get(i).setSiteId(siteName.getSiteId());
-            }
-            return allAlarmList;
-        }
-
+        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectOffLineLog1(projectId,deviceId,isAlarm,limits);
+//        HixentArcSite site =new HixentArcSite();
+//        if(siteId>0) {
+//            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
+//
+//            List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
+//            for (int i = 0; i < alarmList.size(); i++) {
+//                if (site.getSiteCode().equals(alarmList.get(i).getProjectId())) {
+//                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
+//                    alarmList.get(i).setSiteName(siteName.getSiteName());
+//                    alarmList.get(i).setSiteId(siteName.getSiteId());
+//                    resultAlarmList.add(alarmList.get(i));
+//                }
+//            }
+//            return resultAlarmList;
+//        }else{
+//            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId,isAlarm,limits);
+//            for(int i = 0;i <allAlarmList.size();i++){
+//                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
+//                allAlarmList.get(i).setSiteName(siteName.getSiteName());
+//                allAlarmList.get(i).setSiteId(siteName.getSiteId());
+//            }
+            return alarmList;
+//        }
     }
 
     @Override
-    public List<HixentArcZipperInfo> selectFaultLogBySiteId(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
-        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectFaultLog(deviceId,isAlarm,limits);
-        HixentArcSite site =new HixentArcSite();
-        if(siteId>0) {
-            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
-
-            List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
-            for (int i = 0; i < alarmList.size(); i++) {
-                if (site.getSiteCode().equals(alarmList.get(i).getProjectId())) {
-                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
-                    alarmList.get(i).setSiteName(siteName.getSiteName());
-                    alarmList.get(i).setSiteId(siteName.getSiteId());
-                    resultAlarmList.add(alarmList.get(i));
-                }
-            }
-            return resultAlarmList;
-        }else{
-            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId,isAlarm,limits);
-            for(int i = 0;i <allAlarmList.size();i++){
-                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
-                allAlarmList.get(i).setSiteName(siteName.getSiteName());
-                allAlarmList.get(i).setSiteId(siteName.getSiteId());
-            }
-            return allAlarmList;
-        }
-
+    public Integer countZipperOffLineLog(String projectId, String deviceId, String isAlarm) {
+        return hixentArcZipperInfoMapper.countZipperOffLineLog1(projectId,deviceId,isAlarm);
     }
-
     @Override
-    public Integer countZipperAlarmLog(String deviceId,String isAlarm) {
-        return hixentArcZipperInfoMapper.countZipperAlarmLog(deviceId,isAlarm);
-    }
-
-    @Override
-    public List<HixentArcZipperInfo> selectFaultLog(String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
-        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectFaultLog(deviceId,isAlarm,limits);
-        for(int i = 0;i <alarmList.size();i++){
-            HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
-            alarmList.get(i).setSiteName(siteName.getSiteName());
-            alarmList.get(i).setSiteId(siteName.getSiteId());
-        }
-        return alarmList;
-    }
-
-    @Override
-    public Integer countZipperFaultLog(String deviceId, String isAlarm) {
-        return hixentArcZipperInfoMapper.countZipperFaultLog(deviceId,isAlarm);
-    }
-
-    @Override
-    public List<HixentArcZipperInfo> selectOffLineLog(String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
-        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectOffLineLog(deviceId,isAlarm,limits);
-        for(int i = 0;i <alarmList.size();i++){
-            HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
-            alarmList.get(i).setSiteName(siteName.getSiteName());
-            alarmList.get(i).setSiteId(siteName.getSiteId());
-        }
-        return alarmList;
-    }
-
-    @Override
-    public List<HixentArcZipperInfo> selectOffLineLogBySiteId(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
-        String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmList = hixentArcZipperInfoMapper.selectOffLineLog(deviceId,isAlarm,limits);
-        HixentArcSite site =new HixentArcSite();
-        if(siteId>0) {
-            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
-
-            List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
-            for (int i = 0; i < alarmList.size(); i++) {
-                if (site.getSiteCode().equals(alarmList.get(i).getProjectId())) {
-                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmList.get(i).getProjectId());
-                    alarmList.get(i).setSiteName(siteName.getSiteName());
-                    alarmList.get(i).setSiteId(siteName.getSiteId());
-                    resultAlarmList.add(alarmList.get(i));
-                }
-            }
-            return resultAlarmList;
-        }else{
-            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId,isAlarm,limits);
-            for(int i = 0;i <allAlarmList.size();i++){
-                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
-                allAlarmList.get(i).setSiteName(siteName.getSiteName());
-                allAlarmList.get(i).setSiteId(siteName.getSiteId());
-            }
-            return allAlarmList;
-        }
-    }
-
-    @Override
-    public Integer countZipperOffLineLog(String deviceId, String isAlarm) {
+    public Integer countZipperOffLineLog( String deviceId, String isAlarm) {
         return hixentArcZipperInfoMapper.countZipperOffLineLog(deviceId,isAlarm);
     }
 
     // 报警日志Excel
    @Override
-    public JSONObject alarmLogExcel(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+    public JSONObject alarmLogExcel(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
         JSONObject outJson = new JSONObject();
         String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmLogForDevice = hixentArcZipperInfoMapper.selectAlarmLog(deviceId,isAlarm,limits);
-       HixentArcSite site = new HixentArcSite();
-       List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
-       if (siteId > 0) {
-           site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
-           for (int i = 0; i < alarmLogForDevice.size(); i++) {
-               if (site.getSiteCode().equals(alarmLogForDevice.get(i).getProjectId())) {
-                   HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmLogForDevice.get(i).getProjectId());
-                   alarmLogForDevice.get(i).setSiteName(siteName.getSiteName());
-                   alarmLogForDevice.get(i).setSiteId(siteName.getSiteId());
-                   resultAlarmList.add(alarmLogForDevice.get(i));
-               }
-           }
-       } else {
-           List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId, isAlarm, limits);
-           for (int i = 0; i < allAlarmList.size(); i++) {
-               HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
-               allAlarmList.get(i).setSiteName(siteName.getSiteName());
-               allAlarmList.get(i).setSiteId(siteName.getSiteId());
-               resultAlarmList.add(allAlarmList.get(i));
-           }
-       }
-       Integer alarmLogForDeviceCount = resultAlarmList.size();
-       outJson.put("alarmLogForDeviceCount", alarmLogForDeviceCount);
-       outJson.put("alarmLogForDevice", resultAlarmList);
+        List<HixentArcZipperInfo> alarmLogForDevice = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId,isAlarm,limits);
+//       HixentArcSite site = new HixentArcSite();
+//       List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
+//       if (siteId > 0) {
+//           site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
+//           for (int i = 0; i < alarmLogForDevice.size(); i++) {
+//               if (site.getSiteCode().equals(alarmLogForDevice.get(i).getProjectId())) {
+//                   HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmLogForDevice.get(i).getProjectId());
+//                   alarmLogForDevice.get(i).setSiteName(siteName.getSiteName());
+//                   alarmLogForDevice.get(i).setSiteId(siteName.getSiteId());
+//                   resultAlarmList.add(alarmLogForDevice.get(i));
+//               }
+//           }
+//       } else {
+//           List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId, isAlarm, limits);
+//           for (int i = 0; i < allAlarmList.size(); i++) {
+//               HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
+//               allAlarmList.get(i).setSiteName(siteName.getSiteName());
+//               allAlarmList.get(i).setSiteId(siteName.getSiteId());
+//               resultAlarmList.add(allAlarmList.get(i));
+//           }
+//       }
+//       Integer alarmLogForDeviceCount = resultAlarmList.size();
+       outJson.put("alarmLogForDeviceCount", alarmLogForDevice.size());
+       outJson.put("alarmLogForDevice", alarmLogForDevice);
        return outJson;
     }
 
     // 故障日志Excel
     @Override
-    public JSONObject faultLogExcel(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+    public JSONObject faultLogExcel(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
         JSONObject outJson = new JSONObject();
         String limits = ""+Integer.toString((currentPage-1)*pageSize)+","+Integer.toString(pageSize)+"";
-        List<HixentArcZipperInfo> alarmLogForDevice = hixentArcZipperInfoMapper.selectFaultLog(deviceId,isAlarm,limits);
-        HixentArcSite site = new HixentArcSite();
-        List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
-        if (siteId > 0) {
-            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
-            for (int i = 0; i < alarmLogForDevice.size(); i++) {
-                if (site.getSiteCode().equals(alarmLogForDevice.get(i).getProjectId())) {
-                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmLogForDevice.get(i).getProjectId());
-                    alarmLogForDevice.get(i).setSiteName(siteName.getSiteName());
-                    alarmLogForDevice.get(i).setSiteId(siteName.getSiteId());
-                    resultAlarmList.add(alarmLogForDevice.get(i));
-                }
-            }
-        } else {
-            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId, isAlarm, limits);
-            for (int i = 0; i < allAlarmList.size(); i++) {
-                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
-                allAlarmList.get(i).setSiteName(siteName.getSiteName());
-                allAlarmList.get(i).setSiteId(siteName.getSiteId());
-                resultAlarmList.add(allAlarmList.get(i));
-            }
-        }
-        Integer alarmLogForDeviceCount = resultAlarmList.size();
+        List<HixentArcZipperInfo> alarmLogForDevice = hixentArcZipperInfoMapper.selectFaultLog1(projectId,deviceId,isAlarm,limits);
+//        HixentArcSite site = new HixentArcSite();
+//        List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
+//        if (siteId > 0) {
+//            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
+//            for (int i = 0; i < alarmLogForDevice.size(); i++) {
+//                if (site.getSiteCode().equals(alarmLogForDevice.get(i).getProjectId())) {
+//                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmLogForDevice.get(i).getProjectId());
+//                    alarmLogForDevice.get(i).setSiteName(siteName.getSiteName());
+//                    alarmLogForDevice.get(i).setSiteId(siteName.getSiteId());
+//                    resultAlarmList.add(alarmLogForDevice.get(i));
+//                }
+//            }
+//        } else {
+//            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId, deviceId, isAlarm, limits);
+//            for (int i = 0; i < allAlarmList.size(); i++) {
+//                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
+//                allAlarmList.get(i).setSiteName(siteName.getSiteName());
+//                allAlarmList.get(i).setSiteId(siteName.getSiteId());
+//                resultAlarmList.add(allAlarmList.get(i));
+//            }
+//        }
+        Integer alarmLogForDeviceCount = alarmLogForDevice.size();
         outJson.put("alarmLogForDeviceCount", alarmLogForDeviceCount);
-        outJson.put("alarmLogForDevice", resultAlarmList);
+        outJson.put("alarmLogForDevice", alarmLogForDevice);
         return outJson;
     }
 
     // 离线日志Excel
     @Override
-    public JSONObject offLineLogExcel(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
+    public JSONObject offLineLogExcel(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) {
         JSONObject outJson = new JSONObject();
         String limits = "" + Integer.toString((currentPage - 1) * pageSize) + "," + Integer.toString(pageSize) + "";
-        List<HixentArcZipperInfo> alarmLogForDevice = hixentArcZipperInfoMapper.selectOffLineLog(deviceId, isAlarm, limits);
-        HixentArcSite site = new HixentArcSite();
-        List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
-        if (siteId > 0) {
-            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
-
-
-            for (int i = 0; i < alarmLogForDevice.size(); i++) {
-                if (site.getSiteCode().equals(alarmLogForDevice.get(i).getProjectId())) {
-                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmLogForDevice.get(i).getProjectId());
-                    alarmLogForDevice.get(i).setSiteName(siteName.getSiteName());
-                    alarmLogForDevice.get(i).setSiteId(siteName.getSiteId());
-                    resultAlarmList.add(alarmLogForDevice.get(i));
-                }
-            }
-        } else {
-            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog(deviceId, isAlarm, limits);
-            for (int i = 0; i < allAlarmList.size(); i++) {
-                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
-                allAlarmList.get(i).setSiteName(siteName.getSiteName());
-                allAlarmList.get(i).setSiteId(siteName.getSiteId());
-                resultAlarmList.add(allAlarmList.get(i));
-            }
-        }
-        Integer alarmLogForDeviceCount = resultAlarmList.size();
+        List<HixentArcZipperInfo> alarmLogForDevice = hixentArcZipperInfoMapper.selectOffLineLog1(projectId,deviceId, isAlarm, limits);
+//        HixentArcSite site = new HixentArcSite();
+//        List<HixentArcZipperInfo> resultAlarmList = new ArrayList<>();
+//        if (siteId > 0) {
+//            site = hixentArcZipperInfoMapper.selectAlarmLogBySiteId(siteId);
+//
+//
+//            for (int i = 0; i < alarmLogForDevice.size(); i++) {
+//                if (site.getSiteCode().equals(alarmLogForDevice.get(i).getProjectId())) {
+//                    HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(alarmLogForDevice.get(i).getProjectId());
+//                    alarmLogForDevice.get(i).setSiteName(siteName.getSiteName());
+//                    alarmLogForDevice.get(i).setSiteId(siteName.getSiteId());
+//                    resultAlarmList.add(alarmLogForDevice.get(i));
+//                }
+//            }
+//        } else {
+//            List<HixentArcZipperInfo> allAlarmList = hixentArcZipperInfoMapper.selectAlarmLog1(projectId,deviceId, isAlarm, limits);
+//            for (int i = 0; i < allAlarmList.size(); i++) {
+//                HixentArcZipperUnionInfo siteName = hixentArcZipperInfoMapper.selectSiteName(allAlarmList.get(i).getProjectId());
+//                allAlarmList.get(i).setSiteName(siteName.getSiteName());
+//                allAlarmList.get(i).setSiteId(siteName.getSiteId());
+//                resultAlarmList.add(allAlarmList.get(i));
+//            }
+//        }
+        Integer alarmLogForDeviceCount = alarmLogForDevice.size();
         outJson.put("alarmLogForDeviceCount", alarmLogForDeviceCount);
-        outJson.put("alarmLogForDevice", resultAlarmList);
+        outJson.put("alarmLogForDevice", alarmLogForDevice);
         return outJson;
     }
 

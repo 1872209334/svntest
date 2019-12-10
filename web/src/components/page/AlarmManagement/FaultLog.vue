@@ -28,9 +28,9 @@
                             </el-option>
                             <el-option
                                 v-for="item in projectSelect"
-                                :key="item.siteId"
+                                :key="item.siteCord"
                                 :label="item.siteLabel"
-                                :value="item.siteId">
+                                :value="item.siteCord">
                             </el-option>
                         </el-select>
                     </div>
@@ -283,7 +283,8 @@
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     // projectId:'',
-                    deviceId:'',
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
                     isAlarm:this.common.isAlarm
@@ -310,7 +311,9 @@
                 let data = {
                     // isDevice: this.filters.deviceType,
                     // siteId: this.projectSelectVal == null?0:this.projectSelectVal,
-                    deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId: this.centerControlVal == null?'':this.centerControlVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     currentPage: this.common.page,
@@ -337,8 +340,9 @@
                 let url = this.getFaultLogBySiteIdUrl;
                 let data = {
                     // isDevice: this.filters.deviceType,
-                    siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
-                    deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     currentPage: this.common.page,
@@ -395,8 +399,10 @@
                 }
                 let url = this.excelForFaultLogUrl;
                 let data = {
-                    siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
-                    deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId: this.centerControlVal == null?'':this.centerControlVal,
+                    deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
                     currentPage: this.common.page,

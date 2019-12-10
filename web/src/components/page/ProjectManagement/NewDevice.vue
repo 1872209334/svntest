@@ -453,7 +453,7 @@
                 // let appUserStr = appUserArr.join(',');
                 // let equipList = equipArr.join(',');
                 //新增终端
-                if(this.equipTypeValue === "-1" || this.equipCodeValue === ""){
+                if(this.equipTypeValue === "-1" || this.equipCodeValue === "" || this.equipCodeValue.length != 6){
                     alert("请选择设备类型和填写设备编码");
                     return "";
                 }else {

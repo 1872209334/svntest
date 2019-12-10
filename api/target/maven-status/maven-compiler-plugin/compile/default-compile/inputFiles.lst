@@ -17,6 +17,7 @@ H:\svntest\api\src\main\java\com\qf\model\admin\HixentAppUser.java
 H:\svntest\api\src\main\java\com\qf\model\admin\valid\ValidHixentUserMore.java
 H:\svntest\api\src\main\java\com\qf\model\admin\valid\ValidHixentAppUserMore2.java
 H:\svntest\api\src\main\java\com\qf\model\admin\valid\ValidHixentCompanySave.java
+H:\svntest\api\src\main\java\com\qf\service\fire\impl\HixentArcSiteService.java
 H:\svntest\api\src\main\java\com\qf\controller\api\fire\ApiFireFileController.java
 H:\svntest\api\src\main\java\com\qf\controller\common\MqttController.java
 H:\svntest\api\src\main\java\com\qf\util\FileUploadUtil.java
@@ -54,6 +55,7 @@ H:\svntest\api\src\main\java\com\qf\controller\api\fire\ApiFireSaveController.ja
 H:\svntest\api\src\main\java\com\qf\mapper\admin\HixentCompanyMapper.java
 H:\svntest\api\src\main\java\com\qf\common\mybatis\DynamicDataSource.java
 H:\svntest\api\src\main\java\com\qf\controller\api\fire\ApiFireDelDeviceController.java
+H:\svntest\api\src\main\java\com\qf\service\fire\impl\HixentArcSiteServiceImpl.java
 H:\svntest\api\src\main\java\com\qf\model\fire\HixentArcIndex.java
 H:\svntest\api\src\main\java\com\qf\model\fire\valid\ValidHixentEditDeviceInfo.java
 H:\svntest\api\src\main\java\com\qf\util\JsonUtil.java
@@ -160,11 +162,13 @@ H:\svntest\api\src\main\java\com\qf\util\ToolUtil.java
 H:\svntest\api\src\main\java\com\qf\service\mqtt\MqttProductService.java
 H:\svntest\api\src\main\java\com\qf\service\fire\HixentMapService.java
 H:\svntest\api\src\main\java\com\qf\common\shiro\CustomerAuthenticationToken.java
+H:\svntest\api\src\main\java\com\qf\controller\api\fire\Test.java
 H:\svntest\api\src\main\java\com\qf\service\mqtt\MqttCustomerService.java
 H:\svntest\api\src\main\java\com\qf\mapper\fire\HixentArcProtocolMapper.java
 H:\svntest\api\src\main\java\com\qf\util\AliyunSmsUtil.java
 H:\svntest\api\src\main\java\com\qf\service\fire\HixentArcIndexService.java
 H:\svntest\api\src\main\java\com\qf\service\app\AppCommonService.java
+H:\svntest\api\src\main\java\com\qf\mapper\fire\HixentArcSiteMapper.java
 H:\svntest\api\src\main\java\com\qf\model\admin\valid\ValidHixentAppMobileLogin.java
 H:\svntest\api\src\main\java\com\qf\mapper\admin\HixentMessageMapper.java
 H:\svntest\api\src\main\java\com\qf\model\fire\HixentArcZipperInfo.java

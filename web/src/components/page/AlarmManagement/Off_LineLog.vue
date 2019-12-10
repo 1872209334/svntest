@@ -27,9 +27,9 @@
                             </el-option>
                             <el-option
                                 v-for="item in projectSelect"
-                                :key="item.siteId"
+                                :key="item.siteCord"
                                 :label="item.siteLabel"
-                                :value="item.siteId">
+                                :value="item.siteCord">
                             </el-option>
                         </el-select>
                     </div>
@@ -309,8 +309,10 @@
                 }
                 let url = this.excelForOffLineLogUrl;
                 let data = {
-                    siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
-                    deviceId:this.centerControlVal == null?'':this.centerControlVal,
+                    // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId:this.centerControlVal == null?'':this.centerControlVal,
+                    deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     currentPage:this.common.page,
                     pageSize:this.common.pageSize,
                     isAlarm:this.common.isAlarm,
@@ -346,7 +348,9 @@
                     // isDevice:this.filters.deviceType,
                     // siteId:this.projectSelectVal == null?0:this.projectSelectVal,
                     // deviceId:this.centerControlVal == null?0:this.centerControlVal,
-                    deviceId:'',
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId:'',
                     // equipId:0,
                     // inquir:this.inputBoxValue,
                     currentPage:this.common.page,
@@ -375,7 +379,9 @@
                 let data = {
                     // isDevice:this.filters.deviceType,
                     // siteId:this.projectSelectVal == null?0:this.projectSelectVal,
-                    deviceId:this.centerControlVal == null?'':this.centerControlVal,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId:this.centerControlVal == null?'':this.centerControlVal,
                     // equipId:0,
                     // inquir:this.inputBoxValue,
                     currentPage:this.common.page,
@@ -403,8 +409,10 @@
                 let data = {
                     // isDevice:this.filters.deviceType,
                     // siteId:this.projectSelectVal == null?0:this.projectSelectVal,
-                    siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
-                    deviceId:this.centerControlVal == null?'':this.centerControlVal,
+                    // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // deviceId:this.centerControlVal == null?'':this.centerControlVal,
+                    deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId:0,
                     // inquir:this.inputBoxValue,
                     currentPage:this.common.page,

@@ -100,7 +100,7 @@ public class ApiFireAlarmListController {
 	 */
 	@SystemHistoryAnnotation(opration = "查询离线列表")
 	@PostMapping(value = "/offLineLog")
-	public ModelMap offLineLog(String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
+	public ModelMap offLineLog(String projectId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
 		try {
 
 			// 获取用户信息
@@ -129,7 +129,7 @@ public class ApiFireAlarmListController {
 			String[] siteCordArr = bid.split(",");
 
 			JSONObject json = new JSONObject();
-			List<HixentArcZipperInfo> zipperOffLineLog = hixentArcZipperInfoService.selectOffLineLog(deviceId,isAlarm,pageSize,currentPage);
+			List<HixentArcZipperInfo> zipperOffLineLog = hixentArcZipperInfoService.selectOffLineLog(projectId,deviceId,isAlarm,pageSize,currentPage);
 			int zipperOffLineLogCount = hixentArcZipperInfoService.countZipperOffLineLog(deviceId, isAlarm);
 			json.put("zipperOffLineLogCount", zipperOffLineLogCount);
 			json.put("zipperOffLineLog", zipperOffLineLog);
@@ -145,7 +145,7 @@ public class ApiFireAlarmListController {
 	 */
 	@SystemHistoryAnnotation(opration = "按设备id查询离线列表")
 	@PostMapping(value = "/offLineLogBySiteId")
-	public ModelMap offLineLogBySiteId(int siteId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
+	public ModelMap offLineLogBySiteId(String projectId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
 		try {
 
 			// 获取用户信息
@@ -174,8 +174,8 @@ public class ApiFireAlarmListController {
 			String[] siteCordArr = bid.split(",");
 
 			JSONObject json = new JSONObject();
-			List<HixentArcZipperInfo> zipperOffLineLog = hixentArcZipperInfoService.selectOffLineLogBySiteId(siteId, deviceId,isAlarm,pageSize,currentPage);
-			int zipperOffLineLogCount = zipperOffLineLog.size();
+			List<HixentArcZipperInfo> zipperOffLineLog = hixentArcZipperInfoService.selectOffLineLogBySiteId(projectId,deviceId,isAlarm,pageSize,currentPage);
+			int zipperOffLineLogCount = hixentArcZipperInfoService.countZipperOffLineLog(projectId,deviceId, isAlarm);
 			json.put("zipperOffLineLogCount", zipperOffLineLogCount);
 			json.put("zipperOffLineLog", zipperOffLineLog);
 			return ReturnUtil.Success("按设备id获取离线日志数据成功！", json);
@@ -190,7 +190,7 @@ public class ApiFireAlarmListController {
 	 */
 	@SystemHistoryAnnotation(opration = "查询故障列表")
 	@PostMapping(value = "/faultLog")
-	public ModelMap faultLog(String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
+	public ModelMap faultLog(String projectId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
 		try {
 
 			// 获取用户信息
@@ -219,8 +219,8 @@ public class ApiFireAlarmListController {
 			String[] siteCordArr = bid.split(",");
 
 			JSONObject json = new JSONObject();
-			List<HixentArcZipperInfo> zipperFaultLog = hixentArcZipperInfoService.selectFaultLog(deviceId,isAlarm,pageSize,currentPage);
-			int zipperFaultLogCount = hixentArcZipperInfoService.countZipperFaultLog(deviceId, isAlarm);
+			List<HixentArcZipperInfo> zipperFaultLog = hixentArcZipperInfoService.selectFaultLog(projectId,deviceId,isAlarm,pageSize,currentPage);
+			int zipperFaultLogCount = hixentArcZipperInfoService.countZipperFaultLog(projectId,deviceId, isAlarm);
 			json.put("zipperFaultLogCount", zipperFaultLogCount);
 			json.put("zipperFaultLog", zipperFaultLog);
 			return ReturnUtil.Success("获取故障日志数据成功！", json);
@@ -235,7 +235,7 @@ public class ApiFireAlarmListController {
 	 */
 	@SystemHistoryAnnotation(opration = "按项目id查询故障列表")
 	@PostMapping(value = "/faultLogBySiteId")
-	public ModelMap faultLogBySiteId(int siteId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
+	public ModelMap faultLogBySiteId(String projectId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
 		try {
 
 			// 获取用户信息
@@ -264,8 +264,8 @@ public class ApiFireAlarmListController {
 			String[] siteCordArr = bid.split(",");
 
 			JSONObject json = new JSONObject();
-			List<HixentArcZipperInfo> zipperFaultLog = hixentArcZipperInfoService.selectFaultLogBySiteId(siteId, deviceId,isAlarm,pageSize,currentPage);
-			int zipperFaultLogCount = zipperFaultLog.size();
+			List<HixentArcZipperInfo> zipperFaultLog = hixentArcZipperInfoService.selectFaultLogBySiteId(projectId, deviceId,isAlarm,pageSize,currentPage);
+			int zipperFaultLogCount = hixentArcZipperInfoService.countZipperFaultLog(projectId,deviceId,isAlarm);
 			json.put("zipperFaultLogCount", zipperFaultLogCount);
 			json.put("zipperFaultLog", zipperFaultLog);
 			return ReturnUtil.Success("按项目id获取故障日志数据成功！", json);
@@ -310,8 +310,8 @@ public class ApiFireAlarmListController {
 
 			JSONObject json = new JSONObject();
 			List<HixentArcZipperInfo> zipperAlarmLog = hixentArcZipperInfoService.selectAlarmLog(projectId,deviceId,isAlarm,pageSize,currentPage);
-//			int zipperAlarmLogCount = hixentArcZipperInfoService.countZipperAlarmLog(deviceId, isAlarm);
-			int zipperAlarmLogCount = zipperAlarmLog.size();
+			int zipperAlarmLogCount = hixentArcZipperInfoService.countZipperAlarmLog(projectId,deviceId, isAlarm);
+//			int zipperAlarmLogCount = zipperAlarmLog.size();
 			json.put("zipperAlarmLogCount", zipperAlarmLogCount);
 			json.put("zipperAlarmLog", zipperAlarmLog);
 			return ReturnUtil.Success("获取报警日志数据成功！", json);
@@ -325,7 +325,7 @@ public class ApiFireAlarmListController {
      */
     @SystemHistoryAnnotation(opration = "按项目id查询报警列表")
     @PostMapping(value = "/alarmLogBySiteId")
-    public ModelMap alarmLogBySiteId(int siteId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
+    public ModelMap alarmLogBySiteId(String projectId, String deviceId, String isAlarm, Integer currentPage, Integer pageSize) {
         try {
 
             // 获取用户信息
@@ -354,9 +354,9 @@ public class ApiFireAlarmListController {
             String[] siteCordArr = bid.split(",");
 
             JSONObject json = new JSONObject();
-            List<HixentArcZipperInfo> zipperAlarmLog = hixentArcZipperInfoService.selectAlarmLogBySiteId(siteId, deviceId,isAlarm,pageSize,currentPage);
-//			int zipperAlarmLogCount = hixentArcZipperInfoService.countZipperAlarmLog(deviceId, isAlarm);
-            int zipperAlarmLogCount = zipperAlarmLog.size();
+            List<HixentArcZipperInfo> zipperAlarmLog = hixentArcZipperInfoService.selectAlarmLogBySiteId(projectId,deviceId,isAlarm,pageSize,currentPage);
+			int zipperAlarmLogCount = hixentArcZipperInfoService.countZipperAlarmLog(projectId,deviceId, isAlarm);
+//            int zipperAlarmLogCount = zipperAlarmLog.size();
             json.put("zipperAlarmLogCount", zipperAlarmLogCount);
             json.put("zipperAlarmLog", zipperAlarmLog);
             return ReturnUtil.Success("按项目id获取报警日志数据成功！", json);

@@ -13,27 +13,28 @@ public interface HixentArcZipperInfoService {
 
     List<HixentArcZipperInfo> selectAlarmLog(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    List<HixentArcZipperInfo> selectAlarmLogBySiteId(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    List<HixentArcZipperInfo> selectAlarmLogBySiteId(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    Integer countZipperAlarmLog(String deviceId, String isAlarm);
+    Integer countZipperAlarmLog(String projectId, String deviceId, String isAlarm);
 
-    List<HixentArcZipperInfo> selectFaultLog(String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    List<HixentArcZipperInfo> selectFaultLog(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    List<HixentArcZipperInfo> selectFaultLogBySiteId(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    List<HixentArcZipperInfo> selectFaultLogBySiteId(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    Integer countZipperFaultLog(String deviceId, String isAlarm);
+    Integer countZipperFaultLog(String projectId, String deviceId, String isAlarm);
 
-    List<HixentArcZipperInfo> selectOffLineLog(String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    List<HixentArcZipperInfo> selectOffLineLog(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    List<HixentArcZipperInfo> selectOffLineLogBySiteId(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    List<HixentArcZipperInfo> selectOffLineLogBySiteId(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
+    Integer countZipperOffLineLog(String projectId, String deviceId, String isAlarm);
     Integer countZipperOffLineLog(String deviceId, String isAlarm);
 
-    JSONObject alarmLogExcel(int projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    JSONObject alarmLogExcel(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    JSONObject faultLogExcel(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    JSONObject faultLogExcel(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
-    JSONObject offLineLogExcel(int siteId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
+    JSONObject offLineLogExcel(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage);
 
     int deleteAlramLog(int unid);
 }

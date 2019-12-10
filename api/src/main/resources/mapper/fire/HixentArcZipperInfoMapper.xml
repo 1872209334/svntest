@@ -44,6 +44,10 @@
 				property="createPeople" />
 		<result column="update_people" jdbcType="VARCHAR"
 				property="updatePeople" />
+        <result column="site_name" jdbcType="VARCHAR"
+                property="siteName" />
+        <result column="site_id" jdbcType="VARCHAR"
+                property="siteId" />
 	</resultMap>
 	<resultMap id="unionMap" type="com.qf.model.fire.HixentArcZipperUnionInfo">
 		<result column="site_name" jdbcType="VARCHAR"
@@ -132,6 +136,35 @@
 			limit ${limits}
 		</if>
 	</select>
+	<select id="selectAlarmLog1" parameterType="String" resultMap="BaseResultMap">
+		select t1.*,
+		t2.type,
+		t3.site_id,t3.site_name
+		from
+		(hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id)
+		left join
+		hixent_arc_system.hixent_arc_site t3
+		on
+		t1.project_id = t3.site_code
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
 	<select id="selectAlarmLogBySiteId" parameterType="Integer" resultMap="siteResultMap">
 		select *
 		from
@@ -145,8 +178,11 @@
 		from
 		hixent_arc_system.hixent_arc_zipper
 		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
 		<if test="deviceId != null and deviceId!=''">
-			AND device_id= #{deviceId,jdbcType=VARCHAR}
+			AND project_id= #{deviceId,jdbcType=VARCHAR}
 		</if>
 		<if test="isAlarm != null and isAlarm!=''">
 			AND is_alarm= #{isAlarm,jdbcType=VARCHAR}
@@ -175,13 +211,46 @@
 		limit ${limits}
 	</if>
 </select>
+	<select id="selectFaultLog1" parameterType="String" resultMap="BaseResultMap">
+	select t1.*, t2.type,t3.site_id,t3.site_name
+	    from
+        (hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id)
+        left join
+        hixent_arc_system.hixent_arc_site t3
+        on
+        t1.project_id = t3.site_code
+-- 		left join
+-- 		hixent_arc_system.hixent_arc_site t2
+-- 		on t1.project_id = t2.site_name
+	where 1=1
+	<if test="projectId != null and projectId!=''">
+		AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+	</if>
+	<if test="deviceId != null and deviceId!=''">
+		AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+	</if>
+	<if test="isAlarm != null and isAlarm!=''">
+		AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+	</if>
+	order by t1.create_time desc
+	<if test="limits!=null and limits!=''">
+		limit ${limits}
+	</if>
+</select>
 	<select id="countZipperFaultLog" parameterType="String" resultType="Integer">
 		select count(*)
 		from
 		hixent_arc_system.hixent_arc_zipper
 		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
 		<if test="deviceId != null and deviceId!=''">
-			AND device_id= #{deviceId,jdbcType=VARCHAR}
+			AND project_id= #{deviceId,jdbcType=VARCHAR}
 		</if>
 		<if test="isAlarm != null and isAlarm!=''">
 			AND is_alarm= #{isAlarm,jdbcType=VARCHAR}
@@ -210,16 +279,60 @@
 			limit ${limits}
 		</if>
 	</select>
-	<select id="countZipperOffLineLog" parameterType="String" resultType="Integer">
+	<select id="selectOffLineLog1" parameterType="String" resultMap="BaseResultMap">
+		select t1.*,t2.type,
+		t3.site_id,t3.site_name
+		from
+		(hixent_arc_system.hixent_arc_zipper t1
+		left join
+		hixent_arc_system.hixent_arc_equipment_info t2
+		on
+		t1.device_id = t2.id)
+		left join
+		hixent_arc_system.hixent_arc_site t3
+		on
+		t1.project_id = t3.site_code
+		where 1=1
+        <if test="projectId != null and projectId!=''">
+            AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+        </if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="countZipperOffLineLog1" parameterType="String" resultType="Integer">
 		select count(*)
 		from
 		hixent_arc_system.hixent_arc_zipper
 		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
 		<if test="deviceId != null and deviceId!=''">
-			AND device_id= #{deviceId,jdbcType=VARCHAR}
+			AND project_id= #{deviceId,jdbcType=VARCHAR}
 		</if>
 		<if test="isAlarm != null and isAlarm!=''">
 			AND is_alarm= #{isAlarm,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="countZipperOffLineLog" parameterType="String" resultType="Integer">
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_zipper t1
+
+		where 1=1
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="isAlarm != null and isAlarm!=''">
+			AND t1.is_alarm= #{isAlarm,jdbcType=VARCHAR}
 		</if>
 	</select>
 	<delete id="deleteAlarmLog" parameterType="INTEGER">

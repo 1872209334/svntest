@@ -6,6 +6,7 @@ com\qf\model\fire\HixentArcEfmBeat.class
 com\qf\model\admin\valid\ValidSaveDictionary.class
 com\qf\service\fire\HixentArcProjectEquipmentRelevanceService.class
 com\qf\model\websocket\WebSocketMessage.class
+com\qf\controller\api\fire\Test.class
 com\qf\model\fire\HixentArcZipperUnionInfo.class
 com\qf\controller\api\app\ApiAppCommonController.class
 com\qf\model\admin\HixentPermissionsRole.class
@@ -161,6 +162,7 @@ com\qf\controller\api\admin\ExcelController.class
 com\qf\mapper\fire\app\HixentArcAppSiteMapper.class
 com\qf\common\redis\RedisShiroCache.class
 com\qf\common\shiro\CustomModularRealmAuthenticator.class
+com\qf\mapper\fire\HixentArcSiteMapper.class
 com\qf\mapper\fire\app\HixentArcAppWarnMapper.class
 com\qf\service\admin\HixentCompanyService.class
 com\qf\model\admin\HixentPermissions.class
@@ -179,6 +181,7 @@ com\qf\model\admin\valid\ValidHixentAppUserMore2.class
 com\qf\controller\common\MqttController.class
 com\qf\mapper\fire\HixentArcEquipmentInfoMqttMapper.class
 com\qf\util\PageUtil.class
+com\qf\service\fire\impl\HixentArcSiteService.class
 com\qf\mapper\fire\HixentArcWarningListMapper.class
 com\qf\controller\api\admin\ApiUserSaveController.class
 com\qf\model\fire\valid\ValidHixentFile.class
@@ -200,6 +203,7 @@ com\qf\model\admin\valid\ValidHixentArea.class
 com\qf\controller\common\SocketAdminController.class
 com\qf\service\app\AppCommonService.class
 com\qf\mapper\admin\HixentMessageMapper.class
+com\qf\service\fire\impl\HixentArcSiteServiceImpl.class
 com\qf\mapper\fire\HixentArcProjectTypeMapper.class
 com\qf\common\JwtConfig.class
 com\qf\model\admin\valid\ValidHixentUserInfo.class

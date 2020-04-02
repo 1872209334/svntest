@@ -67,6 +67,7 @@ import ProjectDetail from './components/page/ProjectManagement/ProjectDetail.vue
 import DeviceDetail from './components/page/ProjectManagement/DeviceDetail.vue';
 import MqttDeviceList from './components/page/ProjectManagement/MqttDeviceList.vue';
 import MqttInformation from './components/page/ProjectManagement/MqttInformation.vue';
+import GarbageHistoryNotForFull from './components/page/ProjectManagement/GarbageHistoryNotForFull.vue';
 
 /*==================================================== 用户管理 ====================================================*/
 //管控人员
@@ -77,6 +78,7 @@ import Manage from './components/page/UserManagement/Manage.vue';
 import JurisdictionManagement from './components/page/UserManagement/JurisdictionManagement.vue';
 //新增、修改管控人员
 import EditControlPersonnel from './components/page/UserManagement/EditControlPersonnel.vue';
+import EditManagelaji from './components/page/UserManagement/EditManagelaji.vue';
 //新增、修改管理员
 import EditManage from './components/page/UserManagement/EditManage.vue';
 //新增、修改权限
@@ -181,11 +183,17 @@ export default new Router({
                     meta: { title: '新增、修改管理员' }
                 },
                 {
-                    path: '/editControlPersonnel',
-                    component: EditControlPersonnel,
-                    name:'editControlPersonnel',
+                    path: '/editManagelaji',
+                    component: EditManagelaji,
+                    name:'editManagelaji',
                     meta: { title: '新增、修改管控人员' }
                 },
+                // {
+                //     path: '/editControlPersonnel',
+                //     component: EditControlPersonnel,
+                //     name:'editControlPersonnel',
+                //     meta: { title: '新增、修改管控人员' }
+                // },
                 {
                     path: '/jurisdictionManagement',
                     component: JurisdictionManagement,
@@ -253,6 +261,12 @@ export default new Router({
                             component: MqttInformation,
                             meta: { title: '无线终端设备详情' },
                             name:'mqttInformation'
+                        },
+                        {
+                            path: '/garbageHistoryNotForFull',
+                            component: GarbageHistoryNotForFull,
+                            meta: { title: '无线终端设备详情' },
+                            name:'garbageHistoryNotForFull'
                         },
 
                     ]

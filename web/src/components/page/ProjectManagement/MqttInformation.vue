@@ -26,308 +26,346 @@
                 <div style="display: inline-block; height:40px;float: right;margin: 0 16px 6px 0;">
                     <!--<el-button class="v-1-0-0-Button" icon="el-icon-setting" @click="checkTerminalAlarm">告警设置</el-button>-->
                 </div>
-
-                <div style=" margin: 24px 16px 1% 16px;">
-                    <table style="width: 100%; font-size: 14px;">
+                <div style=" margin: 1% 16px auto 16px;">
+                    <table style="width: 100%; font-weight: 300;font-size: 14px;">
                         <tr>
-                            <td width="145px" style="background-color: #F6F7FB;">
-                                项&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                目 ：</td>
-                            <!--<td class="pricrTd">{{equipInfo.siteLabel}}</td>-->
-                            <td class="pricrTd">{{routeParam.siteName}}</td>
-                            <td width="145px" style="background-color: #F6F7FB;">
-                                设&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                备 ：</td>
-                            <!--<td class="pricrTd">无线终端</td>-->
-                            <td class="pricrTd">{{routeParam.type}}</td>
-                            <td width="145px" style="background-color: #F6F7FB;">
-
-                            编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            号 ：</td>
-                            <td class="pricrTd">{{zipperList[0].deviceId}}</td>
+                            <td width="155px" style="background-color: #F6F7FB;">
+                                站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                点：</td><!--项目-->
+                            <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.siteName}}</td>
+                            <td width="155px" style="background-color: #F6F7FB;">
+                                站&nbsp;&nbsp;点&nbsp;&nbsp;I&nbsp;&nbsp;D ：</td><!--所属项目-->
+                            <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.projectId}}</td>
+                            <td width="155px" style="background-color: #F6F7FB;">
+                                终&nbsp;&nbsp;端&nbsp;&nbsp;编&nbsp;&nbsp;号 ：</td>
+                            <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.deviceId}}</td>
                         </tr>
-
-                        <!--<tr v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--型 ：</td>-->
-                            <!--<td class="pricrTd">{{equipInfo.type}}</td>-->
-
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--号 ：</td>-->
-                            <!--<td class="pricrTd">-->
-                                <!--{{equipInfo.equipmentType}}-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
-                                <!--硬&nbsp;&nbsp;件&nbsp;&nbsp;版&nbsp;&nbsp;本 ：</td>-->
-                            <!--<td class="pricrTd">{{equipInfo.boardVersion}}</td>-->
-                        <!--</tr>-->
-                        <!--<tr v-if="this.routeParam.type=='电弧探测器' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--型 ：</td>-->
-                            <!--<td class="pricrTd">{{equipInfo.type}}</td>-->
-
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--号 ：</td>-->
-                            <!--<td class="pricrTd">-->
-                                <!--{{equipInfo.equipmentType='@'?"AFDD1000":equipInfo.equipmentType}}-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
-                                <!--软&nbsp;&nbsp;件&nbsp;&nbsp;版&nbsp;&nbsp;本 ：</td>-->
-                            <!--<td class="pricrTd">{{equipInfo.softVersion}}</td>-->
-                        <!--</tr>-->
-                        <tr>
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
-                                <!--发&nbsp;&nbsp;行&nbsp;&nbsp;时&nbsp;&nbsp;间 ：</td>-->
-                            <!--<td class="pricrTd">{{equipInfo.releaseData}}</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 3px;padding-left: 3px;">产品序列号：</td>-->
-                            <!--<td class="pricrTd" >{{equipInfo.equipmentProductionSequenceNumber}}</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 3px;padding-left: 3px;">I&nbsp;C&nbsp;C&nbsp;I&nbsp;D：</td>-->
-                            <!--<td  class="pricrTd" >{{equipInfo.nbChipSerialNumber}}</td>-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--注 ：</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>-->
-                            <!--</td>-->
-                        </tr>
-
-                        <!--<tr  v-if="this.routeParam.type=='电弧探测器'">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--注 ：</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--描&nbsp;&nbsp;&nbsp;述&nbsp;&nbsp;&nbsp;符 ：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.message" :disabled="editMsg" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setMsg(equipInfo.message)"> {{msgBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;">单位电弧次数：</td>-->
-                            <!--<td colspan="3" class="pricrTd">{{equipInfo.cnt}}</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;" width="145px">-->
-                            <!--温&nbsp;&nbsp;度&nbsp;&nbsp;上&nbsp;&nbsp;限 ：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.temLimit0" :disabled="editTemLimit0" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit0(equipInfo.temLimit0)"> {{temLimit0Btn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--灵&nbsp;&nbsp;&nbsp;敏&nbsp;&nbsp;&nbsp;度 ：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.arcWarningSensitivity" :disabled="editArcWarningSensitivity" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setArcWarningSensitivity(equipInfo.arcWarningSensitivity)"> {{arcWarningSensitivityBtn}}</span>-->
-
-                            <!--</td>-->
-                        <!--</tr>-->
-
-                        <!--<tr  v-if="this.routeParam.type=='电弧探测器'">-->
-                        <tr >
-                            <!--<td style="background-color: #F6F7FB;">-->
-                            <!--备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                            <!--注 ：</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                            <!--<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                            <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>-->
-                            <!--</td>-->
-
-                            <td style="background-color: #F6F7FB;" width="145px">
-                                经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                度 ：</td>
-                            <td class="pricrTd" style="padding: 0;text-indent: 0">
-                                <input type="text" v-model="equipInfo.lngBmap" :disabled="editLng" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />
-                                <span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLng(equipInfo.lngBmap)"> {{lngBtn}}</span>
-                            </td>
-                            <td style="background-color: #F6F7FB;" width="145px">
-                                纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                度 ：</td>
-                            <td colspan="3" class="pricrTd" style="padding: 0;text-indent: 0">
-                                <input type="text" v-model="equipInfo.latBmap" :disabled="editLat" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />
-                                <span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLat(equipInfo.latBmap)"> {{latBtn}}</span>
-                            </td>
-                        </tr>
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--注 ：</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--描&nbsp;&nbsp;&nbsp;述&nbsp;&nbsp;&nbsp;符 ：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.message" :disabled="editMsg" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setMsg(equipInfo.message)"> {{msgBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;" width="145px">-->
-                                <!--经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--度 ：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.lngBmap" :disabled="editLng" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLng(equipInfo.lngBmap)"> {{lngBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;" width="145px">-->
-                                <!--纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--度 ：</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.latBmap" :disabled="editLat" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLat(equipInfo.latBmap)"> {{latBtn}}</span>-->
-                            <!--</td>-->
-                        <!--</tr>-->
 
                         <tr>
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;" width="145px">-->
-                                <!--温&nbsp;&nbsp;度&nbsp;&nbsp;上&nbsp;&nbsp;限 ：</td>-->
-                            <!--<td class="pricrTd">{{equipInfo.temLimit0}}</td>-->
+                            <td style="background-color: #F6F7FB;">
+                                垃&nbsp;&nbsp;圾&nbsp;&nbsp;类&nbsp;&nbsp;型 ：</td><!--成品计数-->
+                            <td class="pricrTd">&nbsp;&nbsp;{{routeParam.type}}</td>
+                            <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
+                                温&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度 ：</td><!--次品计数-->
+                            <td class="pricrTd">&nbsp;&nbsp;{{routeParam.temperature}}℃</td>
+                            <td style="background-color: #F6F7FB;">
+                                箱&nbsp;&nbsp;内&nbsp;&nbsp;重&nbsp;&nbsp;量 ：</td><!--循环次数-->
+                            <td class="pricrTd">&nbsp;&nbsp;{{routeParam.weight}}kg</td>
+                        </tr>
 
-                            <!--<td style="background-color: #F6F7FB;" width="145px">-->
-                                <!--经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--度 ：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.lngBmap" :disabled="editLng" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLng(equipInfo.lngBmap)"> {{lngBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;" width="145px">-->
-                                <!--纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <!--度 ：</td>-->
-                            <!--<td colspan="3" class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.latBmap" :disabled="editLat" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLat(equipInfo.latBmap)"> {{latBtn}}</span>-->
-                            <!--</td>-->
-                        </tr>
                         <tr>
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
-                                <!--服务器IP地址：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.serverIpAddress" :disabled="editIp" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setIp(equipInfo.serverIpAddress)"> {{ipBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;padding-left: 3px;">服务器端口号：</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.serverPortNumber" :disabled="editPort" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setPort(equipInfo.serverPortNumber)"> {{portBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;">蜂鸣器使能：</td>-->
-                            <!--<td class="pricrTd">-->
-                                <!--<el-switch v-model="buzzerEnableValue" @change="setBuzzerEnable">-->
-                                <!--</el-switch>-->
-                            <!--</td>-->
+                            <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
+                                报&nbsp;&nbsp;警&nbsp;&nbsp;时&nbsp;&nbsp;间 ：</td>
+                            <td colspan="5" class="pricrTd">&nbsp;&nbsp;{{routeParam.createTime}}</td>
                         </tr>
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
-                                <!--软&nbsp;&nbsp;件&nbsp;&nbsp;版&nbsp;&nbsp;本 ：</td>-->
-                            <!--<td class="pricrTd" colspan="5">{{equipInfo.softVersion}}</td>-->
-                        <!--</tr>-->
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--A相电流上限阀值(A)</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.aCurrentUpLimit" :disabled="editACurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setACurrentUpLimit(equipInfo.aCurrentUpLimit)"> {{aCurrentUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--B相电流上限阀值(A)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.bCurrentUpLimit" :disabled="editBCurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setBCurrentUpLimit(equipInfo.bCurrentUpLimit)"> {{bCurrentUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--C相电流上限阀值(A)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.cCurrentUpLimit" :disabled="editCCurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setCCurrentUpLimit(equipInfo.cCurrentUpLimit)"> {{cCurrentUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--A相电压上限阀值(V)</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.aVoltageUpLimit" :disabled="editAVoltageUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setAVoltageUpLimit(equipInfo.aVoltageUpLimit)"> {{aVoltageUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--B相电压上限阀值(V)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.bVoltageUpLimit" :disabled="editBVoltageUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setBVoltageUpLimit(equipInfo.bVoltageUpLimit)"> {{bVoltageUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--C相电压上限阀值(V)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.cVoltageUpLimit" :disabled="editCVoltageUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setCVoltageUpLimit(equipInfo.cVoltageUpLimit)"> {{cVoltageUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--A相电压下限阀值(V)</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.aVoltageDownLimit" :disabled="editAVoltageDownLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setAVoltageDownLimit(equipInfo.aVoltageDownLimit)"> {{aVoltageDownLimitBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--B相电压下限阀值(V)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.bVoltageDownLimit" :disabled="editBVoltageDownLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setBVoltageDownLimit(equipInfo.bVoltageDownLimit)"> {{bVoltageDownLimitBtn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--C相电压下限阀值(V)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.cVoltageDownLimit" :disabled="editCVoltageDownLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setCVoltageDownLimit(equipInfo.cVoltageDownLimit)"> {{cVoltageDownLimitBtn}}</span>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--0路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.temLimit0" :disabled="editTemLimit0" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit0(equipInfo.temLimit0)"> {{temLimit0Btn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--1路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.temLimit1" :disabled="editTemLimit1" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit1(equipInfo.temLimit1)"> {{temLimit1Btn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--2路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.temLimit2" :disabled="editTemLimit2" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit2(equipInfo.temLimit2)"> {{temLimit2Btn}}</span>-->
-                            <!--</td>-->
-                        <!--</tr>-->
-                        <!--<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">-->
-                            <!--<td style="background-color: #F6F7FB;">-->
-                                <!--3路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>-->
-                            <!--<td  class="pricrTd" style="padding: 0;text-indent: 0">-->
-                                <!--<input type="text" v-model="equipInfo.temLimit3" :disabled="editTemLimit3" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit3(equipInfo.temLimit3)"> {{temLimit3Btn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--4路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.temLimit4" :disabled="editTemLimit4" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit4(equipInfo.temLimit4)"> {{temLimit4Btn}}</span>-->
-                            <!--</td>-->
-                            <!--<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">-->
-                                <!--漏电上限阀值&nbsp;&nbsp;(mA)</td>-->
-                            <!--<td class="pricrTd" style="padding: 0;text-indent: 0" >-->
-                                <!--<input type="text" v-model="equipInfo.leakageCurrentUpLimit" :disabled="editLeakageCurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />-->
-                                <!--<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLeakageCurrentUpLimit(equipInfo.leakageCurrentUpLimit)"> {{leakageCurrentUpLimitBtn}}</span>-->
-                            <!--</td>-->
-                        <!--</tr>-->
 
                     </table>
                 </div>
+                <!--<div style=" margin: 24px 16px 1% 16px;">-->
+                    <!--<table style="width: 100%; font-size: 14px;">-->
+                        <!--<tr>-->
+                            <!--<td width="145px" style="background-color: #F6F7FB;">-->
+                                <!--站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                <!--点 ：</td>-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.siteLabel}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{routeParam.siteName}}</td>&ndash;&gt;-->
+                            <!--<td class="pricrTd">{{zipperList[0].deviceId}}</td>-->
+                            <!--<td width="145px" style="background-color: #F6F7FB;">-->
+                                <!--垃&nbsp;&nbsp;&nbsp;圾&nbsp;&nbsp;&nbsp;类&nbsp;&nbsp;&nbsp;-->
+                                <!--型 ：</td>-->
+                            <!--&lt;!&ndash;<td class="pricrTd">无线终端</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{routeParam.type}}</td>&ndash;&gt;-->
+                            <!--<td class="pricrTd">{{zipperList[0].deviceId}}</td>-->
+                            <!--<td width="145px" style="background-color: #F6F7FB;">-->
+
+                            <!--编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                            <!--号 ：</td>-->
+                            <!--<td class="pricrTd">{{zipperList[0].deviceId}}</td>-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{routeParam.deviceId}}</td>&ndash;&gt;-->
+                        <!--</tr>-->
+
+                        <!--&lt;!&ndash;<tr v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;型 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.type}}</td>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;号 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">&ndash;&gt;-->
+                                <!--&lt;!&ndash;{{equipInfo.equipmentType}}&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;硬&nbsp;&nbsp;件&nbsp;&nbsp;版&nbsp;&nbsp;本 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.boardVersion}}</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr v-if="this.routeParam.type=='电弧探测器' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;型 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.type}}</td>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;号 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">&ndash;&gt;-->
+                                <!--&lt;!&ndash;{{equipInfo.equipmentType='@'?"AFDD1000":equipInfo.equipmentType}}&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;软&nbsp;&nbsp;件&nbsp;&nbsp;版&nbsp;&nbsp;本 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.softVersion}}</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--<tr>-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;发&nbsp;&nbsp;行&nbsp;&nbsp;时&nbsp;&nbsp;间 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.releaseData}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 3px;padding-left: 3px;">产品序列号：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" >{{equipInfo.equipmentProductionSequenceNumber}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 3px;padding-left: 3px;">I&nbsp;C&nbsp;C&nbsp;I&nbsp;D：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" >{{equipInfo.nbChipSerialNumber}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;注 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--</tr>-->
+
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='电弧探测器'">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;注 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;描&nbsp;&nbsp;&nbsp;述&nbsp;&nbsp;&nbsp;符 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.message" :disabled="editMsg" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setMsg(equipInfo.message)"> {{msgBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">单位电弧次数：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td colspan="3" class="pricrTd">{{equipInfo.cnt}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;" width="145px">&ndash;&gt;-->
+                            <!--&lt;!&ndash;温&nbsp;&nbsp;度&nbsp;&nbsp;上&nbsp;&nbsp;限 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.temLimit0" :disabled="editTemLimit0" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit0(equipInfo.temLimit0)"> {{temLimit0Btn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;灵&nbsp;&nbsp;&nbsp;敏&nbsp;&nbsp;&nbsp;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.arcWarningSensitivity" :disabled="editArcWarningSensitivity" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setArcWarningSensitivity(equipInfo.arcWarningSensitivity)"> {{arcWarningSensitivityBtn}}</span>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='电弧探测器'">&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<tr >&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;注 ：</td>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;</td>&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.lngBmap" :disabled="editLng" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLng(equipInfo.lngBmap)"> {{lngBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td colspan="3" class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.latBmap" :disabled="editLat" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLat(equipInfo.latBmap)"> {{latBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;注 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.equip_place" :disabled="editPlace" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="changePlace"> {{placeBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;描&nbsp;&nbsp;&nbsp;述&nbsp;&nbsp;&nbsp;符 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.message" :disabled="editMsg" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setMsg(equipInfo.message)"> {{msgBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.lngBmap" :disabled="editLng" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLng(equipInfo.lngBmap)"> {{lngBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.latBmap" :disabled="editLat" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLat(equipInfo.latBmap)"> {{latBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+                        <!--<tr>-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;温&nbsp;&nbsp;度&nbsp;&nbsp;上&nbsp;&nbsp;限 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">{{equipInfo.temLimit0}}</td>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;经&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.lngBmap" :disabled="editLng" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLng(equipInfo.lngBmap)"> {{lngBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;" width="145px">&ndash;&gt;-->
+                                <!--&lt;!&ndash;纬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+                                <!--&lt;!&ndash;度 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td colspan="3" class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.latBmap" :disabled="editLat" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLat(equipInfo.latBmap)"> {{latBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;服务器IP地址：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.serverIpAddress" :disabled="editIp" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setIp(equipInfo.serverIpAddress)"> {{ipBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;padding-left: 3px;">服务器端口号：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.serverPortNumber" :disabled="editPort" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setPort(equipInfo.serverPortNumber)"> {{portBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">蜂鸣器使能：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<el-switch v-model="buzzerEnableValue" @change="setBuzzerEnable">&ndash;&gt;-->
+                                <!--&lt;!&ndash;</el-switch>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--</tr>-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;软&nbsp;&nbsp;件&nbsp;&nbsp;版&nbsp;&nbsp;本 ：</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" colspan="5">{{equipInfo.softVersion}}</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;A相电流上限阀值(A)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.aCurrentUpLimit" :disabled="editACurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setACurrentUpLimit(equipInfo.aCurrentUpLimit)"> {{aCurrentUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;B相电流上限阀值(A)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.bCurrentUpLimit" :disabled="editBCurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setBCurrentUpLimit(equipInfo.bCurrentUpLimit)"> {{bCurrentUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;C相电流上限阀值(A)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.cCurrentUpLimit" :disabled="editCCurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setCCurrentUpLimit(equipInfo.cCurrentUpLimit)"> {{cCurrentUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;A相电压上限阀值(V)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.aVoltageUpLimit" :disabled="editAVoltageUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setAVoltageUpLimit(equipInfo.aVoltageUpLimit)"> {{aVoltageUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;B相电压上限阀值(V)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.bVoltageUpLimit" :disabled="editBVoltageUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setBVoltageUpLimit(equipInfo.bVoltageUpLimit)"> {{bVoltageUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;C相电压上限阀值(V)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.cVoltageUpLimit" :disabled="editCVoltageUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setCVoltageUpLimit(equipInfo.cVoltageUpLimit)"> {{cVoltageUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;A相电压下限阀值(V)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.aVoltageDownLimit" :disabled="editAVoltageDownLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setAVoltageDownLimit(equipInfo.aVoltageDownLimit)"> {{aVoltageDownLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;B相电压下限阀值(V)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.bVoltageDownLimit" :disabled="editBVoltageDownLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setBVoltageDownLimit(equipInfo.bVoltageDownLimit)"> {{bVoltageDownLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;C相电压下限阀值(V)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.cVoltageDownLimit" :disabled="editCVoltageDownLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setCVoltageDownLimit(equipInfo.cVoltageDownLimit)"> {{cVoltageDownLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;0路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.temLimit0" :disabled="editTemLimit0" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit0(equipInfo.temLimit0)"> {{temLimit0Btn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;1路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.temLimit1" :disabled="editTemLimit1" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit1(equipInfo.temLimit1)"> {{temLimit1Btn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;2路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.temLimit2" :disabled="editTemLimit2" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit2(equipInfo.temLimit2)"> {{temLimit2Btn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr  v-if="this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;3路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td  class="pricrTd" style="padding: 0;text-indent: 0">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.temLimit3" :disabled="editTemLimit3" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit3(equipInfo.temLimit3)"> {{temLimit3Btn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;4路温度门限&nbsp;&nbsp;&nbsp;&nbsp;(℃)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.temLimit4" :disabled="editTemLimit4" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setTemLimit4(equipInfo.temLimit4)"> {{temLimit4Btn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td style="background-color: #F6F7FB;letter-spacing: 1.5px;padding-left: 3px;">&ndash;&gt;-->
+                                <!--&lt;!&ndash;漏电上限阀值&nbsp;&nbsp;(mA)</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td class="pricrTd" style="padding: 0;text-indent: 0" >&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input type="text" v-model="equipInfo.leakageCurrentUpLimit" :disabled="editLeakageCurrentUpLimit" style="width: calc(100% - 30px);border: 0;height: 100%;text-indent: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span style="cursor: pointer; color: #2d8cf0; font-size: 10px;display: inline-block" @click="setLeakageCurrentUpLimit(equipInfo.leakageCurrentUpLimit)"> {{leakageCurrentUpLimitBtn}}</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+                    <!--</table>-->
+                <!--</div>-->
                 <!--<div style=" margin: 24px 16px 1% 16px;">-->
                     <!--<table style="width: 100%; font-size: 14px;">-->
 
@@ -397,11 +435,12 @@
 
                 <!--中控信息设备信息列表-->
                 <div style="height:calc(100% - 146px);margin: 15px 16px 0 16px;border: 1px solid #F0F2F5;overflow: auto">
-                    <el-table ref="multipleTable" height="100%" :data="zipperList"
-                              tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" :header-cell-style="tableStyle">
-
-                        <el-table-column type="selection" width="48">
-                        </el-table-column>
+                    <el-table ref="multipleTable" height="100%" :data="getGarbageList"
+                              tooltip-effect="dark" style="width: 100%"  :header-cell-style="tableStyle">
+                    <!--<el-table ref="multipleTable" height="100%" :data="mqttDeviceData" tooltip-effect="dark" style="width: 100%"-->
+                               <!--:header-cell-style="tableStyle">-->
+                        <!--<el-table-column type="selection" width="48">-->
+                        <!--</el-table-column>-->
 
                         <el-table-column type="index" width="56" label="#">
                         </el-table-column>
@@ -411,20 +450,29 @@
 
                         <!--<el-table-column prop="deviceId" label="设备编号" show-overflow-tooltip>-->
                         <!--</el-table-column>-->
-                        <el-table-column prop="finishedSum" label="成品数" show-overflow-tooltip>
+
+                        <!--<el-table-column prop="finishedSum" label="成品数" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
+                        <el-table-column prop="temperature" label="温度" :formatter="formatTemperature">
                         </el-table-column>
-                        <el-table-column prop="defectiveSum" label="次品数" show-overflow-tooltip>
+                        <!--<el-table-column prop="defectiveSum" label="次品数" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
+                        <el-table-column prop="weight" label="箱内重量" :formatter="formatWeight">
                         </el-table-column>
-                        <el-table-column prop="totalCycles" label="总循环次数" show-overflow-tooltip>
+                        <!--<el-table-column prop="totalCycles" label="总循环次数" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
+                        <el-table-column prop="garbageType" label="垃圾类型" :formatter="formatGarbageType">
                         </el-table-column>
-                        <el-table-column prop="currentAngle" label="当前角度" show-overflow-tooltip>
+                        <!--<el-table-column prop="currentAngle" label="当前角度" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
+                        <el-table-column prop="createTime" label="更新时间" :formatter="formatTime">
                         </el-table-column>
-                        <el-table-column prop="currentSpeed" label="当前速度" show-overflow-tooltip>
-                        </el-table-column>
-                        <el-table-column prop="speedSetting" label="速度设定" show-overflow-tooltip>
-                        </el-table-column>
-                        <el-table-column prop="createTime" label="创建时间" show-overflow-tooltip>
-                        </el-table-column>
+                        <!--<el-table-column prop="currentSpeed" label="当前速度" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
+                        <!--<el-table-column prop="speedSetting" label="速度设定" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
+                        <!--<el-table-column prop="createTime" label="创建时间" show-overflow-tooltip>-->
+                        <!--</el-table-column>-->
 
                         <!--<el-table-column prop="tempration" label="温度" v-if="equipType == '1'" :key="Math.random()">-->
                         <!--</el-table-column>-->
@@ -432,7 +480,7 @@
                         <!--<el-table-column prop="broken_num" label="电压/电流" v-if="equipType == '1'" :key="Math.random()">-->
                         <!--</el-table-column>-->
 
-                        <el-table-column prop="isAlarm" :formatter="formatState" label="正常/告警"></el-table-column>
+                        <!--<el-table-column prop="isAlarm" :formatter="formatState" label="正常/告警"></el-table-column>-->
                         <!--<el-table-column fixed="right" label="操作">-->
                             <!--<template slot-scope="scope">-->
                                 <!--<el-button-->
@@ -489,7 +537,8 @@
                     allSizes:[10,20,30], //每页条数筛选
                     checkboxArr:[]       //多选框数组
                 },
-                zipperList: [], //终端列表
+                zipperList:[], //终端列表
+                getGarbageList:[], //终端列表
                 routeParam:{},
                 equipInfo:{},
                 editPlace:true,
@@ -546,16 +595,43 @@
         created:function(){
             this.routeParam = this.$route.params;
             console.log(this.routeParam);
-            this.getEquipInfo();
+            // this.getEquipInfo();
             this.getZipperInfo();
             bus.$on('efmClickEfmClick',(msg)=>{
                 this.routeParam.id = msg.id;
                 this.routeParam.efmName = msg.efmName;
-                this.getEquipInfo();
+                // this.getEquipInfo();
                 this.getZipperInfo();
             })
         },
         methods:{
+            formatTemperature: function (row) {
+                // return row.serialNumber = row.device_code+"-"+(parseInt(row.lineCode) + 1) + "-" + parseInt(row.addr);
+                // return row.id;
+                return row.temperature+"℃";
+            },
+            formatWeight: function (row) {
+                return row.weight+"kg";
+            },
+            formatGarbageType: function (row) {
+                if(row.type == 1){
+                    row.type = "厨余垃圾";
+                }
+                else if(row.type == 2){
+                    row.type = "可回收垃圾";
+                }
+                else if(row.type == 3){
+                    row.type = "其他垃圾";
+                }
+                else if(row.type == 4){
+                    row.type = "有害垃圾";
+                }
+                return row.type;
+            },
+            formatTime: function (row) {
+                    return row.createTime;
+
+            },
             getInfo(){
                 if(this.routeParam.type=='组合式探测器' || this.routeParam.type=='剩余电流' ){
                     this.queryMqtt2();
@@ -1025,7 +1101,8 @@
             getEquipInfo(){
                 let url = this.getEquipInfoUrl;
                 let data = {
-                    equipId:this.routeParam.id
+                    // equipId:this.routeParam.id
+                    equipId:this.routeParam.deviceId
                 };
                 this.apiPost(url, data).then((res) => {
 
@@ -1051,9 +1128,22 @@
             },
             getZipperInfo(){
                 let _loading = this.$commonFn.showLoading(2,'.efm-box');
-                let url = this.getZipperInfoUrl;
+                // let url = this.getZipperInfoUrl;
+                let url = this.getGarbageHistoryUrl;
+                let turnType = "";
+                if(this.routeParam.type == "厨余垃圾"){
+                    turnType = "1";
+                }else if(this.routeParam.type == "可回收垃圾"){
+                    turnType = "2";
+                }else if(this.routeParam.type == "其他垃圾"){
+                    turnType = "3";
+                }else if(this.routeParam.type == "有害垃圾"){
+                    turnType = "4";
+                }
                 let data = {
-                    deviceId:this.routeParam.id,
+                    // deviceId:this.routeParam.id,
+                    deviceId:this.routeParam.deviceId,
+                    type:turnType,
                     pageSize: this.common.pageSize,
                     currentPage: this.common.page
                 };
@@ -1069,15 +1159,17 @@
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if(res.status === 200){
-                        this.zipperList= res.data.zipperList;
-                        this.common.total = res.data.zipperListCount;
+                        // this.zipperList= res.data.zipperList;
+                        this.getGarbageList= res.data.pageList;
+                        // alert(this.zipperList)
+                        // this.common.total = res.data.zipperListCount;
+                        this.common.total = res.data.total;
                     }else{
                         this.$commonFn.showTip(res.message,3);
                     }
                 },(err) =>{
-                    _loading.close();
+                    // _loading.close();
                 });
-                // _loading.close();
             },
             checkTerminalAlarm(){
                 this.$router.push(

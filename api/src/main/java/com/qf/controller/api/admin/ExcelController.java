@@ -12,7 +12,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qf.model.fire.HixentArcZipperInfo;
+import com.qf.model.fire.*;
+import com.qf.service.fire.HixentArcGarbageService;
 import com.qf.service.fire.HixentArcZipperInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -26,9 +27,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.qf.common.JwtConfig;
 import com.qf.model.admin.HixentProvince;
 import com.qf.model.admin.HixentUser;
-import com.qf.model.fire.HixentArcAlarmDealFeedBack;
-import com.qf.model.fire.HixentArcIndex;
-import com.qf.model.fire.HixentArcWarningList;
 import com.qf.service.admin.HixentUserService;
 import com.qf.service.fire.HixentArcAlarmLogService;
 import com.qf.service.fire.HixentArcIndexService;
@@ -61,6 +59,9 @@ public class ExcelController {
 
 	@Autowired
 	private HixentArcZipperInfoService hixentArcZipperInfoService;
+
+	@Autowired
+	private HixentArcGarbageService hixentArcGarbageService;
 
 	@Autowired
 	private JwtConfig jwtConfig;
@@ -175,9 +176,10 @@ public class ExcelController {
      * author zhangjun
      * @return
      * @throws Exception
+	 * 故障列表/人流统计
      */
     @RequestMapping(value = "/excelForFaultLogByNewParam", method = RequestMethod.POST)
-    public ModelMap excelForFaultLogByNewParam(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
+    public ModelMap excelForFaultLogByNewParam(String projectId, String deviceId, String type, Integer pageSize, Integer currentPage) throws Exception {
 
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletResponse  response = servletRequestAttributes.getResponse();
@@ -219,11 +221,22 @@ public class ExcelController {
         //表头部数据
         List<List<String>> titleData = new ArrayList<List<String>>();
         List<String> x = new ArrayList<String>();
-        x.add("项目");
-        x.add("设备id");
-        x.add("故障时间");
-        x.add("故障类型");
-        x.add("设备类型");
+
+        //报警列表
+//        x.add("项目");
+//        x.add("设备id");
+//        x.add("故障时间");
+//        x.add("故障类型");
+//        x.add("设备类型");
+		//满载历史
+		x.add("站点");
+		x.add("站点ID");
+		x.add("终端编号");
+		x.add("昵称");
+		x.add("性别");
+		x.add("年龄");
+		x.add("投放垃圾类型");
+		x.add("投放时间");
 
         titleData.add(x);
 
@@ -234,15 +247,15 @@ public class ExcelController {
         String bid = userinfo.getBid();
         String[] siteCordArr = bid.split(",");
 
-        List<HixentArcZipperInfo> alarmLog = new ArrayList<HixentArcZipperInfo>();
-        JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.faultLogExcel(projectId, deviceId, isAlarm, pageSize, currentPage);
-        alarmLog=(List<HixentArcZipperInfo>)alarmLogForEquipExcel.get("alarmLogForDevice");
+        List<HixentArcPeopleStatistical> alarmLog = new ArrayList<HixentArcPeopleStatistical>();
+        JSONObject alarmLogForEquipExcel = hixentArcGarbageService.peopleStatisticalExcel(projectId, deviceId, type, pageSize, currentPage);
+        alarmLog=(List<HixentArcPeopleStatistical>)alarmLogForEquipExcel.get("peopleStatisticalExcel");
 
 
         //表数据
         List<List<List<String>>> allData = new ArrayList<List<List<String>>>();
         List<List<String>> datak         = new ArrayList<List<String>>();
-        for(HixentArcZipperInfo wl:alarmLog){
+        for(HixentArcPeopleStatistical wl:alarmLog){
             List<String> y = new ArrayList<String>();
 
             if(ToolUtil.StringNotBlank(wl.getSiteName())) {
@@ -251,29 +264,52 @@ public class ExcelController {
             }else{
                 y.add("");
             }
+            if(ToolUtil.StringNotBlank(wl.getProjectId())) {
+
+                y.add(wl.getProjectId());
+            }else{
+                y.add("");
+            }
             if(ToolUtil.StringNotBlank(wl.getDeviceId())) {
                 y.add(wl.getDeviceId());
             }else {
                 y.add("");
             }
-            if(ToolUtil.StringNotBlank(wl.getCreateTime().toString())){
-                y.add(wl.getCreateTime().toString());
+            if(ToolUtil.StringNotBlank(wl.getUname())) {
+                y.add(wl.getUname());
             }else {
                 y.add("");
             }
 
-            if("1".equals(wl.getFaultType())){
-                y.add("运转故障");
-            }else if("2".equals(wl.getFaultType())){
-                y.add("启动故障");
+            if("0".equals(wl.getUsex())){
+                y.add("男");
+            }else if("1".equals(wl.getUsex())){
+                y.add("女");
             }else {
                 y.add("");
             }
-            if(ToolUtil.StringNotBlank(wl.getType())){
-                y.add(wl.getType());
+            if(ToolUtil.StringNotBlank(wl.getUage())){
+                y.add(wl.getUage());
             }else {
                 y.add("");
             }
+			//满载历史
+			if("1".equals(wl.getType())){
+				y.add("厨余垃圾");
+			}else if("2".equals(wl.getType())){
+				y.add("可回收垃圾");
+			}else if("3".equals(wl.getType())){
+				y.add("其他垃圾");
+			}else if("4".equals(wl.getType())){
+				y.add("有害垃圾");
+			}else {
+				y.add("");
+			}
+			if(ToolUtil.StringNotBlank(wl.getCreateTime().toString())){
+				y.add(wl.getCreateTime().toString());
+			}else {
+				y.add("");
+			}
             datak.add(y);
         }
         allData.add(datak);
@@ -286,9 +322,10 @@ public class ExcelController {
 	 * author zhangjun
 	 * @return
 	 * @throws Exception
+	 * 导出数据（满载历史/报警列表）
 	 */
 	@RequestMapping(value = "/excelForWarnLogByNewParam", method = RequestMethod.POST)
-	public ModelMap excelForWarnLogByNewParam(String projectId, String deviceId, String isAlarm, Integer pageSize, Integer currentPage) throws Exception {
+	public ModelMap excelForWarnLogByNewParam(String projectId, String deviceId, String type, Integer pageSize, Integer currentPage) throws Exception {
 
 		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
 		HttpServletResponse  response = servletRequestAttributes.getResponse();
@@ -330,20 +367,29 @@ public class ExcelController {
 		//表头部数据
 		List<List<String>> titleData = new ArrayList<List<String>>();
 		List<String> x = new ArrayList<String>();
-		x.add("项目");
-		x.add("设备id");
-//		if(isDevice==1) {
-//			x.add("终端编号");
-//			x.add("设备类型");
-//		}
-		x.add("报警时间");
-		x.add("报警类型");
-		x.add("设备类型");
-//		x.add("处理人");
-//		x.add("联系方式");
-//		x.add("处理时间");
-//		x.add("处理备注");
 
+		//报警列表
+//		x.add("项目");
+//		x.add("设备id");
+////		if(isDevice==1) {
+////			x.add("终端编号");
+////			x.add("设备类型");
+////		}
+//		x.add("报警时间");
+//		x.add("报警类型");
+//		x.add("设备类型");
+////		x.add("处理人");
+////		x.add("联系方式");
+////		x.add("处理时间");
+////		x.add("处理备注");
+		//满载历史
+		x.add("站点");
+		x.add("站点ID");
+		x.add("终端编号");
+		x.add("垃圾类型");
+		x.add("温度");
+		x.add("箱内重量");
+		x.add("报警时间");
 		titleData.add(x);
 
 		String areaId = (String) redisUtil.get("areaId_" + userinfo.getUid());
@@ -353,7 +399,7 @@ public class ExcelController {
 		String bid = userinfo.getBid();
 		String[] siteCordArr = bid.split(",");
 
-		List<HixentArcZipperInfo> alarmLog = new ArrayList<HixentArcZipperInfo>();
+		List<HixentArcGarbage> alarmLog = new ArrayList<HixentArcGarbage>();
 
 //		if (isDevice == 0) {
 //			// 中控
@@ -367,8 +413,15 @@ public class ExcelController {
 //			alarmLog=(List<HixentArcWarningList>)alarmLogForEquipExcel.get("alarmLogForDevice");
 //
 //		}
-		JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.alarmLogExcel(projectId, deviceId, isAlarm, pageSize, currentPage);
-		alarmLog=(List<HixentArcZipperInfo>)alarmLogForEquipExcel.get("alarmLogForDevice");
+
+
+		//报警列表
+//		JSONObject alarmLogForEquipExcel = hixentArcZipperInfoService.alarmLogExcel(projectId, deviceId, isAlarm, pageSize, currentPage);
+//		alarmLog=(List<HixentArcZipperInfo>)alarmLogForEquipExcel.get("alarmLogForDevice");
+		//满载历史
+		JSONObject garbageFullHistoryExcel = hixentArcGarbageService.garbageFullHistoryExcel(projectId, deviceId, type, pageSize, currentPage);
+		alarmLog=(List<HixentArcGarbage>)garbageFullHistoryExcel.get("garbageFullHistoryExcel");
+
 
 		//获得处理结果和处理人信息和反馈
 //		for (int i = 0; i < alarmLog.size(); i++) {
@@ -385,12 +438,16 @@ public class ExcelController {
 		//表数据
 		List<List<List<String>>> allData = new ArrayList<List<List<String>>>();
 		List<List<String>> datak         = new ArrayList<List<String>>();
-		for(HixentArcZipperInfo wl:alarmLog){
+		for(HixentArcGarbage wl:alarmLog){
 			List<String> y = new ArrayList<String>();
 
 			if(ToolUtil.StringNotBlank(wl.getSiteName())) {
-
 				y.add(wl.getSiteName());
+			}else{
+				y.add("");
+			}
+			if(ToolUtil.StringNotBlank(wl.getProjectId())) {
+				y.add(wl.getProjectId());
 			}else{
 				y.add("");
 			}
@@ -399,14 +456,28 @@ public class ExcelController {
 			}else {
 				y.add("");
 			}
-//			if(isDevice==1) {
-//				y.add((Integer.parseInt(wl.getLineCode())+1)+"-"+wl.getAddr());
-//				if(wl.getType()==0) {
-//					y.add("电弧探测器");
-//				}else {
-//					y.add("组合式探测器");
-//				}
-//			}
+			//满载历史
+			if("1".equals(wl.getType())){
+				y.add("厨余垃圾");
+			}else if("2".equals(wl.getType())){
+				y.add("可回收垃圾");
+			}else if("3".equals(wl.getType())){
+				y.add("其他垃圾");
+			}else if("4".equals(wl.getType())){
+				y.add("有害垃圾");
+			}else {
+				y.add("");
+			}
+			if(ToolUtil.StringNotBlank(wl.getTemperature())) {
+				y.add(wl.getTemperature());
+			}else {
+				y.add("");
+			}
+			if(ToolUtil.StringNotBlank(wl.getWeight())) {
+				y.add(wl.getWeight());
+			}else {
+				y.add("");
+			}
 			if(ToolUtil.StringNotBlank(wl.getCreateTime().toString())){
 				y.add(wl.getCreateTime().toString());
 			}else {
@@ -418,18 +489,22 @@ public class ExcelController {
 //			yAdd(wl.getAppMobile(),y);
 //			yAddTime(wl.getDealTime(),y);
 //			yAdd(wl.getDealRemark(),y);
-			if("1".equals(wl.getAlarmType())){
-				y.add("停电");
-			}else if("2".equals(wl.getAlarmType())){
-				y.add("机器故障");
-			}else {
-				y.add("");
-			}
-			if(ToolUtil.StringNotBlank(wl.getType())){
-				y.add(wl.getType());
-			}else {
-				y.add("");
-			}
+
+			//报警列表
+//			if("1".equals(wl.getType())){
+//				y.add("停电");
+//			}else if("2".equals(wl.getAlarmType())){
+//				y.add("机器故障");
+//			}else {
+//				y.add("");
+//			}
+
+			//报警列表
+//			if(ToolUtil.StringNotBlank(wl.getType())){
+//				y.add(wl.getType());
+//			}else {
+//				y.add("");
+//			}
 			datak.add(y);
 		}
 		allData.add(datak);

@@ -103,10 +103,20 @@ public class MqttCustomerConfig {
 				String content    = message.getPayload().toString();
 				System.out.println("接收到消息："+topic+"--->"+content);
 //				JSONObject jsonmsg = new JSONObject(new String(message.getPayload()));
+//				JSONObject jsonmsg = JSONObject.parseObject(content);
 				JSONObject jsonmsg = JSONObject.parseObject(content);
-				System.out.println(jsonmsg.get("name"));
+//				System.out.println(jsonmsg.get("name"));
 //				String[] msg = content.split("/");
-				mqttCustomerService.MqttData(jsonmsg);
+				String[] topicArr = topic.split("/");
+				Integer n 	  	  = topicArr.length;
+				System.out.println(topicArr[1]);
+//				if(topicArr[1] != "garbage"){
+//					mqttCustomerService.MqttData(jsonmsg,topicArr[1]);
+//				}else if(topicArr[1] == "garbage"){
+//					mqttCustomerService.garbageMqttData(jsonmsg);
+//				}
+				mqttCustomerService.garbageMqttData(jsonmsg,topicArr);
+
 				//下面是原来的处理过程
 //				if( !topic.equals("") || !content.equals("") ){
 //			    	String[] topicArr = topic.split("/");

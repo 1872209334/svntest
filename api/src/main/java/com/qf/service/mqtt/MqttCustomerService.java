@@ -12,8 +12,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.qf.mapper.fire.*;
-import com.qf.model.fire.HixentArcZipperInfo;
-import com.qf.model.fire.TestJavaMqtt;
+import com.qf.model.fire.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ import org.springframework.web.socket.TextMessage;
 import com.alibaba.fastjson.JSONObject;
 import com.qf.mapper.admin.HixentAppUserMapper;
 import com.qf.model.admin.HixentAppUser;
-import com.qf.model.fire.HixentArcEquipmentInfoMqtt;
 import com.qf.service.app.HixentAppUserWarnService;
 import com.qf.service.email.EmailService;
 import com.qf.service.fire.HixentArcDeviceAlarmService;
@@ -87,6 +85,9 @@ public class MqttCustomerService {
 	@Autowired
 	HixentArcZipperInfoMapper hixentArcZipperInfoMapper;
 
+	@Autowired
+	HixentArcGarbageMapper hixentArcGarbageMapper;
+
 	@Resource
 	private RedisUtil redisUtil;
 
@@ -145,9 +146,25 @@ public class MqttCustomerService {
 		return st;
 	}
 
+	/**
+	 * 拉链数据接收
+	 *
+	 *  zhangjun
+	 */
 	@Async
-	public void MqttData(JSONObject jsonMsg) {
+	public void MqttData(JSONObject jsonMsg,String topic) {
 		try{
+//			if(topic == "garbage"){
+//				HixentArcGarbage params = new HixentArcGarbage();
+//				params.setProjectId((String)jsonMsg.get("projectId"));
+//				params.setDeviceId((String)jsonMsg.get("deviceId"));
+//				params.setTemperature((String)jsonMsg.get("temperature"));
+//				params.setWeight((String)jsonMsg.get("weight"));
+//				params.setType((String)jsonMsg.get("type"));
+//				params.setCreateTime(new Date(System.currentTimeMillis()));
+//				hixentArcGarbageMapper.insertMqttGarbage(params);
+//				System.out.println("终端垃圾箱数据上报成功");
+//			}else{
 			HixentArcZipperInfo params = new HixentArcZipperInfo();
 //			params.setUnid((Integer) jsonMsg.get("unid"));
 			params.setProjectId((String)jsonMsg.get("projectId"));
@@ -169,6 +186,51 @@ public class MqttCustomerService {
 //		System.out.println(content[0]);
 //		System.out.println(content[1]);
 //		System.out.println(content.toString());
+//			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 垃圾数据接收
+	 *
+	 *zhangjun
+	 */
+	@Async
+	public void garbageMqttData(JSONObject jsonMsg,String[] topicArr) {
+		try{
+			if(topicArr[1].equals("garbage")){
+			HixentArcGarbage params = new HixentArcGarbage();
+			params.setProjectId((String)jsonMsg.get("projectId"));
+			params.setDeviceId((String)jsonMsg.get("deviceId"));
+			params.setTemperature((String)jsonMsg.get("temperature"));
+			params.setWeight((String)jsonMsg.get("weight"));
+			params.setType((String)jsonMsg.get("type"));
+			params.setCreateTime(new Date(System.currentTimeMillis()));
+			hixentArcGarbageMapper.insertMqttGarbage(params);
+			if(Integer.parseInt(params.getWeight()) >= 25){
+				hixentArcGarbageMapper.insertMqttGarbageFullHistory(params);//添加满载数据
+			}
+			if(hixentArcGarbageMapper.selectGarbageIsAlive(params).size()>0){
+				params.setUpdateTime(new Date(System.currentTimeMillis()));
+				hixentArcGarbageMapper.updateMqttGarbage(params);
+			}else{
+				hixentArcGarbageMapper.insertMqttGarbageNotForHistory(params);
+			}
+			System.out.println("终端垃圾箱数据上报成功");
+			}else if(topicArr[1].equals("peopleStatistical")){
+				HixentArcPeopleStatistical params = new HixentArcPeopleStatistical();
+				params.setProjectId((String)jsonMsg.get("projectId"));
+				params.setDeviceId((String)jsonMsg.get("deviceId"));
+				params.setUname((String)jsonMsg.get("uname"));
+				params.setUage((String)jsonMsg.get("uage"));
+				params.setUsex((String)jsonMsg.get("usex"));
+				params.setType((String)jsonMsg.get("type"));
+				params.setCreateTime(new Date(System.currentTimeMillis()));
+				hixentArcGarbageMapper.insertMqttPeopleStatistical(params);
+				System.out.println("终端人流统计数据上报成功");
+			}
 		}catch (Exception e){
 			e.printStackTrace();
 		}

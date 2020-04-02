@@ -537,14 +537,16 @@
                         console.log(data);
                         bus.$emit('efmClickEfmClick', {
                             id: data.id,
-                            efmName: data.treeLabel
+                            efmName: data.treeLabel,
+                            siteCode:data.site_code,
                         });
                         this.$router.push(
                             {
                                 name: 'deviceDetail',
                                 params: {
                                     id: data.id,
-                                    efmName: data.treeLabel
+                                    efmName: data.treeLabel,
+                                    siteCode:data.site_code,
                                 }
                             }
                         );

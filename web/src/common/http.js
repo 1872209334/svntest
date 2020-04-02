@@ -11,13 +11,17 @@ const apiMethods = {
             forgetPasswordUrl:this.$constant.apiUrl + "/get/forgetPassword",                  //忘记密码修改密码接口
             adminListUrl:this.$constant.apiUrl+"/api/user/list/userList",                     //管理员列表接口
             saveAdminUrl:this.$constant.apiUrl+'/api/user/save/saveToUser',                  //新增管理员
+            updateCleanAdminUrl:this.$constant.apiUrl+'/api/user/save/updateToCleanUser',  //更新保洁员
+            saveCleanUserUrl:this.$constant.apiUrl+'/api/user/save/saveToCleanUser',         //新增保洁员
             deleteAdminUrl:this.$constant.apiUrl+'/api/user/delete/deleteUser',              //删除管理员
             resetPwdUrl:this.$constant.apiUrl+"/api/user/save/resetPassWord",                //重置管理员密码
             getProvinceAndRoleUrl:this.$constant.apiUrl+'/api/user/save/getPrivinceAndRole',     //获取省份和角色
             getCityAndSiteUrl:this.$constant.apiUrl+'/api/user/save/getCityAndSite',         //获取省联动市区和项目
             getSiteByCity:this.$constant.apiUrl+'/api/user/save/getSiteByCity',              //新增管理员地区联动项目
             userListUrl:this.$constant.apiUrl+"/api/user/list/userAppList",                  //管控人员列表接口
+            cleanUserListUrl:this.$constant.apiUrl+"/api/user/save/selectAllToCleanUser",   //保洁人员列表接口
             deleteUserUrl:this.$constant.apiUrl+'/api/user/delete/deleteAppUser',            //删除管控人员
+            deleteCleanUserUrl:this.$constant.apiUrl+'/api/user/save/deleteToCleanUser',       //删除保洁人员
             addUserUrl:this.$constant.apiUrl+"/api/user/save/addToAppUser",                  //新增管控人员
             saveUserUrl:this.$constant.apiUrl+"/api/user/save/saveToAppUser",                //编辑管控人员
             auditUserUrl:this.$constant.apiUrl+"/api/user/save/auditAppUser",                //审核管控人员
@@ -32,15 +36,19 @@ const apiMethods = {
             delLogo:this.$constant.apiUrl+'/api/equip/delLogo',                             //删除项目LOGO
             deleteEfmUrl:this.$constant.apiUrl+'/api/equip/deleteEfm',                       //删除中控设备
             getEfmInfoUrl:this.$constant.apiUrl+'/api/equip/devicesInfo',                    //获取中控设备详情
+            siteDetailUrl:this.$constant.apiUrl+'/api/site/detail/selectSiteDetail',       //获取站点详情
             getEquipListUrl:this.$constant.apiUrl+'/api/equip/equipList',                    //获取中控下终端列表
             editEfmNameUrl:this.$constant.apiUrl+'/api/equip/editDeviceInfo',                //修改中控信息
             getEquipInfoUrl:this.$constant.apiUrl+'/api/equip/equipInfo',                      //获取终端详情
             getZipperInfoUrl:this.$constant.apiUrl+'/api/equip/selectAllZipperInfo',           //获取拉链终端详情
+            getGarbageHistoryUrl:this.$constant.apiUrl+'/api/mqttEquip/getGarbageMqttEquipListHistory',//依据垃圾类型获取历史数据
             deleteEquipUrl:this.$constant.apiUrl+'/api/equip/deleteDevice',                      //删除终端
             sendAdminSocketUrl:this.$constant.apiUrl + '/api/sendAdminSocket',               //管理员下发指令接口
             getAlarmLogUrl:this.$constant.apiUrl+'/api/alarm/alarmLog',                         //报警日志初始化
+            getGarbageFullHistoryListUrl:this.$constant.apiUrl+'/api/mqttEquip/getGarbageFullHistoryList',//获取垃圾满载数据列表
             getAlarmLogBySiteIdUrl:this.$constant.apiUrl+'/api/alarm/alarmLogBySiteId',                 //报警日志按项目id查询
             getFaultLogUrl:this.$constant.apiUrl+'/api/alarm/faultLog',                         //故障日志初始化
+            getPeopleStatisticalUrl:this.$constant.apiUrl+'/api/people/statistical/selectPeopleStatistical', //查询人流统计列表
             getFaultLogBySiteIdUrl:this.$constant.apiUrl+'/api/alarm/faultLogBySiteId',             //故障日志按项目id查询
             getOffLineLogUrl:this.$constant.apiUrl+'/api/alarm/offLineLog',                         //离线日志初始化
             getOfflineLogBySiteIdUrl:this.$constant.apiUrl+'/api/alarm/offLineLogBySiteId',         //离线日志按项目id查询
@@ -54,7 +62,9 @@ const apiMethods = {
             newProjectUrl:this.$constant.apiUrl+'/api/controlGroup/newProject',                 //新建项目
             newDeviceUrl:this.$constant.apiUrl+'/api/controlGroup/newDevice',                 //新建终端
             delWarningUrl:this.$constant.apiUrl+'/api/alarm/delWarn',                          //删除告警
-            delZipperLogByIdUrl:this.$constant.apiUrl+'/api/alarm/deleteZipperLogById',                          //新的删除告警
+            delZipperLogByIdUrl:this.$constant.apiUrl+'/api/alarm/deleteZipperLogById',            //新的删除告警
+            delPeopleStatisticalUrl:this.$constant.apiUrl+'/api/people/statistical/deletePeopleStatistical', //新的删除人流统计
+            delFullHistoryByUnidUrl:this.$constant.apiUrl+'/api/mqttEquip/deleteFullHistoryByUnid',   //新的删除满载历史
             sendSocketMessage:this.$constant.apiUrl + '/api/user/list/sendSocketMessage',     //发送指令
             getAlarmCountUrl:this.$constant.apiUrl+'/api/index/headAlarmCount',               //获取头部数据
             getIndexUrl:this.$constant.apiUrl+'/api/index/default',                             //获取首页数据
@@ -80,6 +90,7 @@ const apiMethods = {
             editEquipInfoUrl:this.$constant.apiUrl+'/api/equip/editEquipInfo',                   //修改终端信息
             changeAreaStaticUrl:this.$constant.apiUrl+'/api/statistics/changeProvince',         //统计切换城市
             getMqttListUrl:this.$constant.apiUrl+'/api/mqttEquip/getMqttEquipList',               //获取无线终端设备列表
+            getGarbageMqttEquipListUrl:this.$constant.apiUrl+'/api/mqttEquip/getGarbageMqttEquipList',//获取垃圾信息无线终端设备列表
             deleteMqttListUrl:this.$constant.apiUrl+'/api/mqttEquip/deleteMqttEquip',               //删除无线终端
             getLogListUrl:this.$constant.apiUrl+'/api/user/list/logList',                           //获取操作日志
             getPhotoInfoUrl:this.$constant.apiUrl+'/api/file/getPhotoList',                           //获取图片详情

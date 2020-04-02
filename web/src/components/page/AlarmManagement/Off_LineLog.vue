@@ -20,7 +20,7 @@
             <div style=" height:50px; margin:5px 16px 0 16px;">
                 <div style="float: left; height:40px; width:135px;">
                     <div style="width:135px;">
-                        <el-select id="selectProject" v-model="projectSelectVal" placeholder="请选择项目" @change="getCenterControl">
+                        <el-select id="selectProject" v-model="projectSelectVal" placeholder="请选择站点" @change="getCenterControl">
                             <el-option
                                 label="不限"
                                 value="0">
@@ -93,7 +93,7 @@
                     :header-cell-style="tableStyle">
                     <el-table-column type="index" width="56" label="#">
                     </el-table-column>
-                    <el-table-column prop="siteName" :formatter="formatProject" label="项目">
+                    <el-table-column prop="siteName" :formatter="formatProject" label="站点">
                     </el-table-column>
                     <el-table-column prop="deviceId"  :formatter="formatNiname" label="设备id">
                     </el-table-column>

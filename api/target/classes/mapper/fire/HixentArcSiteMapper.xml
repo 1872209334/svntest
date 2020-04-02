@@ -81,8 +81,29 @@
 		<result column="back_relative_file_url" jdbcType="VARCHAR"
 				property="backRelativeFileUrl" />
 	</resultMap>
-
-
+	
+	<insert id="insertNewWireless" parameterType="String"><!--设置中控存在无线设备-->
+		insert into  hixent_arc_system.hixent_arc_equipment_info(id,site_code) values (#{id,jdbcType=VARCHAR},#{siteCode,jdbcType=VARCHAR});
+	</insert>
+	<insert id="insertNewDeviceController" parameterType="String"><!--中控,#{publishDate,jdbcType=TIMESTAMP}-->
+		insert into hixent_arc_system.hixent_arc_efm_device(id,site_code,device_code,phone_number1,
+		device_place,niName)
+		values (#{id,jdbcType=VARCHAR},#{siteCode,jdbcType=VARCHAR},#{deviceCode,jdbcType=VARCHAR},#{phoneNumber,jdbcType=VARCHAR},
+		#{devicePlace,jdbcType=VARCHAR},#{niName,jdbcType=VARCHAR})
+	</insert>
+	<select id="existsDevice" parameterType="String" resultType="Integer"><!--是否存在中控-->
+		select count(*) from hixent_arc_system.hixent_arc_efm_device
+		where site_code = #{siteCode,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertNewProjectSecond" parameterType="com.qf.model.fire.HixentArcSite"><!--新增站点-->
+    insert into hixent_arc_system.hixent_arc_site (site_id, site_code, site_name, site_place,
+      site_build_id, longitute, latitude, map_num, logo_file_name, logo_file_url, logo_relative_file_url,
+      back_file_name, back_file_url, back_relative_file_url)
+    values (#{siteId,jdbcType=INTEGER}, #{siteCode,jdbcType=VARCHAR}, #{siteName,jdbcType=VARCHAR}, #{sitePlace,jdbcType=VARCHAR},
+      #{siteBuildId,jdbcType=INTEGER},#{longitute,jdbcType=VARCHAR},#{latitude,jdbcType=VARCHAR},#{mapNum,jdbcType=INTEGER},#{logoFileName,jdbcType=VARCHAR},
+      #{logoFileUrl,jdbcType=VARCHAR},#{logoRelativeFileUrl,jdbcType=VARCHAR},#{backFileName,jdbcType=VARCHAR},#{backFileUrl,jdbcType=VARCHAR},#{backRelativeFileUrl,jdbcType=VARCHAR}
+      )
+  </insert>
 	<insert id="insertNewProject" parameterType="com.qf.model.fire.HixentArcSite">
     insert into hixent_arc_system.hixent_arc_site (site_id, site_code, site_name, site_place,
       site_build_id, longitute, latitude, map_num, logo_file_name, logo_file_url, logo_relative_file_url,

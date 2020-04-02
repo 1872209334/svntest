@@ -1254,7 +1254,7 @@ public class ApiUserListController {
     
     /**
      * 获取站点列表
-     * author wjr
+     * author zhangjun
      */
     //@ApiLimitConfig(count=60,time=60000)
     //@RequiresPermissions(value = {"parc_device"}) 
@@ -1354,6 +1354,7 @@ public class ApiUserListController {
 				
 				HixentArcEfmDevice haed = new HixentArcEfmDevice();
 		    	haed.setNiName("无线终端");
+//		    	haed.setNiName("垃圾箱实时信息");
 		    	deviceBySite.add(haed);
 			}
 	    	

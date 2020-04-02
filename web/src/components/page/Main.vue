@@ -67,7 +67,7 @@
                         <div style="float: left; width: 30px;height: 30px; margin-top: 8px;">
                             <img src="../../resource/img/main_project.png" height="100%" width="100%">
                         </div>
-                        <span class="count_title">项目数</span>
+                        <span class="count_title">站点数量</span><!--项目数-->
                         <span class="count_number" style="color: #F5A50B;">{{countData.siteCount}}</span>
                     </div>
                 </div>
@@ -91,13 +91,13 @@
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备一</span>
+                            <span class="count_title">设备一</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.arcCountOfEquip}}</span>
                         </div>
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备二</span>
+                            <span class="count_title">设备二</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.currentCountOfEquip}}</span>
                         </div>
                     </div>
@@ -122,13 +122,13 @@
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备一</span>
+                            <span class="count_title">设备一</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.arcCountOfEquipOffLine}}</span>
                         </div>
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备二</span>
+                            <span class="count_title">设备二</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.currentCountOfEquipOffLine}}</span>
                         </div>
                     </div>
@@ -153,13 +153,13 @@
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备一</span>
+                            <span class="count_title">设备一</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.arcCountOfEquipAlarm}}</span>
                         </div>
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备二</span>
+                            <span class="count_title">设备二</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.currentCountOfEquipAlarm}}</span>
                         </div>
                     </div>
@@ -188,13 +188,13 @@
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备一</span>
+                            <span class="count_title">设备一</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.arcCountOfEquipFault}}</span>
                         </div>
 
                         <div style="height:30px;width: 100%;line-height: 30px;display:inline-block;margin-top: 3%">
                             <i style="width: 35px;height:20px;"></i>
-                            <span class="count_title">拉链设备二</span>
+                            <span class="count_title">设备二</span><!--拉链-->
                             <span style="float: right;margin-right: 30px;">{{countData.currentCountOfEquipFault}}</span>
                         </div>
                     </div>

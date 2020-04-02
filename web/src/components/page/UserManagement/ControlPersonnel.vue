@@ -8,7 +8,7 @@
                         <span style="font-size: 16px;color:#303313;">用户管理</span>
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        <span style="color: #111111;font-size: 14px;color:#606266;">管控人员</span>
+                        <span style="color: #111111;font-size: 14px;color:#606266;">保洁人员</span>
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
@@ -33,8 +33,8 @@
                     <!--</div>-->
 
                 <div style="display: inline-block; height:40px;float: right;">
-                    <el-button class="v-1-0-1-Button" icon="el-icon-delete" @click="batchDelete">删除管控人员</el-button>
-                    <el-button class="v-1-0-0-Button" icon="el-icon-plus" @click="addUser()">新增管控人员</el-button>
+                    <el-button class="v-1-0-1-Button" icon="el-icon-delete" @click="batchDelete">删除保洁人员</el-button>
+                    <el-button class="v-1-0-0-Button" icon="el-icon-plus" @click="addUser()">新增保洁人员</el-button>
                 </div>
             </div>
             <div style="height:calc(100% - 152px);margin: 0 16px auto 16px;border: 1px solid #F0F2F5;overflow: auto">
@@ -43,11 +43,17 @@
                     <el-table-column type="selection" width="55"></el-table-column>
                     <el-table-column type="index" width="56" label="#">
                     </el-table-column>
-                    <el-table-column prop="account" label="账号" width="120"></el-table-column>
-                    <el-table-column prop="created_at" label="注册时间" width="180" show-overflow-tooltip></el-table-column>
-                    <el-table-column prop="mobile" label="联系方式" width="120"></el-table-column>
-                    <el-table-column prop="email" label="邮箱" show-overflow-tooltip></el-table-column>
-                    <el-table-column prop="remark" label="备注" show-overflow-tooltip></el-table-column>
+                    <!--<el-table-column prop="account" label="姓名" width="120"></el-table-column>-->
+                    <el-table-column prop="uname" label="姓名" width="120"></el-table-column>
+                    <el-table-column prop="usex" label="性别" width="120"></el-table-column>
+                    <!--<el-table-column prop="mobile" label="联系方式" width="120"></el-table-column>-->
+                    <el-table-column prop="uphone" label="联系方式" width="120"></el-table-column>
+                    <!--<el-table-column prop="email" label="邮箱" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="site_name" label="管理站点" show-overflow-tooltip></el-table-column>
+                    <!--<el-table-column prop="created_at" label="注册时间" width="180" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="create_time" label="注册时间" width="180" show-overflow-tooltip></el-table-column>
+                    <!--<el-table-column prop="remark" label="备注" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="umessage" label="备注" show-overflow-tooltip></el-table-column>
                     <el-table-column fixed="right" label="操作" width="120">
                         <template slot-scope="scope">
                             <el-button
@@ -94,13 +100,13 @@
                 },
                 userData:[],
                 userId:0,
-                common:{
-                    total:0,            //总数据量
-                    pageSize:20,        //每页条数
-                    page:1,              //页码
-                    isPage:1,            //是否分页
-                    allSizes:[10,20,30], //每页条数筛选
-                    checkboxArr:[]       //多选框数组
+                common: {
+                    total: 0,            //总数据量
+                    pageSize: 20,        //每页条数
+                    page: 1,              //页码
+                    isPage: 1,            //是否分页
+                    allSizes: [10, 20, 30], //每页条数筛选
+                    checkboxArr: []   ,    //多选框数组
                 },
                 filters:{
                     accountInput:"",
@@ -113,12 +119,13 @@
             this.getUserList();
         },
         methods:{
-            addUser(){
+            addUser: function () {
                 this.$router.push(
                     {
-                        name:'editControlPersonnel',
-                        params:{
-                            type:0,
+                        name: 'editManagelaji',
+                        // name: 'editControlPersonnel',
+                        params: {
+                            type: 0,
                         }
                     }
                 );
@@ -156,7 +163,8 @@
 
             },
             deleteUser(data){
-                this.userId = data.id;
+                // this.userId = data.id;
+                this.userId = data.unid;//改造后代码
                 this.$commonFn.showConfirm(this.deleteSuccess);
             },
             resetBtn(){
@@ -178,26 +186,33 @@
                 });
             },
             getUserList(){
-                let url  = this.userListUrl;
+                // let url  = this.userListUrl;//管控人员
+                let url  = this.cleanUserListUrl;//保洁人员
                 let data = {
-                    page:this.common.page,
-                    limit:this.common.pageSize,
-                    name:this.filters.accountInput,
-                    statek:this.filters.state
+                    // page:this.common.page,
+                    // limit:this.common.pageSize,
+                    // name:this.filters.accountInput,
+                    // statek:this.filters.state,
+                    currentPage: this.common.page,
+                    pageSize: this.common.pageSize,
                 };
                 if(this.filters.state == null){
                     data.statek = -1;
                 }
                 this.apiPost(url,data).then((res) => {
-                    this.userData = res.data.appUserList;
-                    this.common.total = res.data.total;
+                    // this.userData = res.data.appUserList;
+                    this.userData = res.data.selectAllHixentCleanUser;
+                    // this.common.total = res.data.total;
+                    this.common.total = res.data.countHixentCleanUser;
                 },(err)=>{
                 });
             },
             deleteSuccess(){
-                let url = this.deleteUserUrl;
+                // let url = this.deleteUserUrl;
+                let url = this.deleteCleanUserUrl;
                 let data = {
-                    idStr:this.userId
+                    // idStr:this.userId
+                    unid:this.userId
                 };
                 this.apiPost(url,data).then((res)=>{
                     if(res.status === 200){
@@ -229,14 +244,25 @@
             editUser(data){
                 this.$router.push(
                     {
-                        name:'editControlPersonnel',
+                        // name:'editControlPersonnel',
+                        name:'editManagelaji',
                         params:{
                             type:1,
-                            id:data.id,
-                            account:data.account,
-                            mobile:data.mobile,
-                            email:data.email,
-                            remark:data.remark,
+                            // id:data.id,
+                            // account:data.account,
+                            // mobile:data.mobile,
+                            // email:data.email,
+                            // remark:data.remark,
+                            unid:data.unid,
+                            account:data.uname,
+                            passwordInput:data.uage,
+                            sexInput:data.usex,
+                            mobile:data.uphone,
+                            provinceId : data.provinceId,
+                            areaId: data.areaId,
+                            remark:data.umessage,
+                            bid:data.bid,
+                            // roleId:24,
                         }
                     }
                 );

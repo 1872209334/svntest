@@ -4,44 +4,46 @@
             <div class="myNavigation">
                 <el-breadcrumb separator="/" style="display: inline-block">
                     <el-breadcrumb-item>
-                        <span style="font-size: 16px;color:#303313;">项目管理</span>
+                        <span style="font-size: 16px;color:#303313;">站点管理</span>
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        <span style="font-size: 14px;color:#606266;">无线终端列表</span>
+                        <!--<span style="font-size: 14px;color:#606266;">无线终端列表</span>-->
+                        <span style="font-size: 14px;color:#606266;">垃圾箱实时信息</span>
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
 
-            <div style="height:50px; margin:5px 16px 0 16px;">
+            <!--<div style="height:50px; margin:5px 16px 0 16px;">--><!--非毕设-->
+            <div style="height:10px; margin:5px 16px 0 16px;">
 
-                <div style="width:135px; float: left; height:40px;">
-                    <div style="width:135px;">
-                        <el-select v-model="equipmentTypeValue" placeholder="选择设备类型">
-                            <el-option
-                            v-for="item in equipmentType"
-                            :key="item.id"
-                            :label="item.name"
-                            :value="item.id">
-                            </el-option>
-                        </el-select>
-                    </div>
-                </div>
+                <!--<div style="width:135px; float: left; height:40px;">-->
+                    <!--<div style="width:135px;">-->
+                        <!--<el-select v-model="equipmentTypeValue" placeholder="选择设备类型">-->
+                            <!--<el-option-->
+                            <!--v-for="item in equipmentType"-->
+                            <!--:key="item.id"-->
+                            <!--:label="item.name"-->
+                            <!--:value="item.id">-->
+                            <!--</el-option>-->
+                        <!--</el-select>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <!--条件输入框-->
-                <div style="width:135px; float: left; height:40px;margin-left: 8px">
-                    <!--编号输入框-->
-                    <div style="width:135px;">
-                        <el-input v-model="inputBoxValue" placeholder="请输入关键字"></el-input>
-                    </div>
-                </div>
+                <!--<div style="width:135px; float: left; height:40px;margin-left: 8px">-->
+                    <!--&lt;!&ndash;编号输入框&ndash;&gt;-->
+                    <!--<div style="width:135px;">-->
+                        <!--<el-input v-model="inputBoxValue" placeholder="请输入关键字"></el-input>-->
+                    <!--</div>-->
+                <!--</div>-->
 
-                <div style="float: left; height:40px; width:56px;margin-left: 10px">
-                    <el-button class="v-1-0-0-Button" @click="common.page = 1;getMqttList()">查询</el-button>
-                </div>
-                <div style="float: right; height:40px;">
-                    <!--<el-button class="v-1-0-1-Button" icon="el-icon-delete">删除</el-button>-->
-                    <el-button class="v-1-0-0-Button" icon="el-icon-plus" @click="openCreatePanel">新建</el-button>
-                </div>
+                <!--<div style="float: left; height:40px; width:56px;margin-left: 10px">-->
+                    <!--<el-button class="v-1-0-0-Button" @click="common.page = 1;getMqttList()">查询</el-button>-->
+                <!--</div>-->
+                <!--<div style="float: right; height:40px;">-->
+                    <!--&lt;!&ndash;<el-button class="v-1-0-1-Button" icon="el-icon-delete">删除</el-button>&ndash;&gt;-->
+                    <!--<el-button class="v-1-0-0-Button" icon="el-icon-plus" @click="openCreatePanel">新建</el-button>-->
+                <!--</div>-->
 
             </div>
 
@@ -51,11 +53,18 @@
                           :header-cell-style="tableStyle">
                     <el-table-column type="index" label="#" width="56"></el-table-column>
 
-                    <el-table-column prop="id" label="编号" :formatter="formatNumber"></el-table-column>
+                    <!--<el-table-column prop="id" label="编号" :formatter="formatNumber"></el-table-column>-->
+                    <el-table-column prop="siteName" label="所属项目" :formatter="formatNumber"></el-table-column>
 
-                    <el-table-column prop="type" label="设备类型" :formatter="formatType"></el-table-column>
+                    <!--<el-table-column prop="type" label="设备类型" :formatter="formatType"></el-table-column>-->
+                    <el-table-column prop="temperature" label="温度" :formatter="formatType"></el-table-column>
 
-                    <el-table-column prop="message" label="描述符"  show-overflow-tooltip></el-table-column>
+                    <el-table-column prop="weight" label="箱内重量" :formatter="formatWeight"></el-table-column>
+
+                    <!--<el-table-column prop="message" label="描述符"  show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="garbageType" label="垃圾类型"  :formatter="formatGarbageType"></el-table-column>
+
+                    <el-table-column prop="time" label="更新时间"  :formatter="formatTime"></el-table-column>
 
                     <!--<el-table-column prop="tem0" label="温度"  show-overflow-tooltip>-->
                         <!--<template slot-scope="scope">-->
@@ -72,11 +81,12 @@
                         <template slot-scope="scope">
 
                             <el-button @click.native.prevent="checkMqttTerminal(scope.row)" type="text" size="small">
+                            <!--<el-button @click.native.prevent="alarmDetail(scope.row)" type="text" size="small">-->
                                 <span style="color: #387EE8;" >查看</span>
                             </el-button>
-                            <el-button @click.native.prevent="reboot(scope.row)" type="text" size="small">
-                                <span style="color: red;">重启</span>
-                            </el-button>
+                            <!--<el-button @click.native.prevent="reboot(scope.row)" type="text" size="small">-->
+                                <!--<span style="color: red;">重启</span>-->
+                            <!--</el-button>-->
                             <el-button style="color: red" v-if="actionList.indexOf('deleteDevice')>-1" @click.native.prevent="delMqttTerminal(scope.row)" type="text" size="small">
                                 删除
                             </el-button>
@@ -125,10 +135,10 @@
                 equipmentTypeValue:null,
                 equipmentType: [
                     {name: '不限', id: -1},
-                    {name: '拉链探测器一', id: 0},
-                    {name: '拉链探测器二', id: 1},
-                    {name: '拉链探测器二', id: 2},
-                    {name: '拉链探测器二', id: 3},
+                    {name: '厨余垃圾', id: 1},
+                    {name: '可回收垃圾', id: 2},
+                    {name: '其他垃圾', id: 3},
+                    {name: '有害垃圾', id: 4},
                 ],
                 mqttDeviceData:[],
                 delMqttEquipId:0,
@@ -162,23 +172,53 @@
         methods: {
             formatNumber: function (row) {
                 // return row.serialNumber = row.device_code+"-"+(parseInt(row.lineCode) + 1) + "-" + parseInt(row.addr);
-                return row.id;
+                // return row.id;
+                return row.siteName;
             },
+            // formatType: function (row) {
+            //     if(row.type == 0){
+            //         row.type = "拉链探测器一";
+            //     }
+            //     else if(row.type == 1){
+            //         row.type = "拉链探测器二";
+            //     }
+            //     else if(row.type == 2){
+            //         row.type = "拉链探测器三";
+            //     }
+            //     else if(row.type == 3){
+            //         row.type = "拉链探测器四";
+            //     }
+            //     return row.type;
+            // },
             formatType: function (row) {
-                if(row.type == 0){
-                    row.type = "拉链探测器一";
-                }
-                else if(row.type == 1){
-                    row.type = "拉链探测器二";
+                return row.temperature+"℃";
+            },
+            formatWeight: function (row) {
+                return row.weight+"kg";
+            },
+            formatGarbageType: function (row) {
+                if(row.type == 1){
+                    row.type = "厨余垃圾";
                 }
                 else if(row.type == 2){
-                    row.type = "拉链探测器三";
+                    row.type = "可回收垃圾";
                 }
                 else if(row.type == 3){
-                    row.type = "拉链探测器四";
+                    row.type = "其他垃圾";
+                }
+                else if(row.type == 4){
+                    row.type = "有害垃圾";
                 }
                 return row.type;
             },
+            formatTime: function (row) {
+                if(row.updateTime != null){
+                    return row.updateTime;
+                }else{
+                    return row.createTime;
+                }
+            },
+
             //新增终端界面
             openCreatePanel() {
                 // row.site_id = this.routeParam.siteId;
@@ -201,13 +241,14 @@
                 );
             },
             getMqttList(){
-                let url = this.getMqttListUrl;
+                // let url = this.getMqttListUrl;
+                let url = this.getGarbageMqttEquipListUrl;
                 let data = {
                     siteId: this.routeParam.siteId,
-                    type:this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
+                    // type:this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
                     currentPage:this.common.page,
                     pageSize:this.common.pageSize,
-                    inquire:this.inputBoxValue
+                    // inquire:this.inputBoxValue
                 };
                 this.apiPost(url, data).then((res) => {
                     this.mqttDeviceData = res.data.pageList;
@@ -253,12 +294,14 @@
 
                 });
             },
+            //查看
             checkMqttTerminal(row){
+                // row.type = this.routeParam.type,
                 row.site_id = this.routeParam.siteId;
                 row.equipmentTypeValue = this.equipmentTypeValue;
                 row.inputBoxValue = this.inputBoxValue;
                 row.page = this.common.page;
-                row.type;
+                // row.type;
                 this.$router.push({
                     name:'mqttInformation',
                     params:row,
@@ -266,7 +309,36 @@
                     //     siteName:row.siteName,
                     //     id:row.siteId
                     // }
+                    // params:{
+                    //     id:row.unid,
+                    //     siteName:row.siteName,
+                    //     projectId:row.projectId,
+                    //     deviceId:row.deviceId,
+                    //     temperature:row.temperature,//温度
+                    //     weight:row.weight,//温度
+                    //     type:row.type,//垃圾类型
+                    //     createTime:row.createTime, //报警时间
+                    // }
                 });
+            },
+            //查看
+            alarmDetail(rows) {
+                console.log(rows);
+                this.$router.push(
+                    {
+                        name: 'garbageHistoryNotForFull',
+                        params:{
+                            id:rows.unid,
+                            siteName:rows.siteName,
+                            projectId:rows.projectId,
+                            deviceId:rows.deviceId,
+                            temperature:rows.temperature,//温度
+                            weight:rows.weight,//温度
+                            type:rows.type,//垃圾类型
+                            createTime:rows.createTime, //报警时间
+                        }
+                    }
+                );
             },
             delMqttTerminal(row){
                 this.delMqttEquipId = row.id;

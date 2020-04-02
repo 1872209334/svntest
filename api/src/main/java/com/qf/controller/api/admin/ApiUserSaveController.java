@@ -1,5 +1,7 @@
 package com.qf.controller.api.admin;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.qf.model.admin.*;
+import com.qf.service.admin.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,15 +26,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.qf.common.JwtConfig;
 import com.qf.common.apiLimit.ApiLimitConfig;
 import com.qf.common.systemLog.SystemHistoryAnnotation;
-import com.qf.model.admin.HixentAppUser;
-import com.qf.model.admin.HixentArea;
-import com.qf.model.admin.HixentCompany;
-import com.qf.model.admin.HixentDictionary;
-import com.qf.model.admin.HixentPermissions;
-import com.qf.model.admin.HixentProvince;
-import com.qf.model.admin.HixentRole;
-import com.qf.model.admin.HixentSite;
-import com.qf.model.admin.HixentUser;
 import com.qf.model.admin.valid.ValidHixentAppUserMore;
 import com.qf.model.admin.valid.ValidHixentArea;
 import com.qf.model.admin.valid.ValidHixentCompanySave;
@@ -40,12 +35,6 @@ import com.qf.model.admin.valid.ValidHixentUserMore;
 import com.qf.model.admin.valid.ValidSaveDictionary;
 import com.qf.model.fire.HixentArcProjectType;
 import com.qf.model.fire.valid.ValidHixentArcProjectType;
-import com.qf.service.admin.CommonService;
-import com.qf.service.admin.HixentCompanyService;
-import com.qf.service.admin.HixentDictionaryService;
-import com.qf.service.admin.HixentMessageService;
-import com.qf.service.admin.HixentPermissionsRoleService;
-import com.qf.service.admin.HixentUserService;
 import com.qf.service.app.HixentAppUserService;
 import com.qf.service.fire.HixentArcProjectTypeService;
 import com.qf.service.fire.HixentArcWarningListService;
@@ -88,6 +77,9 @@ public class ApiUserSaveController {
 
 	@Autowired
 	private CommonService commonService;
+
+	@Autowired
+	private HixentCleanUserService hixentCleanUserService;
 
 	@Resource
 	private RedisUtil redisUtil;
@@ -151,7 +143,7 @@ public class ApiUserSaveController {
 
 	/**
 	 * 新增管理员省联动获取地区和项目
-	 *  author RuanYu
+	 *  author zhangjun
 	 */
 	//@ApiLimitConfig(count = 1, time = 1000)
 	@RequestMapping(value = "/getCityAndSite", method = RequestMethod.POST)
@@ -382,6 +374,261 @@ public class ApiUserSaveController {
 				}
 			}
 			return ReturnUtil.Success(message);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 添加保洁员 author zhangjun
+	 */
+	// @RequiresPermissions(value = {"parc_savaUser"})
+	// @RequiresRoles(value = {"rarc_1"})
+	//@ApiLimitConfig(count = 1, time = 1000)
+	@RequestMapping(value = "/saveToCleanUser", method = RequestMethod.POST)
+	@SystemHistoryAnnotation(opration = "添加保洁员")
+	public ModelMap saveToCleanUser(@Valid HixentCleanUser user, BindingResult bindingResult) {
+		try {
+
+			if (bindingResult.hasErrors()) {
+				String message = "";
+				List<FieldError> list = bindingResult.getFieldErrors();
+				for (int i = 0; i < list.size(); i++) {
+					message += list.get(i).getDefaultMessage() + ";";
+				}
+				return ReturnUtil.Error(message);
+			}
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    	    HttpServletRequest request = requestAttributes.getRequest();
+    		String auth      = request.getHeader(jwtConfig.getJwtHeader());
+        	auth             = auth.substring(7, auth.length());
+        	Claims claims    = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+            String userId    = claims.getId();
+            String[] userArr = userId.split("_");
+            if( !userArr[0].equals("admin") ){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+        	HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+            if(userinfo == null){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+//            Integer pid = userinfo.getId();
+//			// 获取数据
+//			Integer id = user.getId();
+//			Integer fireRole = user.getFireRole();
+//			Integer cid = user.getCid();
+//			String mobile = user.getMobile().trim();
+//			String account = user.getAccount().trim();
+//			String bid = user.getBid();
+//			Integer areaId = user.getAreaId();
+//			Integer provinceId = user.getProvinceId();
+//			String remark = user.getRemark();
+//			if (account.equals("")) {
+//				return ReturnUtil.Error("姓名需填写！");
+//			} else if (mobile.equals("")) {
+//				return ReturnUtil.Error("手机号需填写！");
+//			}
+//			else if(fireRole==0) {
+//				return ReturnUtil.Error("角色需选择！");
+//			}
+			Date df = new Date();
+            user.setCreate_time(df);
+			String message="";
+			int result = hixentCleanUserService.addCleanUser(user);
+			if(result >= 0){
+				message = "添加成功";
+			}
+			return ReturnUtil.Success(message);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 删除保洁员 author zhangjun
+	 */
+	// @RequiresPermissions(value = {"parc_savaUser"})
+	// @RequiresRoles(value = {"rarc_1"})
+	//@ApiLimitConfig(count = 1, time = 1000)
+	@RequestMapping(value = "/deleteToCleanUser", method = RequestMethod.POST)
+	@SystemHistoryAnnotation(opration = "删除保洁员")
+	public ModelMap deleteToCleanUser(@Valid HixentCleanUser user, BindingResult bindingResult) {
+		try {
+
+			if (bindingResult.hasErrors()) {
+				String message = "";
+				List<FieldError> list = bindingResult.getFieldErrors();
+				for (int i = 0; i < list.size(); i++) {
+					message += list.get(i).getDefaultMessage() + ";";
+				}
+				return ReturnUtil.Error(message);
+			}
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    	    HttpServletRequest request = requestAttributes.getRequest();
+    		String auth      = request.getHeader(jwtConfig.getJwtHeader());
+        	auth             = auth.substring(7, auth.length());
+        	Claims claims    = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+            String userId    = claims.getId();
+            String[] userArr = userId.split("_");
+            if( !userArr[0].equals("admin") ){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+        	HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+            if(userinfo == null){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+
+//			Date df = new Date();
+//            user.setCreate_time(df);
+			String message="";
+			int result = hixentCleanUserService.deleteCleanUser(user.getUnid());
+			if(result >= 0){
+				message = "删除成功";
+			}
+			return ReturnUtil.Success(message);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 更新保洁员 author zhangjun
+	 */
+	// @RequiresPermissions(value = {"parc_savaUser"})
+	// @RequiresRoles(value = {"rarc_1"})
+	//@ApiLimitConfig(count = 1, time = 1000)
+	@RequestMapping(value = "/updateToCleanUser", method = RequestMethod.POST)
+	@SystemHistoryAnnotation(opration = "更新保洁员")
+	public ModelMap updateToCleanUser(@Valid HixentCleanUser user, BindingResult bindingResult) {
+		try {
+
+			if (bindingResult.hasErrors()) {
+				String message = "";
+				List<FieldError> list = bindingResult.getFieldErrors();
+				for (int i = 0; i < list.size(); i++) {
+					message += list.get(i).getDefaultMessage() + ";";
+				}
+				return ReturnUtil.Error(message);
+			}
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    	    HttpServletRequest request = requestAttributes.getRequest();
+    		String auth      = request.getHeader(jwtConfig.getJwtHeader());
+        	auth             = auth.substring(7, auth.length());
+        	Claims claims    = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+            String userId    = claims.getId();
+            String[] userArr = userId.split("_");
+            if( !userArr[0].equals("admin") ){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+        	HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+            if(userinfo == null){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+
+//			Date df = new Date();
+//            user.setCreate_time(df);
+			String message="";
+			int result = hixentCleanUserService.updateCleanUser(user);
+			if(result >= 0){
+				message = "更新成功";
+			}
+			return ReturnUtil.Success(message);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 查询单个保洁员 author zhangjun
+	 */
+	// @RequiresPermissions(value = {"parc_savaUser"})
+	// @RequiresRoles(value = {"rarc_1"})
+	//@ApiLimitConfig(count = 1, time = 1000)
+	@RequestMapping(value = "/selectToCleanUser", method = RequestMethod.POST)
+	@SystemHistoryAnnotation(opration = "查询单个保洁员")
+	public ModelMap selectToCleanUser(int unid, Integer currentPage, Integer pageSize,BindingResult bindingResult) {
+		try {
+
+			if (bindingResult.hasErrors()) {
+				String message = "";
+				List<FieldError> list = bindingResult.getFieldErrors();
+				for (int i = 0; i < list.size(); i++) {
+					message += list.get(i).getDefaultMessage() + ";";
+				}
+				return ReturnUtil.Error(message);
+			}
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    	    HttpServletRequest request = requestAttributes.getRequest();
+    		String auth      = request.getHeader(jwtConfig.getJwtHeader());
+        	auth             = auth.substring(7, auth.length());
+        	Claims claims    = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+            String userId    = claims.getId();
+            String[] userArr = userId.split("_");
+            if( !userArr[0].equals("admin") ){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+        	HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+            if(userinfo == null){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+
+//			Date df = new Date();
+//            user.setCreate_time(df);
+			JSONObject json = new JSONObject();
+			String message="";
+			HixentCleanUser hixentCleanUser= hixentCleanUserService.selectCleanUser(unid);
+
+			if(hixentCleanUser != null){
+				message = "查询单个成功";
+				json.put("selectHixentCleanUser",hixentCleanUser);
+			}
+			return ReturnUtil.Success(message,json);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 查询全部保洁员 author zhangjun
+	 */
+	// @RequiresPermissions(value = {"parc_savaUser"})
+	// @RequiresRoles(value = {"rarc_1"})
+	//@ApiLimitConfig(count = 1, time = 1000)
+	@RequestMapping(value = "/selectAllToCleanUser", method = RequestMethod.POST)
+	@SystemHistoryAnnotation(opration = "查询全部保洁员")
+	public ModelMap selectAllToCleanUser(Integer currentPage, Integer pageSize) {//, BindingResult bindingResult
+		try {
+
+//			if (bindingResult.hasErrors()) {
+//				String message = "";
+//				List<FieldError> list = bindingResult.getFieldErrors();
+//				for (int i = 0; i < list.size(); i++) {
+//					message += list.get(i).getDefaultMessage() + ";";
+//				}
+//				return ReturnUtil.Error(message);
+//			}
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    	    HttpServletRequest request = requestAttributes.getRequest();
+    		String auth      = request.getHeader(jwtConfig.getJwtHeader());
+        	auth             = auth.substring(7, auth.length());
+        	Claims claims    = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+            String userId    = claims.getId();
+            String[] userArr = userId.split("_");
+            if( !userArr[0].equals("admin") ){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+        	HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+            if(userinfo == null){
+            	return ReturnUtil.Error("已退出，请重新登录！");
+            }
+
+//			Date df = new Date();
+//            user.setCreate_time(df);
+			JSONObject json = new JSONObject();
+			String message="";
+			List<HixentCleanUser> hixentCleanUser= hixentCleanUserService.selectAllCleanUser(pageSize,currentPage);
+			int countHixentCleanUser = hixentCleanUserService.countAllCleanUser();
+			if(countHixentCleanUser > 0){
+				message = "查询全部成功";
+				json.put("selectAllHixentCleanUser",hixentCleanUser);
+				json.put("countHixentCleanUser",countHixentCleanUser);
+			}
+			return ReturnUtil.Success(message,json);
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}

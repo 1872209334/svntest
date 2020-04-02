@@ -5,7 +5,7 @@
         </div>
         <div style="height: 100%;line-height: 64px; width: 450px; float: left;">
             <p style="letter-spacing:2px;font-size: 1.5rem;margin-top: 1px;">
-                {{projectTitle}}物联大数据管理平台
+                {{projectTitle}}智能垃圾站运营管理平台<!--物联大数据管理平台-->
             </p>
         </div>
         <div>

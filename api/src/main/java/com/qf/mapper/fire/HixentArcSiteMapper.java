@@ -7,6 +7,7 @@ import com.qf.model.fire.HixentArcZipperUnionInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -19,6 +20,18 @@ public interface HixentArcSiteMapper {
 	//新建项目
 	Integer insertNewProject(HixentArcSite params);
 
+	//新建项目更改后代码
+	Integer insertNewProjectSecond(HixentArcSite params);
+
+	//新增中控
+	Integer insertNewDeviceController(@Param("id") String id, @Param("siteCode") String siteCode,@Param("deviceCode") String deviceCode, @Param("phoneNumber") String phoneNumber,
+							@Param("devicePlace") String devicePlace, @Param("niName") String niName);//,@Param("publishDate") Date publishDate
+
+	//查询是否存在中控
+	Integer existsDevice(@Param("siteCode") String siteCode);
+
+	//设置中控存在无线设备
+	Integer insertNewWireless(@Param("id") String id,@Param("siteCode") String siteCode);
 	//新建终端
 	Integer insertNewDevice(@Param("id") String id, @Param("siteCode") String siteCode, @Param("type") String type);
 

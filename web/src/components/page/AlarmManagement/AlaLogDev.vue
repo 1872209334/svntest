@@ -6,13 +6,13 @@
             <div class="myNavigation">
                 <el-breadcrumb separator="/" style="display: inline-block">
                     <el-breadcrumb-item>
-                        <span style="font-size: 16px;color:#303313;">报警管理</span>
+                        <span style="font-size: 16px;color:#303313;">统计管理</span>
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        <span style="font-size: 14px;color:#606266;">报警日志</span>
+                        <span style="font-size: 14px;color:#606266;">满载历史</span>
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        <span style="font-size: 14px;color:#606266;">终端报警信息</span>
+                        <span style="font-size: 14px;color:#606266;">满载详细信息</span>
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
@@ -21,11 +21,11 @@
                 <table style="width: 100%; font-weight: 300;font-size: 14px;">
                     <tr>
                         <td width="155px" style="background-color: #F6F7FB;">
-                            项&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            目 ：</td>
+                            站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            点：</td><!--项目-->
                         <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.siteName}}</td>
                         <td width="155px" style="background-color: #F6F7FB;">
-                            所&nbsp;&nbsp;属&nbsp;&nbsp;项&nbsp;&nbsp;目 ：</td>
+                            站&nbsp;&nbsp;点&nbsp;&nbsp;I&nbsp;&nbsp;D ：</td><!--所属项目-->
                         <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.niName}}</td>
                         <td width="155px" style="background-color: #F6F7FB;">
                             终&nbsp;&nbsp;端&nbsp;&nbsp;编&nbsp;&nbsp;号 ：</td>
@@ -34,21 +34,21 @@
 
                     <tr>
                         <td style="background-color: #F6F7FB;">
-                            成&nbsp;&nbsp;品&nbsp;&nbsp;计&nbsp;&nbsp;数 ：</td>
-                        <td class="pricrTd">&nbsp;&nbsp;{{routeParam.tempration}}件</td>
-                        <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
+                            垃&nbsp;&nbsp;圾&nbsp;&nbsp;类&nbsp;&nbsp;型 ：</td><!--成品计数-->
+                        <td class="pricrTd">&nbsp;&nbsp;{{routeParam.type}}</td>
+                        <!--<td style="background-color: #F6F7FB;letter-spcing: 0.2px;">-->
                             <!--处&nbsp;&nbsp;理&nbsp;&nbsp;人&nbsp;&nbsp;员 ：</td>-->
                         <!--<td class="pricrTd">&nbsp;&nbsp;{{warnInfo.appUserAccount?warnInfo.appUserAccount:""}}</td>-->
                         <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            次&nbsp;&nbsp;品&nbsp;&nbsp;计&nbsp;&nbsp;数 ：</td>
-                        <td class="pricrTd">&nbsp;&nbsp;{{routeParam.defectiveSum}}件</td>
+                            温&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度 ：</td><!--次品计数-->
+                        <td class="pricrTd">&nbsp;&nbsp;{{routeParam.temperature}}℃</td>
                         <!--<td style="background-color: #F6F7FB;">-->
                             <!--电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
                             <!--话 ：</td>-->
                         <!--<td class="pricrTd">&nbsp;&nbsp;{{warnInfo.appUserPhone?warnInfo.appUserPhone:""}}</td>-->
                         <td style="background-color: #F6F7FB;">
-                            循&nbsp;&nbsp;环&nbsp;&nbsp;次&nbsp;&nbsp;数 ：</td>
-                        <td class="pricrTd">&nbsp;&nbsp;{{routeParam.totalCycles}}</td>
+                            箱&nbsp;&nbsp;内&nbsp;&nbsp;重&nbsp;&nbsp;量 ：</td><!--循环次数-->
+                        <td class="pricrTd">&nbsp;&nbsp;{{routeParam.weight}}kg</td>
                     </tr>
 
                     <tr>
@@ -56,11 +56,11 @@
                             报&nbsp;&nbsp;警&nbsp;&nbsp;时&nbsp;&nbsp;间 ：</td>
                         <td colspan="5" class="pricrTd">&nbsp;&nbsp;{{routeParam.warnTime}}</td>
                     </tr>
-                    <tr>
-                        <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            处&nbsp;&nbsp;理&nbsp;&nbsp;时&nbsp;&nbsp;间 ：</td>
-                        <td colspan="5" class="pricrTd">&nbsp;&nbsp;{{routeParam.updateTime}}</td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
+                            <!--处&nbsp;&nbsp;理&nbsp;&nbsp;时&nbsp;&nbsp;间 ：</td>-->
+                        <!--<td colspan="5" class="pricrTd">&nbsp;&nbsp;{{routeParam.updateTime}}</td>-->
+                    <!--</tr>-->
 
                     <!--<tr>-->
                         <!--<td style="background-color: #F6F7FB;">-->
@@ -69,32 +69,32 @@
                         <!--<td colspan="5" class="pricrTd">&nbsp;&nbsp;</td>-->
                     <!--</tr>-->
 
-                    <tr>
-                        <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            是&nbsp;&nbsp;否&nbsp;&nbsp;确&nbsp;&nbsp;认 ：</td>
-                        <td colspan="5" class="pricrTd" style="color: #71c647">
-                            &nbsp;&nbsp;{{routeParam.isDeal}}
-                        </td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
+                            <!--是&nbsp;&nbsp;否&nbsp;&nbsp;处&nbsp;&nbsp;理 ：</td>-->
+                        <!--<td colspan="5" class="pricrTd" style="color: #71c647">-->
+                            <!--&nbsp;&nbsp;{{routeParam.isDeal}}-->
+                        <!--</td>-->
+                    <!--</tr>-->
 
-                    <tr>
-                        <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            报&nbsp;&nbsp;警&nbsp;&nbsp;原&nbsp;&nbsp;因 ：</td>
-                        <td colspan="5" style="color: red;" align="left"  class="pricrTd">
-                            &nbsp;&nbsp;{{routeParam.protocolNode}}
-                        </td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
+                            <!--报&nbsp;&nbsp;警&nbsp;&nbsp;原&nbsp;&nbsp;因 ：</td>-->
+                        <!--<td colspan="5" style="color: red;" align="left"  class="pricrTd">-->
+                            <!--&nbsp;&nbsp;{{routeParam.protocolNode}}-->
+                        <!--</td>-->
+                    <!--</tr>-->
 
-                    <tr>
-                        <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            现&nbsp;&nbsp;场&nbsp;&nbsp;图&nbsp;&nbsp;片 ：</td>
-                        <td colspan="5" style="color: red;padding:12px 4px;" align="left"  class="pricrTd">
-                            &nbsp;&nbsp;
-                            <div v-show="warnInfo.imgUrl">
-                                <img v-for="item in imgList" :src="item" style="width: 300px;height: 240px;margin-left: 5px">
-                            </div>
-                        </td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td style="background-color: #F6F7FB;letter-spacing: 0.2px;">-->
+                            <!--现&nbsp;&nbsp;场&nbsp;&nbsp;图&nbsp;&nbsp;片 ：</td>-->
+                        <!--<td colspan="5" style="color: red;padding:12px 4px;" align="left"  class="pricrTd">-->
+                            <!--&nbsp;&nbsp;-->
+                            <!--<div v-show="warnInfo.imgUrl">-->
+                                <!--<img v-for="item in imgList" :src="item" style="width: 300px;height: 240px;margin-left: 5px">-->
+                            <!--</div>-->
+                        <!--</td>-->
+                    <!--</tr>-->
                 </table>
             </div>
 

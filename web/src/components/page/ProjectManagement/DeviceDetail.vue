@@ -8,10 +8,10 @@
                         <div style="height: 25px;width:100%;padding-top: 0;">
                             <el-breadcrumb separator="/" style="display: inline-block">
                                 <el-breadcrumb-item>
-                                    <span style="font-size: 16px;color:#303313;">项目管理</span>
+                                    <span style="font-size: 16px;color:#303313;">站点管理</span>
                                 </el-breadcrumb-item>
                                 <el-breadcrumb-item>
-                                    <span style="font-size: 14px;color:#606266;">中控信息</span>
+                                    <span style="font-size: 14px;color:#606266;">站点信息</span>
                                 </el-breadcrumb-item>
                             </el-breadcrumb>
                         </div>
@@ -19,7 +19,7 @@
                     <div style="width: 100%;height: 16%; margin-top: 1%; margin-left: -2px;">
                         <div style="margin-top: 0; float: left;">
                             <i class="okay myIcon-xiangmu" style="font-size: 23px;color: orange;"></i>
-                            <span style="font-size: 20px;font-weight: 500;">中控：</span>
+                            <span style="font-size: 20px;font-weight: 500;">站点：</span>
                             <span>
                                 <i v-show="efmInfo.isOnline == 1" class="el-icon-success" style="color: limegreen;position: relative;top: -1px;"></i>
                                 <i v-show="efmInfo.isOnline == 0" class="el-icon-warning" style="color: lightgray;position: relative;top: -1px"></i>
@@ -30,9 +30,9 @@
                         <i class="okay myIcon-xiugai" style="font-size: 15px" @click="editNameBox = true;efmNameInput = routeParam.efmName"></i>
                         </span>
                         </div>
-                        <div style="float: right;position: relative;left: 2px;">
-                            <el-button class="v-1-0-0-Button" @click="checkEfm">查看</el-button>
-                        </div>
+                        <!--<div style="float: right;position: relative;left: 2px;">-->
+                            <!--<el-button class="v-1-0-0-Button" @click="checkEfm">查看</el-button>-->
+                        <!--</div>-->
 
                     </div>
 
@@ -42,106 +42,123 @@
                             <tr >
                                 <td class="nameTd">位&nbsp;&nbsp;&nbsp;&nbsp;置：</td>
                                 <td class="priceTd">
-                                    {{efmDetail.device_place}}
+                                    <!--{{efmDetail.device_place}}-->
+                                    {{efmDetail.siteName}}
                                 </td>
                                 <td class="nameTd">设 备 数：</td>
                                 <td class="priceTd">
-                                    {{efmInfo.equipCount}}
+                                    <!--{{efmInfo.equipCount}}-->
+                                    {{efmDetail.deviceSum}}
                                 </td>
-                                <td align="left" class="nameTd">报 警 数：</td>
+                                <td align="left" class="nameTd">预留电话：</td>
                                 <td align="left" class="priceTd">
-                                    {{efmInfo.equipAlarmCount}}
+                                    <!--{{efmInfo.equipAlarmCount}}-->
+                                    {{efmDetail.phoneNumber}}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="nameTd">预留电话：</td>
+                                <td class="nameTd">厨余垃圾数量：</td>
                                 <td class="priceTd">
-                                    {{efmDetail.tel}}
+                                    <!--{{efmDetail.tel}}-->
+                                    {{efmDetail.kitchenGarbage}}
                                 </td>
-                                <td align="left" class="nameTd">离 线 数：</td>
-                                <td align="left" class="priceTd">{{efmInfo.equipOffLineCount}}</td>
-                                <td align="left" class="nameTd">故 障 数：</td>
-                                <td align="left" class="priceTd">{{efmInfo.equipFaultCount}}</td>
+                                <td align="left" class="nameTd">可回收垃圾数量：</td>
+                                <td align="left" class="priceTd">
+                                    <!--{{efmInfo.equipOffLineCount}}-->
+                                    {{efmDetail.recyclableGarbage}}
+                                </td>
+                                <td align="left" class="nameTd">其他垃圾数量：</td>
+                                <td align="left" class="priceTd">
+                                    <!--{{efmInfo.equipFaultCount}}-->
+                                    {{efmDetail.otherGarbage}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" class="nameTd">有害垃圾数量：</td>
+                                <td align="left" class="priceTd">
+                                <!--{{efmInfo.equipFaultCount}}-->
+                                {{efmDetail.harmfulGarbage}}
+                                </td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <div style="height:calc(100% - (36.5% + 60px)) ;margin: 20px 24px;background-color: #fff;min-height:500px;">
-                <div style="padding-top: 12px;height: calc(100% - 10px)">
-                    <div style="width:100%;background:#fff; height: 100%;overflow: hidden;">
-                        <el-radio-group v-model="equipType" @change="changeEquipType" style="padding-left: 16px">
-<!--                            <el-radio-button label="0">电弧探测器</el-radio-button>-->
-<!--                            <el-radio-button label="1">组合式探测器</el-radio-button>-->
-                            <el-radio-button label="0">终端信息</el-radio-button>
-                        </el-radio-group>
-                        <div style="margin-top: 10px;padding-left: 16px;padding-right: 16px">
-                            <el-input id="searchKeys" v-model="equipInput" placeholder="请输入编号" style="width: 200px;"></el-input>
-                            <el-button class="v-1-0-0-Button" style="margin-left: 5px;" @click="getArcEquip">搜索</el-button>
-<!--                            <button class="primary" style="margin-left: 5px;" id="resetBtn">重置</button>-->
-                            <el-button class="v-1-0-0-Button" style="margin-left: 5px;" @click="resetBtn">重置</el-button>
-                            <el-button class="v-1-0-1-Button" v-if="actionList.indexOf('deleteDevice')>-1" icon="el-icon-delete" @click="batchDelete" style="float: right">批量删除</el-button>
-<!--                            <el-button class="v-1-0-0-Button" @click="alertClear" style="float: right">广播消音</el-button>-->
-                        </div>
+            <!--<div style="height:calc(100% - (36.5% + 60px)) ;margin: 20px 24px;background-color: #fff;min-height:500px;">-->
+                <!--<div style="padding-top: 12px;height: calc(100% - 10px)">-->
+                    <!--<div style="width:100%;background:#fff; height: 100%;overflow: hidden;">-->
+                        <!--<el-radio-group v-model="equipType" @change="changeEquipType" style="padding-left: 16px">-->
+<!--&lt;!&ndash;                            <el-radio-button label="0">电弧探测器</el-radio-button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <el-radio-button label="1">组合式探测器</el-radio-button>&ndash;&gt;-->
+                            <!--<el-radio-button label="0">终端信息</el-radio-button>-->
+                        <!--</el-radio-group>-->
+                        <!--<div style="margin-top: 10px;padding-left: 16px;padding-right: 16px">-->
+                            <!--<el-input id="searchKeys" v-model="equipInput" placeholder="请输入编号" style="width: 200px;"></el-input>-->
+                            <!--<el-button class="v-1-0-0-Button" style="margin-left: 5px;" @click="getArcEquip">搜索</el-button>-->
+<!--&lt;!&ndash;                            <button class="primary" style="margin-left: 5px;" id="resetBtn">重置</button>&ndash;&gt;-->
+                            <!--<el-button class="v-1-0-0-Button" style="margin-left: 5px;" @click="resetBtn">重置</el-button>-->
+                            <!--<el-button class="v-1-0-1-Button" v-if="actionList.indexOf('deleteDevice')>-1" icon="el-icon-delete" @click="batchDelete" style="float: right">批量删除</el-button>-->
+<!--&lt;!&ndash;                            <el-button class="v-1-0-0-Button" @click="alertClear" style="float: right">广播消音</el-button>&ndash;&gt;-->
+                        <!--</div>-->
 
-                        <!--中控信息设备信息列表-->
-                        <div style="height:calc(100% - 146px);margin: 15px 16px 0 16px;border: 1px solid #F0F2F5;overflow: auto">
-                            <el-table ref="multipleTable" height="100%" :data="equipList"
-                                      tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" :header-cell-style="tableStyle">
+                        <!--&lt;!&ndash;中控信息设备信息列表&ndash;&gt;-->
+                        <!--<div style="height:calc(100% - 146px);margin: 15px 16px 0 16px;border: 1px solid #F0F2F5;overflow: auto">-->
+                            <!--<el-table ref="multipleTable" height="100%" :data="equipList"-->
+                                      <!--tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" :header-cell-style="tableStyle">-->
 
-                                <el-table-column type="selection" width="48">
-                                </el-table-column>
+                                <!--<el-table-column type="selection" width="48">-->
+                                <!--</el-table-column>-->
 
-                                <el-table-column type="index" width="56" label="#">
-                                </el-table-column>
+                                <!--<el-table-column type="index" width="56" label="#">-->
+                                <!--</el-table-column>-->
 
-                                <el-table-column prop="serialNumber" :formatter="formatNumber" label="编号">
-                                </el-table-column>
+                                <!--<el-table-column prop="serialNumber" :formatter="formatNumber" label="编号">-->
+                                <!--</el-table-column>-->
 
-                                <el-table-column prop="message" label="信息" show-overflow-tooltip>
-                                </el-table-column>
+                                <!--<el-table-column prop="message" label="信息" show-overflow-tooltip>-->
+                                <!--</el-table-column>-->
 
-                                <el-table-column prop="tempration" label="温度" v-if="equipType == '1'" :key="Math.random()">
-                                </el-table-column>
+                                <!--<el-table-column prop="tempration" label="温度" v-if="equipType == '1'" :key="Math.random()">-->
+                                <!--</el-table-column>-->
 
-                                <el-table-column prop="broken_num" label="电压/电流" v-if="equipType == '1'" :key="Math.random()">
-                                </el-table-column>
+                                <!--<el-table-column prop="broken_num" label="电压/电流" v-if="equipType == '1'" :key="Math.random()">-->
+                                <!--</el-table-column>-->
 
-                                <el-table-column prop="is_alarm" :formatter="formatState" label="正常/告警"></el-table-column>
-                                <el-table-column fixed="right" label="操作">
-                                    <template slot-scope="scope">
-                                        <el-button
-                                            @click.native.prevent="checkTerminal(scope.row)"
-                                            type="text"
-                                            size="small">
-                                            <span style="color: #387EE8;">查看</span>
-                                        </el-button>
-                                        <el-button style="color: red;"
-                                                   v-if="actionList.indexOf('deleteDevice')>-1"
-                                            @click.native.prevent="delTerminal(scope.row)"
-                                            type="text"
-                                            size="small">
-                                            <span>删除</span>
-                                        </el-button>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
-                        </div>
-                        <div style="float: right;margin-right: 13px;">
-                            <el-pagination
-                                @size-change="handleSizeChange"
-                                @current-change="handleCurrentChange"
-                                :page-size="common.pageSize"
-                                :page-sizes="common.allSizes"
-                                layout="total,sizes, prev, pager, next, jumper"
-                                :total="common.total">
-                            </el-pagination>
-                        </div>
-                    </div>
-                </div>
+                                <!--<el-table-column prop="is_alarm" :formatter="formatState" label="正常/告警"></el-table-column>-->
+                                <!--<el-table-column fixed="right" label="操作">-->
+                                    <!--<template slot-scope="scope">-->
+                                        <!--<el-button-->
+                                            <!--@click.native.prevent="checkTerminal(scope.row)"-->
+                                            <!--type="text"-->
+                                            <!--size="small">-->
+                                            <!--<span style="color: #387EE8;">查看</span>-->
+                                        <!--</el-button>-->
+                                        <!--<el-button style="color: red;"-->
+                                                   <!--v-if="actionList.indexOf('deleteDevice')>-1"-->
+                                            <!--@click.native.prevent="delTerminal(scope.row)"-->
+                                            <!--type="text"-->
+                                            <!--size="small">-->
+                                            <!--<span>删除</span>-->
+                                        <!--</el-button>-->
+                                    <!--</template>-->
+                                <!--</el-table-column>-->
+                            <!--</el-table>-->
+                        <!--</div>-->
+                        <!--<div style="float: right;margin-right: 13px;">-->
+                            <!--<el-pagination-->
+                                <!--@size-change="handleSizeChange"-->
+                                <!--@current-change="handleCurrentChange"-->
+                                <!--:page-size="common.pageSize"-->
+                                <!--:page-sizes="common.allSizes"-->
+                                <!--layout="total,sizes, prev, pager, next, jumper"-->
+                                <!--:total="common.total">-->
+                            <!--</el-pagination>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
-            </div>
+            <!--</div>-->
         </div>
         <el-dialog :visible.sync="editNameBox" width="26%">
             <div style=" width:100%;text-align: center; font-size: 20px; margin: -10px auto auto auto;">
@@ -229,13 +246,16 @@
         },
         methods: {
             getEfmInfo(){
-                let url = this.getEfmInfoUrl;
+                // let url = this.getEfmInfoUrl;
+                let url = this.siteDetailUrl;
                 let data = {
-                    deviceId: this.routeParam.id,
+                    // deviceId: this.routeParam.id,
+                    siteCode: this.routeParam.siteCode,
                 };
                 this.apiPost(url, data).then((res) => {
                     this.efmInfo = res.data;
-                    this.efmDetail = this.efmInfo.getdeviceInfo;
+                    // this.efmDetail = this.efmInfo.getdeviceInfo;
+                    this.efmDetail = this.efmInfo.hixentArcSiteDetailDao;
                     console.log(res);
                 });
             },

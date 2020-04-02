@@ -21,11 +21,11 @@
                 <table style="width: 100%; font-weight: 300;font-size: 14px;">
                     <tr>
                         <td width="155px" style="background-color: #F6F7FB;">
-                            项&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            目 ：</td>
+                            站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            点 ：</td>
                         <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.siteName}}</td>
                         <td width="155px" style="background-color: #F6F7FB;">
-                            所&nbsp;&nbsp;属&nbsp;&nbsp;项&nbsp;&nbsp;目 ：</td>
+                            站&nbsp;&nbsp;点&nbsp;&nbsp;I&nbsp;&nbsp;D ：</td>
                         <td class="pricrTd" width="200px">&nbsp;&nbsp;{{routeParam.niName}}</td>
                         <td width="155px" style="background-color: #F6F7FB;">
                             终&nbsp;&nbsp;端&nbsp;&nbsp;编&nbsp;&nbsp;号 ：</td>
@@ -34,13 +34,13 @@
 
                     <tr>
                         <td style="background-color: #F6F7FB;">
-                            成&nbsp;&nbsp;品&nbsp;&nbsp;计&nbsp;&nbsp;数  ：</td>
+                            垃&nbsp;&nbsp;圾&nbsp;&nbsp;类&nbsp;&nbsp;型  ：</td>
                         <td class="pricrTd">&nbsp;&nbsp;{{routeParam.tempration}}</td>
                         <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            次&nbsp;&nbsp;品&nbsp;&nbsp;计&nbsp;&nbsp;数 ：</td>
+                            装&nbsp;&nbsp;&nbsp;载&nbsp;&nbsp;&nbsp;量 ：</td>
                         <td class="pricrTd">&nbsp;&nbsp;{{routeParam.defectiveSum}}</td>
                         <td style="background-color: #F6F7FB;">
-                            循&nbsp;&nbsp;环&nbsp;&nbsp;次&nbsp;&nbsp;数 ：</td>
+                            现&nbsp;&nbsp;承&nbsp;&nbsp;重&nbsp;&nbsp;量 ：</td>
                         <td class="pricrTd">&nbsp;&nbsp;{{routeParam.totalCycles}}</td>
                     </tr>
 
@@ -64,7 +64,7 @@
 
                     <tr>
                         <td style="background-color: #F6F7FB;letter-spacing: 0.2px;">
-                            是&nbsp;&nbsp;否&nbsp;&nbsp;确&nbsp;&nbsp;认 ：</td>
+                            是&nbsp;&nbsp;否&nbsp;&nbsp;处&nbsp;&nbsp;理 ：</td>
                         <td colspan="5" class="pricrTd" style="color: #71c647">
                             &nbsp;&nbsp;{{routeParam.isDeal}}
                         </td>

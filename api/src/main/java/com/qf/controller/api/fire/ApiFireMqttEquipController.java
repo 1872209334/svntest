@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.qf.model.fire.HixentArcGarbage;
+import com.qf.service.fire.HixentArcGarbageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -48,6 +50,9 @@ public class ApiFireMqttEquipController {
 	private HixentArcControllGroupService hixentArcaControllGroupService;
 
 	@Autowired
+	private HixentArcGarbageService hixentArcGarbageService;
+
+	@Autowired
 	private JwtConfig jwtConfig;
 
 	@Autowired
@@ -55,6 +60,167 @@ public class ApiFireMqttEquipController {
 
 	@Resource
 	private RedisUtil redisUtil;
+
+	/**
+	 * 无线列表 author zhangjun
+	 */
+	// @Transactional
+	// @ApiLimitConfig(count=1,time=1000)
+	// @RequiresPermissions(value = {"parc_saveDevice"})
+	@SystemHistoryAnnotation(opration = "依据垃圾类型查询垃圾箱历史信息")
+	@RequestMapping(value = "/getGarbageMqttEquipListHistory", method = RequestMethod.POST)
+	public ModelMap getGarbageMqttEquipListHistory(String deviceId, String type,
+			Integer currentPage, Integer pageSize) {
+		try {
+
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
+					.getRequestAttributes();
+			HttpServletRequest request = requestAttributes.getRequest();
+			String auth = request.getHeader(jwtConfig.getJwtHeader());
+			auth = auth.substring(7, auth.length());
+			Claims claims = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+			String userId = claims.getId();
+			String[] userArr = userId.split("_");
+			if (!userArr[0].equals("admin")) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+			HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+			if (userinfo == null) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+
+			List<HixentArcGarbage> garbageList = hixentArcGarbageService.selectGarbageByProjectIdAndType(deviceId,type,pageSize,currentPage);
+			
+			Integer garbageListCount = hixentArcGarbageService.countSelectGarbageByProjectIdAndType(deviceId,type);
+			JSONObject pageMqttEquipListData = new JSONObject();
+			
+			pageMqttEquipListData.put("total", garbageListCount);
+			pageMqttEquipListData.put("pageList", garbageList);
+			return ReturnUtil.Success("获取垃圾箱历史信息数据成功！", pageMqttEquipListData);
+
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+
+	/**
+	 * 无线列表 author zhangjun
+	 */
+	// @Transactional
+	// @ApiLimitConfig(count=1,time=1000)
+	// @RequiresPermissions(value = {"parc_saveDevice"})
+	@SystemHistoryAnnotation(opration = "查询垃圾箱信息无线列表")
+	@RequestMapping(value = "/getGarbageMqttEquipList", method = RequestMethod.POST)
+	public ModelMap getGarbageMqttEquipList(String siteId,
+			Integer currentPage, Integer pageSize) {
+		try {
+
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
+					.getRequestAttributes();
+			HttpServletRequest request = requestAttributes.getRequest();
+			String auth = request.getHeader(jwtConfig.getJwtHeader());
+			auth = auth.substring(7, auth.length());
+			Claims claims = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+			String userId = claims.getId();
+			String[] userArr = userId.split("_");
+			if (!userArr[0].equals("admin")) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+			HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+			if (userinfo == null) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+
+			List<HixentArcGarbage> garbageList = hixentArcGarbageService.selectGarbageByProjectId(siteId,pageSize,currentPage);
+
+			Integer garbageListCount = hixentArcGarbageService.countSelectGarbageByProjectId(siteId);
+			JSONObject pageMqttEquipListData = new JSONObject();
+
+			pageMqttEquipListData.put("total", garbageListCount);
+			pageMqttEquipListData.put("pageList", garbageList);
+			return ReturnUtil.Success("获取垃圾箱信息无线列表数据成功！", pageMqttEquipListData);
+
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 查询垃圾箱信息满载历史 author zhangjun
+	 */
+	// @Transactional
+	// @ApiLimitConfig(count=1,time=1000)
+	// @RequiresPermissions(value = {"parc_saveDevice"})
+	@SystemHistoryAnnotation(opration = "查询垃圾箱信息满载历史")
+	@RequestMapping(value = "/getGarbageFullHistoryList", method = RequestMethod.POST)
+	public ModelMap getGarbageFullHistoryList(String projectId,String deviceId,String type,
+			Integer currentPage, Integer pageSize) {
+		try {
+
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
+					.getRequestAttributes();
+			HttpServletRequest request = requestAttributes.getRequest();
+			String auth = request.getHeader(jwtConfig.getJwtHeader());
+			auth = auth.substring(7, auth.length());
+			Claims claims = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+			String userId = claims.getId();
+			String[] userArr = userId.split("_");
+			if (!userArr[0].equals("admin")) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+			HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+			if (userinfo == null) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+
+			List<HixentArcGarbage> garbageList = hixentArcGarbageService.selectGarbageFullHistory(projectId,deviceId,type,pageSize,currentPage);
+
+			Integer garbageListCount = hixentArcGarbageService.countSelectGarbageFullHistory(projectId,deviceId, type);
+			JSONObject pageMqttEquipListData = new JSONObject();
+
+			pageMqttEquipListData.put("total", garbageListCount);
+			pageMqttEquipListData.put("pageList", garbageList);
+			return ReturnUtil.Success("依据站点id和垃圾类型获取垃圾箱历史满载数据成功！", pageMqttEquipListData);
+
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	/**
+	 * 查询垃圾箱信息满载历史 author zhangjun
+	 */
+	// @Transactional
+	// @ApiLimitConfig(count=1,time=1000)
+	// @RequiresPermissions(value = {"parc_saveDevice"})
+	@SystemHistoryAnnotation(opration = "删除满载历史")
+	@RequestMapping(value = "/deleteFullHistoryByUnid", method = RequestMethod.POST)
+	public ModelMap deleteFullHistoryByUnid(Integer unid) {
+		try {
+
+			ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
+					.getRequestAttributes();
+			HttpServletRequest request = requestAttributes.getRequest();
+			String auth = request.getHeader(jwtConfig.getJwtHeader());
+			auth = auth.substring(7, auth.length());
+			Claims claims = jwtUtil.parseJWT(auth, jwtConfig.getSecret());
+			String userId = claims.getId();
+			String[] userArr = userId.split("_");
+			if (!userArr[0].equals("admin")) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+			HixentUser userinfo = hixentUserService.findByUserId(userArr[1]);
+			if (userinfo == null) {
+				return ReturnUtil.Error("已退出，请重新登录！");
+			}
+			Integer result = hixentArcGarbageService.deleteFullHistoryByUnid(unid);
+			return ReturnUtil.Success("依据unid删除满载历史成功！");
+
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+
+
+
 
 	/**
 	 * 无线列表 author RuanYu
@@ -91,10 +257,10 @@ public class ApiFireMqttEquipController {
 				 isGroup=0;
 				 checkGroup="yes";
 			}
-			
+
 			List<HixentArcEquipmentInfo> equipList = hixentArcaControllGroupService.getEquipList(type, siteId, null,
 					pageSize, currentPage, inquire, null,checkGroup,isGroup,parameterType,deviceType);
-			
+
 			if(equipList!=null) {
 				for (int i = 0; i < equipList.size(); i++) {
 					//告警信息
@@ -102,20 +268,20 @@ public class ApiFireMqttEquipController {
 	        		if(wl!=null) {
 	        			if( wl.size()>0 ){
 		        			equipList.get(i).setIs_alarm(1);
-			        		
+
 		        		}else{
 		        			equipList.get(i).setIs_alarm(0);
-		        		}		
+		        		}
 	        		}
-		        	
-				}	
+
+				}
 			}
-			
-			
-			Integer equipListCount = hixentArcaControllGroupService.getEquipListCount(type, siteId, null,inquire, 
+
+
+			Integer equipListCount = hixentArcaControllGroupService.getEquipListCount(type, siteId, null,inquire,
 					null,checkGroup,isGroup,parameterType,deviceType);
 			JSONObject pageMqttEquipListData = new JSONObject();
-			
+
 			pageMqttEquipListData.put("total", equipListCount);
 			pageMqttEquipListData.put("pageList", equipList);
 			return ReturnUtil.Success("获取无线列表数据成功！", pageMqttEquipListData);

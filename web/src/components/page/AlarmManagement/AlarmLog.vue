@@ -5,10 +5,10 @@
             <div class="myNavigation">
                 <el-breadcrumb separator="/" style="display: inline-block">
                     <el-breadcrumb-item>
-                        <span style="font-size: 16px;color:#303313;">报警管理</span>
+                        <span style="font-size: 16px;color:#303313;">统计管理</span>
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        <span style="font-size: 14px;color:#606266;">报警列表</span>
+                        <span style="font-size: 14px;color:#606266;">满载历史</span>
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
@@ -18,7 +18,7 @@
                 <!--项目下拉框-->
                 <div style="float: left; height:40px; width:135px;">
                     <div style="width:135px;">
-                        <el-select v-model="projectSelectVal" placeholder="项目" @change="getCenterControl">
+                        <el-select v-model="projectSelectVal" placeholder="请选择站点" @change="getCenterControl"><!--项目-->
                             <!--<el-option-->
                                 <!--label="不限"-->
                                 <!--value="0">-->
@@ -93,17 +93,23 @@
                           :header-cell-style="tableStyle">
                     <el-table-column type="index" label="#" width="56"></el-table-column>
 
-                    <el-table-column prop="siteName" label="项目" :formatter="formatProject"></el-table-column>
+                    <!--<el-table-column prop="siteName" label="站点" :formatter="formatProject"></el-table-column>&lt;!&ndash;项目&ndash;&gt;-->
+                    <el-table-column prop="siteName" label="所属项目" :formatter="formatProject"></el-table-column><!--项目-->
 
-                    <el-table-column prop="deviceId" label="设备id" :formatter="formatNiname" show-overflow-tooltip></el-table-column>
+                    <!--<el-table-column prop="deviceId" label="设备id" :formatter="formatNiname" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="temperature" label="温度" :formatter="formatTemperature" ></el-table-column>
 
                     <!--<el-table-column prop="serialNumber" :formatter="formatNumber" label="编号" width="60"></el-table-column>-->
 
-                    <el-table-column prop="createTime" label="报警时间" :formatter="getLocalTime" show-overflow-tooltip></el-table-column>
+                    <!--<el-table-column prop="createTime" label="报警时间" :formatter="getLocalTime" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="weight" label="箱内重量" :formatter="formatWeight" ></el-table-column>
 
-                    <el-table-column prop="alarmType" label="报警类型" :formatter="formatAlarmType" show-overflow-tooltip></el-table-column>
-                    <el-table-column prop="isDeal" label="处理状态" :formatter="formatIsDeal" show-overflow-tooltip></el-table-column>
-                    <el-table-column prop="type" label="设备类型" :formatter="formatType" show-overflow-tooltip></el-table-column>
+                    <!--<el-table-column prop="alarmType" label="报警类型" :formatter="formatAlarmType" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="garbageType" label="垃圾类型" :formatter="formatGarbageType" ></el-table-column>
+                    <!--<el-table-column prop="isDeal" label="处理状态" :formatter="formatIsDeal" show-overflow-tooltip></el-table-column>-->
+                    <el-table-column prop="time" label="更新时间" :formatter="formatTime" ></el-table-column>
+
+                    <!--<el-table-column prop="type" label="设备类型" :formatter="formatType" show-overflow-tooltip></el-table-column>-->
 
                     <el-table-column fixed="right" label="操作">
                         <template slot-scope="scope">
@@ -249,7 +255,8 @@
             resetBtn(){
                 this.projectSelectVal = '';
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
-                let url = this.getAlarmLogUrl;
+                // let url = this.getAlarmLogUrl;
+                let url = this.getGarbageFullHistoryListUrl;
                 let data = {
                     // isDevice: this.filters.deviceType,//1->终端,0->中控
                     // siteId: this.projectSelectVal == null?0:this.projectSelectVal,
@@ -258,17 +265,20 @@
                     // inquir: this.inputBoxValue,
                     projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    type:'',
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm,
+                    // isAlarm:this.common.isAlarm,
                     // type: this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
                     // warnIndex: this.warnIndex
                 };
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if (res.status === 200) {
-                        this.zipperAlarmLogData = res.data.zipperAlarmLog;
-                        this.common.total = res.data.zipperAlarmLogCount;
+                        // this.zipperAlarmLogData = res.data.zipperAlarmLog;
+                        // this.common.total = res.data.zipperAlarmLogCount;
+                        this.zipperAlarmLogData = res.data.pageList;
+                        this.common.total = res.data.total;
                     }
                     else{
                         this.$commonFn.showTip(res.message,3);
@@ -280,27 +290,53 @@
             },
             getAlarmLog() {
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
-                let url = this.getAlarmLogUrl;
+                // let url = this.getAlarmLogUrl;
+                let url = this.getGarbageFullHistoryListUrl;
                 // alert(JSON.parse(sessionStorage.getItem("user_info")).bid)
+
                 let data = {
                     // isDevice: this.filters.deviceType,//1->终端,0->中控
                     // projectId: this.projectSelectVal == null?'':this.projectSelectVal,
-                    projectId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    // projectId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     // deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
-                    deviceId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+
+                    // siteId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
+                    type:'',
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm,
+                    // isAlarm:this.common.isAlarm,
                     // type: this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
                     // warnIndex: this.warnIndex
                 };
+               //下面为改造前代码
+                // let data = {
+                //     // isDevice: this.filters.deviceType,//1->终端,0->中控
+                //     // projectId: this.projectSelectVal == null?'':this.projectSelectVal,
+                //     projectId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                //     // deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
+                //     deviceId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                //     // equipId: 0,
+                //     // inquir: this.inputBoxValue,
+                //     currentPage: this.common.page,
+                //     pageSize: this.common.pageSize,
+                //     isAlarm:this.common.isAlarm,
+                //     // type: this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
+                //     // warnIndex: this.warnIndex
+                // };
+
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
+                    // if (res.status === 200) {
+                    //     this.zipperAlarmLogData = res.data.zipperAlarmLog;
+                    //     this.common.total = res.data.zipperAlarmLogCount;
+                    // }
                     if (res.status === 200) {
-                        this.zipperAlarmLogData = res.data.zipperAlarmLog;
-                        this.common.total = res.data.zipperAlarmLogCount;
+                        this.zipperAlarmLogData = res.data.pageList;
+                        this.common.total = res.data.total;
                     }
                     else{
                         this.$commonFn.showTip(res.message,3);
@@ -309,9 +345,11 @@
                     _loading.close();
                 });
             },
+            //查询
             getAlarmLogBySiteId() {
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
-                let url = this.getAlarmLogBySiteIdUrl;
+                // let url = this.getAlarmLogBySiteIdUrl;
+                let url = this.getGarbageFullHistoryListUrl;
                 let data = {
                     // isDevice: this.filters.deviceType,//1->终端,0->中控
                     // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
@@ -329,8 +367,10 @@
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if (res.status === 200) {
-                        this.zipperAlarmLogData = res.data.zipperAlarmLog;
-                        this.common.total = res.data.zipperAlarmLogCount;
+                        // this.zipperAlarmLogData = res.data.zipperAlarmLog;
+                        // this.common.total = res.data.zipperAlarmLogCount;
+                        this.zipperAlarmLogData = res.data.pageList;
+                        this.common.total = res.data.total;
                     }
                     else{
                         this.$commonFn.showTip(res.message,3);
@@ -346,6 +386,34 @@
                     return '';
                 }
 
+            },
+            formatTemperature: function (row) {
+                return row.temperature+"℃";
+            },
+            formatWeight: function (row) {
+                return row.weight+"kg";
+            },
+            formatGarbageType: function (row) {
+                if(row.type == 1){
+                    row.type = "厨余垃圾";
+                }
+                else if(row.type == 2){
+                    row.type = "可回收垃圾";
+                }
+                else if(row.type == 3){
+                    row.type = "其他垃圾";
+                }
+                else if(row.type == 4){
+                    row.type = "有害垃圾";
+                }
+                return row.type;
+            },
+            formatTime: function (row) {
+                if(row.updateTime != null){
+                    return row.updateTime;
+                }else{
+                    return row.createTime;
+                }
             },
             // formatNiname(row){
             //     if(row.niName){
@@ -398,9 +466,10 @@
                     deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
+                    type:'',
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm,
+                    // isAlarm:this.common.isAlarm,
                     // isDevice: this.filters.deviceType,
                     // siteId: (this.projectSelectVal == null?0:this.projectSelectVal),
                     // deviceId: (this.centerControlVal == null?"":this.centerControlVal),
@@ -424,7 +493,8 @@
                 for (let i = 0; i < 10; i++) {
                     num += Math.ceil(Math.random() * 10)
                 }
-                link.setAttribute('download', '设备报警记录表.xlsx');
+                // link.setAttribute('download', '设备报警记录表.xlsx');
+                link.setAttribute('download', '满载记录表.xlsx');
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -446,15 +516,18 @@
                             // serialNumber:rows.serialNumber,
                             serialNumber:rows.deviceId,
                             // tempration:rows.tempration,
-                            tempration:rows.finishedSum,
-                            defectiveSum:rows.defectiveSum,//次品计数
-                            totalCycles:rows.totalCycles,//总循环次数
+                            temperature:rows.temperature,//温度
+                            weight:rows.weight,//温度
+                            type:rows.type,//垃圾类型
+                            // tempration:rows.finishedSum,
+                            // defectiveSum:rows.defectiveSum,//次品计数
+                            // totalCycles:rows.totalCycles,//总循环次数
                             // protocolNode:rows.protocolNode,
-                            protocolNode:rows.alarmType=='1'?'停电':'机器故障',//报警原因（类型）
-                            isDeal:rows.isDeal,
+                            // protocolNode:rows.alarmType=='1'?'停电':'机器故障',//报警原因（类型）
+                            // isDeal:rows.isDeal,
                             // warnTime:rows.wtime
                             warnTime:rows.createTime, //报警时间
-                            updateTime:rows.updateTime //处理时间
+                            // updateTime:rows.updateTime //处理时间
                         }
                     }
                 );
@@ -524,7 +597,8 @@
                 this.$commonFn.showConfirm(this.deleteSuccess);
             },
             deleteSuccess(){
-                let url = this.delZipperLogByIdUrl;
+                // let url = this.delZipperLogByIdUrl;//删除报警历史
+                let url = this.delFullHistoryByUnidUrl;//删除满载历史
                 let data = {
                     unid: this.delWarningId
                 };

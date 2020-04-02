@@ -3,8 +3,8 @@
         <div class="logo_box">
             <img src="../../resource/img/login_logo_1_30_kys.png">
         </div>
-        <div style="letter-spacing: 2px;color: white; font-weight: 300; font-size: 25px; height: 35px; margin:11% auto auto 66.5%;">
-            物联大数据管理平台
+        <div style="letter-spacing: 2px;color: white; font-weight: 300; font-size: 25px; height: 35px; margin:11% auto auto 66.5%;"><!--物联大数据管理平台-->
+            智能垃圾站运营管理平台
         </div>
         <!--登录面板-->
         <div class="login-box" v-if="loginPanelDisplay">

@@ -4,7 +4,7 @@
 <!--            <img src="../../resource/img/login_logo_1_30.png">-->
         </div>
         <div style="letter-spacing: 2px;color: white; font-weight: 300; font-size: 25px; height: 35px;text-align:center;margin-top: 10%"> <!-- margin:11% auto auto 66.5%-->
-            物联大数据管理平台
+            智能垃圾站运营管理平台
         </div>
 <!--        <div style="letter-spacing: 2px;color: white; font-weight: 300; font-size: 25px; height: 35px; margin:11%  ;">-->
 <!--            物联大数据管理平台-->

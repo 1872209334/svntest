@@ -1,5 +1,6 @@
 com\qf\util\PasswordUtil.class
 com\qf\model\fire\valid\ValidHixentControllGroup.class
+com\qf\service\admin\impl\HixentCleanUserServiceImpl.class
 com\qf\mapper\fire\HixentArcDeviceAlarmMapper.class
 com\qf\common\filter\AppCrosFilter.class
 com\qf\model\fire\HixentArcEfmBeat.class
@@ -8,6 +9,7 @@ com\qf\service\fire\HixentArcProjectEquipmentRelevanceService.class
 com\qf\model\websocket\WebSocketMessage.class
 com\qf\controller\api\fire\Test.class
 com\qf\model\fire\HixentArcZipperUnionInfo.class
+com\qf\mapper\fire\HixentArcSiteDetailMapper.class
 com\qf\controller\api\app\ApiAppCommonController.class
 com\qf\model\admin\HixentPermissionsRole.class
 com\qf\common\apiLimit\ApiLimitException.class
@@ -28,7 +30,9 @@ com\qf\model\fire\HixentArcEfmDevice.class
 com\qf\mapper\fire\app\HixentArcAppIndexMapper.class
 com\qf\controller\api\app\AppPublicController.class
 com\qf\controller\api\app\ApiAppUserIndexController.class
+com\qf\service\fire\HixentArcGarbageService.class
 com\qf\model\fire\HixentArcProjectEquipmentRelevance.class
+com\qf\service\fire\impl\HixentArcGarbageServiceImpl.class
 com\qf\util\ToolUtil.class
 com\qf\controller\common\JpushController.class
 com\qf\mapper\fire\HixentArcProjectEquipmentRelevanceMapper.class
@@ -102,11 +106,13 @@ com\qf\service\fire\HixentArcLogService.class
 com\qf\model\fire\HixentArcZipperInfo.class
 com\qf\common\redis\RedisCacheManager.class
 com\qf\model\fire\HixentArcLog.class
+com\qf\controller\api\fire\ApiSiteDetailController.class
 com\qf\common\mqtt\MqttProducerConfig.class
 com\qf\model\fire\valid\ValidHixentArcEfmDevice.class
 top\snailclimb\config\AliyunOSSConfig.class
 com\qf\service\socket\SocketService.class
 com\qf\model\websocket\WebSocketResponse.class
+com\qf\model\fire\HixentArcGarbage.class
 com\qf\Application.class
 com\qf\mapper\fire\HixentArcIndexMapper.class
 com\qf\service\fire\HixentArcEquipmentInfoService.class
@@ -115,6 +121,7 @@ com\qf\common\mybatis\DataBaseType$DatabaseType.class
 com\qf\service\app\HixentAppUserService.class
 com\qf\controller\api\fire\ApiFireAlarmListController.class
 com\qf\model\admin\valid\ValidHixentCompanySave.class
+com\qf\controller\api\fire\ApiPeopleStatisticalListController.class
 com\qf\common\mqtt\MqttCommon.class
 com\qf\util\JwtUtil.class
 com\qf\controller\common\MqttTestController.class
@@ -130,11 +137,14 @@ com\qf\model\fire\HixentArcWarningList.class
 com\qf\util\CommonUtil.class
 com\qf\controller\api\fire\ApiFireListController.class
 com\qf\mapper\fire\HixentArcAlarmLogMapper.class
+com\qf\model\fire\HixentArcPeopleStatistical.class
 com\qf\model\fire\HixentArcEquipmentInfoMqtt.class
+com\qf\mapper\admin\HixentCleanUserMapper.class
 com\qf\model\admin\HixentUser.class
 com\qf\controller\api\app\ApiAppUserSiteController.class
 com\qf\model\admin\valid\ValidHixentRole.class
 com\qf\util\MathUtil.class
+com\qf\service\fire\HixentArcSiteDetailService.class
 com\qf\common\mybatis\Datasource.class
 com\qf\model\fire\valid\ValidHixentEditEquipInfo.class
 com\qf\mapper\fire\HixentArcSiteEquipmentRelevanceMapper.class
@@ -146,9 +156,11 @@ com\qf\common\mybatis\DatabaseContextHolder.class
 com\qf\service\fire\HixentArcAlarmLogService.class
 com\qf\service\admin\HixentDictionaryService.class
 com\qf\model\admin\valid\ValidHixentPermissions.class
+com\qf\model\fire\HixentArcSiteDetailDao.class
 com\qf\service\fire\HixentArcSiteEquipmentRelevanceService.class
 com\qf\common\redis\RedisSessionDAO.class
 com\qf\model\fire\valid\ValidMqttIssuingInstructions.class
+com\qf\service\fire\impl\HixentArcSiteDetailServiceImpl.class
 com\qf\controller\api\fire\ApiFireSaveController.class
 com\qf\model\admin\valid\ValidHixentDictionary.class
 com\qf\common\systemLog\SystemHistoryAnnotation.class
@@ -172,6 +184,7 @@ com\qf\common\shiro\CustomShiroRealm.class
 com\qf\model\fire\valid\ValidHixentDeviceSave.class
 com\qf\service\fire\HixentArcDeviceAlarmService.class
 com\qf\common\mybatis\DataBaseType.class
+com\qf\mapper\fire\HixentArcGarbageMapper.class
 com\qf\model\admin\valid\ValidVerificationCode.class
 com\qf\model\fire\valid\ValidHixentEfmDevice.class
 com\qf\mapper\fire\HixentArcControllGroupMapper.class
@@ -203,9 +216,11 @@ com\qf\model\admin\valid\ValidHixentArea.class
 com\qf\controller\common\SocketAdminController.class
 com\qf\service\app\AppCommonService.class
 com\qf\mapper\admin\HixentMessageMapper.class
+com\qf\model\admin\HixentCleanUser.class
 com\qf\service\fire\impl\HixentArcSiteServiceImpl.class
 com\qf\mapper\fire\HixentArcProjectTypeMapper.class
 com\qf\common\JwtConfig.class
+com\qf\service\admin\HixentCleanUserService.class
 com\qf\model\admin\valid\ValidHixentUserInfo.class
 com\qf\controller\api\admin\ExportExcelUtils.class
 com\qf\service\admin\HixentMessageService.class

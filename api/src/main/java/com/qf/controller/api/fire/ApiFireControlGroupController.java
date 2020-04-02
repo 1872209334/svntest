@@ -2,6 +2,7 @@ package com.qf.controller.api.fire;
 
 
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -126,11 +127,9 @@ public class ApiFireControlGroupController {
 	//@RequiresPermissions(value = {"parc_saveDevice"})
 	@SystemHistoryAnnotation(opration = " 新建项目")
 	@RequestMapping(value = "/newProject", method = RequestMethod.POST)
-	public ModelMap newProject( String siteName,String sitePlace ){
+	public ModelMap newProject( String siteName,String sitePlace, String siteCode, String phoneNumber,String hasWireless ){
 		try{
-			if ( siteName =="" ) {
-				return ReturnUtil.Error("项目名称不能为空！");
-			}else{
+
 				//获取用户信息
 				//HixentAppUser userinfo  = (HixentAppUser) SecurityUtils.getSubject().getPrincipal();
 				ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -155,11 +154,28 @@ public class ApiFireControlGroupController {
 //				PageUtil<HixentArcControlGroup> groupInfo = hixentArcaControllGroupService.getGroupInfo(uid, siteId, adminId,currentPage,pageSize);
 				HixentArcSite hixentArcSite = new HixentArcSite();
 				hixentArcSite.setSiteName(siteName);
-				hixentArcSite.setSitePlace(sitePlace);
-				hixentArcSite.setSiteCode("11111111");
-				hixentArcSiteService.insertNewProject(hixentArcSite);
-				return ReturnUtil.Success("新建项目数据成功！");
-			}
+				hixentArcSite.setSiteCode(siteCode);
+				hixentArcSiteService.insertNewProjectSecond(hixentArcSite);//新增站点
+
+				Integer deviceSum = hixentArcSiteService.existsDevice(siteCode);//是否存在中控
+				if(deviceSum == 0){
+					hixentArcSiteService.insertNewDevice(siteCode+"01",siteCode,"01",phoneNumber,sitePlace,siteName);
+				}else if(deviceSum > 0 ){
+					return ReturnUtil.Error("站点编号存在");
+				}
+//				else if(deviceSum >0 && deviceSum <9){
+//					hixentArcSiteService.insertNewDevice(siteCode+"0"+(deviceSum+1),siteCode,"0"+(deviceSum+1),phoneNumber,sitePlace,siteName,new Date());
+//				}else if(deviceSum >= 9){
+//					hixentArcSiteService.insertNewDevice(siteCode+(deviceSum+1),siteCode,Integer.toString(deviceSum+1),phoneNumber,sitePlace,siteName,new Date());
+//				}
+				if(("1").equals(hasWireless)){
+					hixentArcSiteService.insertNewWireless(siteCode);
+				}
+
+
+
+				return ReturnUtil.Success("新建站点数据成功！");
+
 		} catch (Exception e) {
 			throw new RuntimeException(e.getMessage());
 		}

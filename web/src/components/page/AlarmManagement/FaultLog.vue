@@ -4,10 +4,10 @@
             <div class="myNavigation">
                 <el-breadcrumb separator="/" style="display: inline-block">
                     <el-breadcrumb-item>
-                        <span style="font-size: 16px;color:#303313;">报警管理</span>
+                        <span style="font-size: 16px;color:#303313;">统计管理</span>
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        <span style="font-size: 14px;color:#606266;">故障列表</span>
+                        <span style="font-size: 14px;color:#606266;">人流统计</span>
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
@@ -21,7 +21,7 @@
             <div style=" height:50px; margin:5px 16px 0 16px;">
                 <div style="float: left; height:40px; width:135px;">
                     <div style="width:135px;">
-                        <el-select v-model="projectSelectVal" placeholder="请选择项目" @change="getCenterControl">
+                        <el-select v-model="projectSelectVal" placeholder="请选择站点" @change="getCenterControl">
                             <el-option
                                 label="不限"
                                 value="0">
@@ -86,30 +86,37 @@
 
             <div style="height:calc(100% - 194px);margin: 0 16px auto 16px;
             border: 1px solid #F0F2F5;overflow: auto">
-                <el-table ref="multipleTable" height="100%" :data="faultLogData" tooltip-effect="dark"
+                <el-table ref="multipleTable" height="100%" :data="peopleStatistical" tooltip-effect="dark"
                           style="width: 100%"
                           :header-cell-style="tableStyle">
                     <el-table-column type="index" width="56" label="#">
                     </el-table-column>
 
-                    <el-table-column prop="siteName" :formatter="formatProject" label="项目">
+                    <el-table-column prop="siteName" :formatter="formatProject" label="站点">
                     </el-table-column>
 
-                    <el-table-column prop="deviceId" :formatter="formatNiname" label="设备id">
-                    </el-table-column>
+                    <!--<el-table-column prop="deviceId" :formatter="formatNiname" label="设备id">-->
+                    <!--</el-table-column>-->
 
                     <!--<el-table-column prop="serialNumber" width="60" :formatter="formatNumber" v-if="filters.deviceType == '1'" :key="Math.random()" label="编号">-->
                     <!--</el-table-column>-->
-
-                    <el-table-column prop="createTime" label="故障时间" :formatter="getLocalTime" show-overflow-tooltip>
+                    <el-table-column prop="type" label="垃圾类型" :formatter="getGarbageType" show-overflow-tooltip>
+                    </el-table-column>
+                    <el-table-column prop="uname" label="昵称" :formatter="getUserName" show-overflow-tooltip>
+                    </el-table-column>
+                    <!--<el-table-column prop="uname" label="性别" :formatter="getFaultType" show-overflow-tooltip>-->
+                    <!--</el-table-column>-->
+                    <!--<el-table-column prop="uname" label="年龄" :formatter="getFaultType" show-overflow-tooltip>-->
+                    <!--</el-table-column>-->
+                    <el-table-column prop="createTime" label="投入时间" :formatter="getLocalTime" show-overflow-tooltip>
                     </el-table-column>
 
-                    <el-table-column prop="protocolNode" label="故障类型" :formatter="getFaultType" show-overflow-tooltip>
-                    </el-table-column>
-                    <el-table-column prop="isDeal" label="处理状态" :formatter="formatIsDeal" show-overflow-tooltip></el-table-column>
-                    <el-table-column prop="type" v-if="filters.deviceType == '1'" :key="Math.random()" label="设备类型" :formatter="formatType"
-                                     show-overflow-tooltip>
-                    </el-table-column>
+                    <!--<el-table-column prop="protocolNode" label="故障类型" :formatter="getFaultType" show-overflow-tooltip>-->
+                    <!--</el-table-column>-->
+                    <!--<el-table-column prop="isDeal" label="处理状态" :formatter="formatIsDeal" show-overflow-tooltip></el-table-column>-->
+                    <!--<el-table-column prop="type" v-if="filters.deviceType == '1'" :key="Math.random()" label="设备类型" :formatter="formatType"-->
+                                     <!--show-overflow-tooltip>-->
+                    <!--</el-table-column>-->
 
                     <el-table-column fixed="right" label="操作">
                         <template slot-scope="scope">
@@ -185,7 +192,7 @@
                     checkboxArr: []  ,     //多选框数组
                     isAlarm:2   //故障
                 },
-                faultLogData: [],
+                peopleStatistical: [],
                 filters: {
                     deviceType: 1,
                 },
@@ -272,10 +279,12 @@
             formatNiname(row){
                 return row.deviceId;
             },
+            //重置
             resetBtn(){
                 this.projectSelectVal = '';
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
-                let url = this.getFaultLogUrl;
+                // let url = this.getFaultLogUrl;//报警列表
+                let url = this.getPeopleStatisticalUrl;//人流统计
                 let data = {
                     // isDevice: this.filters.deviceType,
                     // siteId: this.projectSelectVal == null?0:this.projectSelectVal,
@@ -285,17 +294,20 @@
                     // projectId:'',
                     projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+                    type:'',//人流统计
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm
+                    // isAlarm:this.common.isAlarm//报警列表
                     // type: this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
                     // warnIndex: this.warnIndex
                 };
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if (res.status === 200) {
-                        this.faultLogData = res.data.zipperFaultLog;
-                        this.common.total = res.data.zipperFaultLogCount;
+                        // this.faultLogData = res.data.zipperFaultLog;
+                        // this.common.total = res.data.zipperFaultLogCount;
+                        this.peopleStatistical = res.data.peopleStatistical;
+                        this.common.total = res.data.peopleStatisticalCount;
                     }
                     else {
                         this.$commonFn.showTip(res.message, 3);
@@ -307,26 +319,34 @@
             },
             getFaultList() {
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
-                let url = this.getFaultLogUrl;
+                // let url = this.getFaultLogUrl;
+                let url = this.getPeopleStatisticalUrl;
                 let data = {
                     // isDevice: this.filters.deviceType,
                     // siteId: this.projectSelectVal == null?0:this.projectSelectVal,
+
                     projectId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
                     deviceId:JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+
+                    // siteId: JSON.parse(sessionStorage.getItem("user_info")).bid =='0'?'':JSON.parse(sessionStorage.getItem("user_info")).bid,
+
                     // deviceId: this.centerControlVal == null?'':this.centerControlVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
+                    type:'',
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm,
+                    // isAlarm:this.common.isAlarm,
                     // type: this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
                     // warnIndex: this.warnIndex
                 };
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if (res.status === 200) {
-                        this.faultLogData = res.data.zipperFaultLog;
-                        this.common.total = res.data.zipperFaultLogCount;
+                        // this.faultLogData = res.data.zipperFaultLog;
+                        // this.common.total = res.data.zipperFaultLogCount;
+                        this.peopleStatistical = res.data.peopleStatistical;
+                        this.common.total = res.data.peopleStatisticalCount;
                     }
                     else {
                         this.$commonFn.showTip(res.message, 3);
@@ -335,9 +355,11 @@
                     _loading.close();
                 });
             },
+            //查询
             getFaultListBySiteId() {
                 let _loading = this.$commonFn.showLoading(2, '.main-box');
-                let url = this.getFaultLogBySiteIdUrl;
+                // let url = this.getFaultLogBySiteIdUrl;//报警列表
+                let url = this.getPeopleStatisticalUrl;//人流统计
                 let data = {
                     // isDevice: this.filters.deviceType,
                     // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
@@ -345,17 +367,20 @@
                     deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
+                    type:'',//人流统计
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm,
+                    // isAlarm:this.common.isAlarm,//报警列表
                     // type: this.equipmentTypeValue == null?-1:this.equipmentTypeValue,
                     // warnIndex: this.warnIndex
                 };
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if (res.status === 200) {
-                        this.faultLogData = res.data.zipperFaultLog;
-                        this.common.total = res.data.zipperFaultLogCount;
+                        // this.faultLogData = res.data.zipperFaultLog;
+                        // this.common.total = res.data.zipperFaultLogCount;
+                        this.peopleStatistical = res.data.peopleStatistical;
+                        this.common.total = res.data.peopleStatisticalCount;
                     }
                     else {
                         this.$commonFn.showTip(res.message, 3);
@@ -383,6 +408,24 @@
                     return "启动故障";
                 }
             },
+            getUserName(row){
+                    return row.uname;
+            },
+            getGarbageType(row){
+                if(row.type == 1){
+                    row.type = "厨余垃圾";
+                }
+                else if(row.type == 2){
+                    row.type = "可回收垃圾";
+                }
+                else if(row.type == 3){
+                    row.type = "其他垃圾";
+                }
+                else if(row.type == 4){
+                    row.type = "有害垃圾";
+                }
+                return row.type;
+            },
             changeDeviceType(type) {
                 this.deviceType = type;
                 this.projectSelectVal = null;
@@ -391,12 +434,13 @@
                 localStorage.setItem('faultPage',type);
                 this.getFaultList();
             },
-            //导出报警
+            //数据导出
             exportAlarm() {
-                if(this.faultLogData.length == 0){
+                if(this.peopleStatistical.length == 0){
                     this.$commonFn.showTip("无故障记录",2);
                     return;
                 }
+                // alert("hello")
                 let url = this.excelForFaultLogUrl;
                 let data = {
                     // siteId: this.projectSelectVal == ''?0:this.projectSelectVal,
@@ -405,9 +449,10 @@
                     deviceId: this.projectSelectVal == ''?'':this.projectSelectVal,
                     // equipId: 0,
                     // inquir: this.inputBoxValue,
+                    type:'',
                     currentPage: this.common.page,
                     pageSize: this.common.pageSize,
-                    isAlarm:this.common.isAlarm,
+                    // isAlarm:this.common.isAlarm,
                     // isDevice: this.filters.deviceType,
                     // siteId: (this.projectSelectVal == null ? 0 : this.projectSelectVal),
                     // deviceId: (this.centerControlVal == null ? 0 : this.centerControlVal),
@@ -431,7 +476,8 @@
                 for (let i = 0; i < 10; i++) {
                     num += Math.ceil(Math.random() * 10)
                 }
-                link.setAttribute('download', '设备故障记录表.xlsx');
+                // link.setAttribute('download', '设备故障记录表.xlsx');
+                link.setAttribute('download', '人流统计记录表.xlsx');
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -449,13 +495,17 @@
                             siteName:rows.siteName,
                             // niName:rows.niName?rows.niName:rows.device_code,
                             niName:rows.projectId,
+                            userName:rows.uname,
+                            userAge:rows.uage,
+                            userSex:rows.usex == '0'?'男':'女',
+                            garbageType:rows.type,
                             // serialNumber:rows.serialNumber,
                             deviceId:rows.deviceId,
-                            tempration:rows.finishedSum,//成品计数
-                            defectiveSum:rows.defectiveSum,//次品计数
-                            totalCycles:rows.totalCycles,//循环次数
-                            protocolNode:rows.faultType=='1'?'运转故障':'启动故障',//故障原因
-                            isDeal:rows.isDeal,
+                            // tempration:rows.finishedSum,//成品计数
+                            // defectiveSum:rows.defectiveSum,//次品计数
+                            // totalCycles:rows.totalCycles,//循环次数
+                            // protocolNode:rows.faultType=='1'?'运转故障':'启动故障',//故障原因
+                            // isDeal:rows.isDeal,
                             // warnTime:rows.wtime
                             warnTime:rows.createTime, //故障时间
                             updateTime:rows.updateTime //故障时间
@@ -566,7 +616,8 @@
                 this.$commonFn.showConfirm(this.deleteSuccess);
             },
             deleteSuccess() {
-                let url = this.delZipperLogByIdUrl;
+                // let url = this.delZipperLogByIdUrl;
+                let url = this.delPeopleStatisticalUrl;
                 let data = {
                     unid: this.delWarningId
                 };

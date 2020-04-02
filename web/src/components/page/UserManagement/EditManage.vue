@@ -69,7 +69,7 @@
                                     <el-option v-show="userInfo.roleType == 0" label="不限" :value="0">
                                     </el-option>
                                     <el-option v-show="routeParam.roleId != 1" v-for="item in province" :key="item.provinceId" :label="item.provinceName" :value="item.provinceId">
-                                    </el-option>
+                                </el-option>
                                 </el-select>
                             </div>
 <!--                            <div style="width:240px; float: left; margin-left: 10px;">-->

@@ -34,12 +34,24 @@
                         <!--</div>-->
                     <!--</el-form-item>-->
                     <el-form-item>
-                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">项&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称&nbsp;：</label>
-                        <el-input v-model="routeParam.siteName" style="width: 442px;"></el-input>
+                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称&nbsp;：</label>
+                        <el-input v-model="routeParam.siteName" style="width: 442px;"placeholder="如华侨大学站点"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">项&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置&nbsp;：</label>
-                        <el-input v-model="routeParam.sitePlace" style="width: 442px;"></el-input>
+                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;置&nbsp;：</label>
+                        <el-input v-model="routeParam.sitePlace" style="width: 442px;"placeholder="如华侨大学"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;：</label>
+                        <el-input v-model="routeParam.siteCode" style="width: 442px;"placeholder="6位任意数字和字母，如0f0008"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">预&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;留&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话&nbsp;：</label>
+                        <el-input v-model="routeParam.phoneNumber" style="width: 442px;"placeholder="请输入手机号"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <label slot="label" style="height:32px;display: inline-block;line-height: 32px;color:#000">是&nbsp;否&nbsp;存&nbsp;在&nbsp;无&nbsp;线&nbsp;设&nbsp;备：</label>
+                        <el-input v-model="routeParam.hasWireless" style="width: 442px;"placeholder="请输入是/否"></el-input>
                     </el-form-item>
 
                     <!--<el-form-item>-->
@@ -112,9 +124,9 @@
                     <div style="height:40px; width:56px; margin-top: 5px; float: left;">
                         <el-button class="v-1-0-0-Button" @click="newPro">确定</el-button>
                     </div>
-                    <div style="height:40px; width:56px; margin-top: 5px; margin-left: 16px; float: left;">
-                        <el-button class="v-1-0-0-Button-Minor" @click="backToControl">返回</el-button>
-                    </div>
+                    <!--<div style="height:40px; width:56px; margin-top: 5px; margin-left: 16px; float: left;">-->
+                        <!--<el-button class="v-1-0-0-Button-Minor" @click="backToControl">返回</el-button>-->
+                    <!--</div>-->
                 </div>
             </div>
 
@@ -436,6 +448,27 @@
                 // }
                 // let appUserStr = appUserArr.join(',');
                 // let equipList = equipArr.join(',');
+                if(this.routeParam.siteName == "" || this.routeParam.siteName == undefined){
+                    this.$commonFn.showTip("站点名称不能为空",2);
+                    return false;
+                }
+                if(this.routeParam.sitePlace == "" || this.routeParam.sitePlace == undefined){
+                    this.$commonFn.showTip("站点位置不能为空",2);
+                    return false;
+                }
+                if(this.routeParam.siteCode.length != 6 ){
+                    this.$commonFn.showTip("请正确输入站点编号",2);
+                    return false;
+                }
+                let valid_mobile = /^1[3|4|5|7|8|9][0-9]\d{8}$/;
+                if(!valid_mobile.test(this.routeParam.phoneNumber)){
+                    this.$commonFn.showTip("请正确填写手机格式",2);
+                    return false;
+                }
+                if(this.routeParam.hasWireless != 1 && this.routeParam.hasWireless != 2){
+                    this.$commonFn.showTip("是否存在无线设备不能为空",2);
+                    return false;
+                }
                 //新增/编辑分组
                 let _loading = this.$commonFn.showLoading(2,'.main-box');
                 let url = this.newProjectUrl;
@@ -447,13 +480,17 @@
                     // appUserList: appUserStr
                     siteName:this.routeParam.siteName,
                     sitePlace:this.routeParam.sitePlace,
+                    siteCode:'0e'+this.routeParam.siteCode,
+                    phoneNumber:this.routeParam.phoneNumber,
+                    hasWireless:this.routeParam.hasWireless,
                 };
 
                 this.apiPost(url, data).then((res) => {
                     _loading.close();
                     if(res.status === 200){
                         this.$commonFn.showTip("添加成功",1);
-                        this.$router.push('/main');
+                        // this.$router.push('/main');
+                        this.$router.push('/projectDetail');
                     }
                     else{
                         this.$commonFn.showTip(res.message,3);

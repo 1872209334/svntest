@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.qf.mapper.fire.HixentArcSiteDetailMapper">
+
+	<resultMap id="BaseResultMapNew"
+		type="com.qf.model.fire.HixentArcSiteDetailDao">
+		<result column="site_code" jdbcType="VARCHAR" property="siteCode" />
+		<result column="site_name" jdbcType="VARCHAR"
+				property="siteName" />
+		<result column="device_sum" jdbcType="INTEGER"
+			property="deviceSum" />
+		<result column="phone_number1" jdbcType="VARCHAR"
+			property="phoneNumber" />
+		<result column="kitchen_garbage" jdbcType="INTEGER"
+			property="kitchenGarbage" />
+		<result column="recyclable_garbage" jdbcType="INTEGER"
+				property="recyclableGarbage" />
+		<result column="other_garbage" jdbcType="INTEGER"
+			property="otherGarbage" />
+		<result column="harmful_garbage" jdbcType="INTEGER"
+			property="harmfulGarbage" />
+
+	</resultMap>
+	<resultMap id="BaseResultMapPeopleStatistical"
+		type="com.qf.model.fire.HixentArcPeopleStatistical">
+		<result column="unid" jdbcType="INTEGER" property="unid" />
+		<result column="project_id" jdbcType="VARCHAR"
+				property="projectId" />
+		<result column="device_id" jdbcType="VARCHAR"
+			property="deviceId" />
+		<result column="uname" jdbcType="VARCHAR"
+			property="uname" />
+		<result column="usex" jdbcType="VARCHAR"
+			property="usex" />
+		<result column="uage" jdbcType="VARCHAR"
+			property="uage" />
+		<result column="type" jdbcType="VARCHAR"
+				property="type" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+        <result column="site_name" jdbcType="VARCHAR"
+                property="siteName" />
+	</resultMap>
+
+
+	<resultMap id="BaseResultMap"
+		type="com.qf.model.fire.HixentArcZipperInfo">
+		<result column="unid" jdbcType="INTEGER" property="unid" />
+		<result column="project_id" jdbcType="VARCHAR"
+				property="projectId" />
+		<result column="device_id" jdbcType="VARCHAR"
+			property="deviceId" />
+		<result column="finished_sum" jdbcType="VARCHAR"
+			property="finishedSum" />
+		<result column="defective_sum" jdbcType="VARCHAR"
+			property="defectiveSum" />
+		<result column="total_cycles" jdbcType="VARCHAR"
+			property="totalCycles" />
+		<result column="current_angle" jdbcType="VARCHAR"
+			property="currentAngle" />
+		<result column="current_speed" jdbcType="VARCHAR"
+			property="currentSpeed" />
+		<result column="speed_setting" jdbcType="VARCHAR"
+			property="speedSetting" />
+		<result column="operational_mode" jdbcType="VARCHAR"
+			property="operationalMode" />
+		<result column="is_alarm" jdbcType="VARCHAR"
+			property="isAlarm" />
+		<result column="alarm_type" jdbcType="VARCHAR"
+			property="alarmType" />
+		<result column="fault_type" jdbcType="VARCHAR"
+				property="faultType" />
+		<result column="type" jdbcType="VARCHAR"
+				property="type" />
+		<result column="is_deal" jdbcType="VARCHAR"
+				property="isDeal" />
+		<!--<result column="site_name" jdbcType="VARCHAR"-->
+				<!--property="siteName" />-->
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+				property="updateTime" />
+		<result column="create_people" jdbcType="VARCHAR"
+				property="createPeople" />
+		<result column="update_people" jdbcType="VARCHAR"
+				property="updatePeople" />
+        <result column="site_name" jdbcType="VARCHAR"
+                property="siteName" />
+        <result column="site_id" jdbcType="VARCHAR"
+                property="siteId" />
+	</resultMap>
+	<resultMap id="unionMap" type="com.qf.model.fire.HixentArcZipperUnionInfo">
+		<result column="site_name" jdbcType="VARCHAR"
+				property="siteName" />
+		<result column="site_id" jdbcType="VARCHAR"
+				property="siteId" />
+	</resultMap>
+	<resultMap id="siteResultMap" type="com.qf.model.fire.HixentArcSite">
+		<result column="site_id" jdbcType="INTEGER"
+				property="siteId" />
+		<result column="site_code" jdbcType="VARCHAR"
+				property="siteCode" />
+		<result column="site_name" jdbcType="VARCHAR"
+				property="siteName" />
+		<result column="site_place" jdbcType="VARCHAR"
+				property="sitePlace" />
+		<result column="site_build_id" jdbcType="INTEGER"
+				property="siteBuildId" />
+		<result column="longitute" jdbcType="VARCHAR"
+				property="longitute" />
+		<result column="latitude" jdbcType="VARCHAR"
+				property="latitude" />
+		<result column="map_num" jdbcType="INTEGER"
+				property="mapNum" />
+		<result column="logo_file_name" jdbcType="VARCHAR"
+				property="logoFileName" />
+		<result column="logo_file_url" jdbcType="VARCHAR"
+				property="logoFileUrl" />
+		<result column="logo_relative_file_url" jdbcType="VARCHAR"
+				property="logoRelativeFileUrl" />
+		<result column="back_file_name" jdbcType="VARCHAR"
+				property="backFileName" />
+		<result column="back_file_url" jdbcType="VARCHAR"
+				property="backFileUrl" />
+		<result column="back_relative_file_url" jdbcType="VARCHAR"
+				property="backRelativeFileUrl" />
+	</resultMap>
+
+
+	<select id="selectSiteName" parameterType="String" resultType="String"><!--查询站点名字-->
+		select site_name
+		from hixent_arc_system.hixent_arc_site
+		where
+		site_code= #{siteCode,jdbcType=VARCHAR}
+	</select>
+	<select id="selectDeviceSum" parameterType="String" resultType="Integer"><!--查询设备总数-->
+		select count(*)
+		from hixent_arc_system.hixent_arc_garbage
+		where
+		project_id= #{siteCode,jdbcType=VARCHAR}
+	</select>
+	<select id="selectPhoneNumber" parameterType="String" resultType="String"><!--查询预留电话-->
+		select phone_number1
+		from hixent_arc_system.hixent_arc_efm_device
+		where
+		site_code= #{siteCode,jdbcType=VARCHAR}
+	</select>
+	<select id="selectKindsOfGarbage" parameterType="String" resultType="Integer"><!--查询各种类型垃圾总数-->
+		select count(*)
+		from hixent_arc_system.hixent_arc_garbage
+		where
+		project_id= #{siteCode,jdbcType=VARCHAR}
+		and `type` = #{type,jdbcType=VARCHAR}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+	<select id="selectGarbageByProjectId" parameterType="String" resultMap="BaseResultMapNew"><!--依据站点id查询垃圾历史-->
+		select t1.*,t2.site_name
+		from
+		hixent_arc_system.hixent_arc_garbage t1
+		left join
+		hixent_arc_system.hixent_arc_site t2
+		on t1.project_id = t2.site_code
+		where 1=1
+		<if test="siteId != null and siteId!=''">
+			AND t2.site_id= #{siteId,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="selectGarbageByProjectIdAndType" parameterType="String" resultMap="BaseResultMapNew"><!--依据站点id查询垃圾历史-->
+		select *
+		from
+		hixent_arc_system.hixent_arc_garbage_history
+		where 1=1
+		<if test="deviceId != null and deviceId!=''">
+			AND device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND type= #{type,jdbcType=VARCHAR}
+		</if>
+		order by create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+
+	<select id="countSelectGarbageByProjectId" parameterType="String" resultType="Integer"><!--依据站点id查询垃圾历史-->
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_garbage t1
+		left join
+		hixent_arc_system.hixent_arc_site t2
+		on t1.project_id = t2.site_code
+		where 1=1
+		<if test="siteId != null and siteId!=''">
+			AND t2.site_id= #{siteId,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="countSelectGarbageByProjectIdAndType" parameterType="String" resultType="Integer"><!--依据站点id查询垃圾历史-->
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_garbage_history
+		where 1=1
+		<if test="deviceId != null and deviceId!=''">
+			AND device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND type= #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<insert id="insertMqttGarbage" parameterType="com.qf.model.fire.HixentArcGarbage">
+		insert into hixent_arc_system.hixent_arc_garbage_history(project_id,device_id,temperature,
+		weight,`type`,create_time)
+		values (#{projectId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR},#{temperature,jdbcType=VARCHAR},
+		#{weight,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<update id="updateMqttGarbage" parameterType="com.qf.model.fire.HixentArcGarbage">
+		UPDATE
+		hixent_arc_system.hixent_arc_garbage
+		set temperature = #{temperature,jdbcType=VARCHAR},temperature = #{temperature,jdbcType=VARCHAR},
+		weight = #{weight,jdbcType=VARCHAR},update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where  device_id=#{deviceId,jdbcType=VARCHAR}
+		and project_id=#{projectId,jdbcType=VARCHAR}
+		and `type`=#{type,jdbcType=VARCHAR}
+	</update>
+	<select id="selectGarbageIsAlive" parameterType="com.qf.model.fire.HixentArcGarbage" resultMap="BaseResultMapNew"><!--依据站点id查询垃圾历史-->
+		select *
+		from
+		hixent_arc_system.hixent_arc_garbage
+		where 1=1
+		<if test="deviceId != null and deviceId!=''">
+			AND device_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="projectId != null and projectId!=''">
+			AND project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND type= #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<insert id="insertMqttGarbageNotForHistory" parameterType="com.qf.model.fire.HixentArcGarbage">
+		insert into hixent_arc_system.hixent_arc_garbage(project_id,device_id,temperature,
+		weight,`type`,create_time)
+		values (#{projectId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR},#{temperature,jdbcType=VARCHAR},
+		#{weight,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertMqttGarbageFullHistory" parameterType="com.qf.model.fire.HixentArcGarbage">
+		insert into hixent_arc_system.hixent_arc_garbage_full_history(project_id,device_id,temperature,
+		weight,`type`,create_time)
+		values (#{projectId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR},#{temperature,jdbcType=VARCHAR},
+		#{weight,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<select id="selectGarbageFullHistory" parameterType="String" resultMap="BaseResultMapNew"><!--依据站点id查询垃圾历史-->
+		select t1.*,t2.site_name
+		from
+		hixent_arc_system.hixent_arc_garbage_full_history t1
+		left join
+		hixent_arc_system.hixent_arc_site t2
+		on t1.project_id = t2.site_code
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND t1.type= #{type,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="countSelectGarbageFullHistory" parameterType="String" resultType="Integer"><!--依据站点id查询垃圾历史-->
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_garbage_full_history t1
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND t1.type= #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="selectPeopleStatistical" parameterType="String" resultMap="BaseResultMapPeopleStatistical"><!--依据站点id查询垃圾历史-->
+		select t1.*,t2.site_name
+		from
+		hixent_arc_system.hixent_arc_people_statistical t1
+		left join
+		hixent_arc_system.hixent_arc_site t2
+		on t1.project_id = t2.site_code
+		where 1=1
+		<if test="projectId != null and projectId!=''">
+			AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND t1.type= #{type,jdbcType=VARCHAR}
+		</if>
+		order by t1.create_time desc
+		<if test="limits!=null and limits!=''">
+			limit ${limits}
+		</if>
+	</select>
+	<select id="countSelectPeopleStatistical" parameterType="String" resultType="Integer"><!--依据站点id查询人流统计-->
+		select count(*)
+		from
+		hixent_arc_system.hixent_arc_people_statistical t1
+-- 		left join
+-- 		hixent_arc_system.hixent_arc_site t2
+-- 		on t1.project_id = t2.site_code
+		where 1=1
+		<!--<if test="siteId != null and siteId!=''">-->
+			<!--AND t2.site_id= #{siteId,jdbcType=VARCHAR}-->
+		<!--</if>-->
+		<if test="projectId != null and projectId!=''">
+			AND t1.project_id= #{projectId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null and deviceId!=''">
+			AND t1.project_id= #{deviceId,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type!=''">
+			AND t1.type= #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<insert id="insertMqttPeopleStatistical" parameterType="com.qf.model.fire.HixentArcPeopleStatistical">
+		insert into hixent_arc_system.hixent_arc_people_statistical(project_id,device_id,uname,
+		usex,uage,`type`,create_time)
+		values (#{projectId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR},#{uname,jdbcType=VARCHAR},
+		#{usex,jdbcType=VARCHAR},#{uage,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+
+
+
+	</mapper>
